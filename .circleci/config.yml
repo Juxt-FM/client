@@ -4,10 +4,6 @@ jobs:
     working_directory: ~/client
     docker:
       - image: circleci/node:lts
-    pre:
-      - rm -rf ~/.yarn
-      - npm install -g yarn
-      - yarn -v
     steps:
       - checkout
       - restore_cache:
