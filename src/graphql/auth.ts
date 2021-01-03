@@ -47,7 +47,7 @@ export const unlockApollo = () => {
  * If locked, use setTimeout to try again in 100ms. Else, resolve the headers
  */
 export const authLink = setContext((_: any, { headers }: any) => {
-  let retries = 0;
+  const retries = 0;
   const promise = () =>
     new Promise<any>((resolve, reject) => {
       const setContext = () => {

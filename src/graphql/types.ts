@@ -49,9 +49,9 @@ export type UserProfile = {
   summary?: Maybe<Scalars["String"]>;
   imageURL?: Maybe<Scalars["String"]>;
   platforms: UserPlatforms;
-  watchlists: Array<Watchlist>;
-  posts: Array<BlogPost>;
-  comments: Array<Comment>;
+  watchlists: Watchlist[];
+  posts: BlogPost[];
+  comments: Comment[];
   createdAt: Scalars["String"];
   updatedAt: Scalars["String"];
 };
@@ -102,20 +102,20 @@ export type Query = {
   me: User;
   userProfile: UserProfile;
   alpacaAccount: AlpacaAccount;
-  activity: Array<Activity>;
-  orders: Array<Order>;
+  activity: Activity[];
+  orders: Order[];
   order: Order;
-  positions: Array<Position>;
+  positions: Position[];
   position: Position;
   companyProfile: CompanyProfile;
-  searchTickers: Array<Stock>;
-  latestNews: Array<StockNews>;
-  intradayRecords: Array<IntradayRecord>;
+  searchTickers: Stock[];
+  latestNews: StockNews[];
+  intradayRecords: IntradayRecord[];
   singleBlogPost: BlogPost;
-  filterBlogPosts: Array<BlogPost>;
-  reactions: Array<Reaction>;
-  myDrafts: Array<BlogPost>;
-  commentThread: Array<Comment>;
+  filterBlogPosts: BlogPost[];
+  reactions: Reaction[];
+  myDrafts: BlogPost[];
+  commentThread: Comment[];
 };
 
 export type QueryUserProfileArgs = {
@@ -123,7 +123,7 @@ export type QueryUserProfileArgs = {
 };
 
 export type QueryActivityArgs = {
-  activityTypes?: Maybe<Array<Scalars["String"]>>;
+  activityTypes?: Maybe<Scalars["String"][]>;
   filters?: Maybe<ActivityFilters>;
 };
 
@@ -393,7 +393,7 @@ export type Order = {
   filledAvgPrice?: Maybe<Scalars["String"]>;
   status: Scalars["String"];
   extendedHours: Scalars["Boolean"];
-  legs?: Maybe<Array<Order>>;
+  legs?: Maybe<Order[]>;
   trailPrice: Scalars["String"];
   trailPercent?: Maybe<Scalars["String"]>;
   hwm: Scalars["String"];
@@ -516,7 +516,7 @@ export type Stock = {
   currency?: Maybe<Scalars["String"]>;
   stockExchange?: Maybe<Scalars["String"]>;
   exchangeShortName?: Maybe<Scalars["String"]>;
-  news: Array<StockNews>;
+  news: StockNews[];
   quote: Quote;
 };
 
@@ -551,7 +551,7 @@ export type CompanyProfile = {
   dcf?: Maybe<Scalars["Float"]>;
   image?: Maybe<Scalars["String"]>;
   ipoDate?: Maybe<Scalars["String"]>;
-  news: Array<StockNews>;
+  news: StockNews[];
   quote: Quote;
 };
 
@@ -591,9 +591,9 @@ export type BlogPost = {
   subtitle?: Maybe<Scalars["String"]>;
   imageURL?: Maybe<Scalars["String"]>;
   content: Scalars["String"];
-  symbols: Array<Scalars["String"]>;
-  tags: Array<Scalars["String"]>;
-  comments: Array<Comment>;
+  symbols: Scalars["String"][];
+  tags: Scalars["String"][];
+  comments: Comment[];
   reactionCount: Scalars["Int"];
   reactionStatus?: Maybe<Reaction>;
   createdAt: Scalars["String"];
@@ -613,7 +613,7 @@ export type Comment = {
   replyStatus: Scalars["ID"];
   author: Scalars["ID"];
   message: Scalars["String"];
-  replies?: Maybe<Array<Comment>>;
+  replies?: Maybe<Comment[]>;
   reactionCount: Scalars["Int"];
   reactionStatus?: Maybe<Reaction>;
   createdAt: Scalars["String"];
@@ -632,8 +632,8 @@ export type Reaction = {
 export type BlogPostInput = {
   publicationStatus?: Maybe<PublicationStatus>;
   contentFormat?: Maybe<PostContentFormat>;
-  symbols: Array<Scalars["String"]>;
-  tags: Array<Scalars["String"]>;
+  symbols: Scalars["String"][];
+  tags: Scalars["String"][];
   title: Scalars["String"];
   imageURL?: Maybe<Scalars["String"]>;
   subtitle?: Maybe<Scalars["String"]>;
@@ -643,8 +643,8 @@ export type BlogPostInput = {
 export type BlogPostUpdates = {
   publicationStatus?: Maybe<PublicationStatus>;
   contentFormat?: Maybe<PostContentFormat>;
-  symbols?: Maybe<Array<Scalars["String"]>>;
-  tags?: Maybe<Array<Scalars["String"]>>;
+  symbols?: Maybe<Scalars["String"][]>;
+  tags?: Maybe<Scalars["String"][]>;
   title?: Maybe<Scalars["String"]>;
   imageURL?: Maybe<Scalars["String"]>;
   subtitle?: Maybe<Scalars["String"]>;
@@ -666,7 +666,7 @@ export type ReactionInput = {
 export type BlogPostFilters = {
   user?: Maybe<Scalars["ID"]>;
   query?: Maybe<Scalars["String"]>;
-  symbols?: Maybe<Array<Scalars["String"]>>;
+  symbols?: Maybe<Scalars["String"][]>;
   limit: Scalars["Int"];
   offset: Scalars["Int"];
 };
@@ -681,12 +681,12 @@ export type Watchlist = {
   __typename?: "Watchlist";
   id: Scalars["ID"];
   name: Scalars["String"];
-  symbols: Array<Scalars["String"]>;
+  symbols: Scalars["String"][];
   updatedAt: Scalars["String"];
   createdAt: Scalars["String"];
 };
 
 export type WatchlistInput = {
   name?: Maybe<Scalars["String"]>;
-  symbols?: Maybe<Array<Scalars["String"]>>;
+  symbols?: Maybe<Scalars["String"][]>;
 };

@@ -35,7 +35,7 @@ const Header = () => {
         <div>
           <p className={styles.title}>{state.title}</p>
           <p className={styles.updatedStatus}>
-            Last saved {moment(parseInt(lastSaved)).fromNow()}
+            Last saved {moment(parseInt(lastSaved, 10)).fromNow()}
           </p>
         </div>
       </div>

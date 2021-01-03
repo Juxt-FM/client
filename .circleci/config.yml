@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  prebuild:
+  build:
     docker:
       - image: circleci/node:lts
     steps:
@@ -19,11 +19,5 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run:
-          name: Lint source code
-          command: yarn prebuild
-      - run:
-          name: Run tests
+          name: Test
           command: yarn test
-      - run:
-          name: Build compiled source code
-          command: yarn build
