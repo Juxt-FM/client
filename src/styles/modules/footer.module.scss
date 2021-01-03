@@ -1,0 +1,7 @@
+@import "../common/variables";
+@import "../common/fonts";
+
+footer.footer {
+  height: 0px;
+  background-color: map-get($colors, "altBackground");
+}

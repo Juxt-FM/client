@@ -1,0 +1,59 @@
+/**
+ * @author Andrew Perera
+ * Copyright (C) 2020 - All rights reserved
+ */
+
+import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
+import {
+  initializeApollo,
+  addApolloState,
+  UserProfile,
+  QUERY_USER_PROFILE,
+} from "../../../graphql";
+
+import Page from "../../../components/common/Page";
+import ProfileRoot from "../../../components/UserProfileRoot";
+
+interface IUserProfileQuery {
+  userProfile: UserProfile;
+}
+
+const UserProfilePage = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { data } = useQuery<IUserProfileQuery>(QUERY_USER_PROFILE, {
+    variables: { id },
+  });
+
+  return (
+    <Page
+      title={`${data.userProfile.name || "Users"}`}
+      description={
+        data
+          ? `Check out ${data.userProfile.name} on Hedger.`
+          : "User profiles."
+      }
+    >
+      <section className="section">
+        <ProfileRoot Component={null} profile={data.userProfile} />
+      </section>
+    </Page>
+  );
+};
+
+export async function getServerSideProps({ params }: any) {
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: QUERY_USER_PROFILE,
+    variables: params,
+  });
+
+  return addApolloState(apolloClient, {
+    props: {},
+  });
+}
+
+export default UserProfilePage;

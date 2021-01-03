@@ -1,0 +1,29 @@
+// Colors
+$colors: (
+  primary: #5971ff,
+  accent: #ff5555,
+  secondary: #d3d3d3,
+  background: white,
+  altBackground: #f9f9f9,
+  text: black,
+  border: #f0efef,
+  blue: #006eff,
+  orange: #ff5e00,
+  pink: #f85ffd,
+  green: #18cf00,
+  black: black,
+  white: white,
+  grey: #333333,
+  darkGrey: #111111,
+  error: #f50057,
+);
+
+// Breakpoints
+$breakpoint-xs: 0px;
+$breakpoint-small: 550px;
+$breakpoint-medium: 1024px;
+$breakpoint-large: 1440px;
+$breakpoint-xl: 1920px;
+
+// Styles
+$shadow: 0 0 25px #e6ecf8;

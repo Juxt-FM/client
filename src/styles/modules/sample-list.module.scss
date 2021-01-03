@@ -1,0 +1,18 @@
+@import "../common/variables";
+
+.header {
+  margin-bottom: 35px;
+  & > p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 25px;
+  }
+  &.dark {
+    h1 {
+      color: white;
+    }
+    p {
+      color: #e2e2e2;
+    }
+  }
+}

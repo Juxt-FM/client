@@ -1,0 +1,47 @@
+@import "./common/text";
+@import "./common/fonts";
+@import "./common/variables";
+
+a {
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: none;
+  color: map-get($colors, "text");
+  cursor: pointer;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color: map-get($colors, "background");
+  overflow-x: hidden;
+  font-family: $lato;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+hr {
+  border-top: map-get($colors, "border");
+  margin: 0;
+}
+
+.section {
+  padding: 0 15% 0px 15%;
+  @media screen and (max-width: $breakpoint-small) {
+    padding: 0 2% 0px 2%;
+  }
+  @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large) {
+    padding: 0 5% 0px 5%;
+  }
+  @media screen and (min-width: $breakpoint-xl) {
+    padding: 0 25% 0px 25%;
+  }
+}

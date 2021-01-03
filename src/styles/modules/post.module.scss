@@ -1,0 +1,136 @@
+@import "../common/variables";
+
+.listItem {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: opacity 0.25s;
+  &:hover {
+    opacity: 0.75;
+  }
+  &.loading {
+    cursor: default;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.altListItem {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  &.loading {
+    & > .image {
+      height: 125px;
+      width: 33%;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      @media screen and (max-width: $breakpoint-small) {
+        width: 100%;
+        height: 200px;
+      }
+    }
+    &:hover {
+      background-color: map-get($colors, "background") !important;
+    }
+  }
+  &:hover {
+    background-color: map-get($colors, "altBackground");
+  }
+  padding: 50px 0;
+  border-bottom-style: solid;
+  border-bottom-width: 0.5px;
+  border-bottom-color: map-get($colors, "border");
+  @media screen and (max-width: $breakpoint-small) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &.dark {
+    border-bottom-color: #101010;
+    &:hover {
+      background-color: #101010;
+    }
+  }
+  & > .image {
+    height: 100%;
+    width: 33%;
+    border-radius: 5px;
+    object-fit: cover;
+    background-color: map-get($colors, "altBackground");
+    @media screen and (max-width: $breakpoint-small) {
+      width: 100%;
+      height: auto;
+    }
+  }
+  & > .altContent {
+    flex: 1;
+    height: 100%;
+    padding-left: 2.5%;
+    @media screen and (max-width: $breakpoint-small) {
+      padding-left: 0;
+    }
+    display: flex;
+    flex-direction: column;
+    & > h2 {
+      @media screen and (max-width: $breakpoint-small) {
+        margin: 10px 0;
+        height: auto;
+      }
+      &.dark {
+        color: white;
+      }
+      margin: 0 0 10px 0;
+      line-height: 32px;
+    }
+    & > p {
+      &.dark {
+        color: #e2e2e2;
+      }
+      color: white;
+    }
+  }
+}
+
+.detailRoot {
+  position: relative;
+  min-height: 100vh;
+  & > .header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: $breakpoint-medium) {
+      flex-direction: column;
+    }
+    & > :nth-child(even) {
+      margin-left: 25px;
+      @media screen and (max-width: $breakpoint-medium) {
+        margin: 0;
+      }
+    }
+    & > img {
+      width: 50%;
+      border-radius: 10px;
+      @media screen and (max-width: $breakpoint-medium) {
+        width: 100%;
+        margin-bottom: 25px;
+      }
+    }
+    & > .info {
+      & > h1 {
+        @media screen and (max-width: $breakpoint-medium) {
+          line-height: 38px;
+        }
+        font-weight: 600;
+        line-height: 50px;
+      }
+      & > p {
+        font-size: 22px;
+        line-height: 32px;
+        font-weight: 200;
+      }
+    }
+  }
+}
