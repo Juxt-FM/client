@@ -30,9 +30,11 @@ jobs:
           at: .
       - run:
           name: Run tests
-          command: yarn test --ci
+          command: |
+            mkdir -p ./test-results/junit
+            yarn test --ci
       - store_artifacts:
-          path: test-results/junit
+          path: test-results
       - store_test_results:
           path: test-results
 
