@@ -6,7 +6,9 @@ orbs:
 jobs:
   prepare:
     working_directory: ~/client
-    executor: node/default
+    executor:
+      name: node/default
+      tag: "14"
     steps:
       - checkout
       - node/install-yarn
@@ -20,7 +22,9 @@ jobs:
             - .
 
   test:
-    executor: node/default
+    executor:
+      name: node/default
+      tag: "14"
     steps:
       - attach_workspace:
           at: .
@@ -29,7 +33,9 @@ jobs:
           command: yarn test
 
   build:
-    executor: node/default
+    executor:
+      name: node/default
+      tag: "14"
     steps:
       - attach_workspace:
           at: .
@@ -38,7 +44,9 @@ jobs:
           command: yarn build
 
   deploy:
-    executor: node/default
+    executor:
+      name: node/default
+      tag: "14"
     steps:
       - attach_workspace:
           at: .
