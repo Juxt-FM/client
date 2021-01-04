@@ -5,6 +5,7 @@
 
 import { useEffect } from "react";
 import { useApolloClient, useLazyQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
 import jwt_decode from "jwt-decode";
@@ -32,7 +33,6 @@ import {
   AuthCredentials,
 } from "../graphql";
 import { usePreviousValue } from "./utils";
-import { useRouter } from "next/router";
 
 const cookies = new Cookies();
 
