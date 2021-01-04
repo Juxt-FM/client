@@ -10,15 +10,6 @@
   }
 }
 
-@keyframes fadeTransition {
-  0% {
-    opacity: 0.75;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .root {
   position: absolute;
   top: calc(100% + 5px);
@@ -30,9 +21,6 @@
   overflow: hidden;
   cursor: default;
   animation: slideTransition 0.25s;
-  & * {
-    animation: fadeTransition 0.25s;
-  }
 }
 
 .dropdownOption {

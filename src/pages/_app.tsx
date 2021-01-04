@@ -7,11 +7,11 @@ import { AppProps } from "next/app";
 import Router from "next/router";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { Provider as ReduxProvider } from "react-redux";
+import { AuthProvider, UserProvider } from "../context";
 import { useStore } from "../store";
 import { useApollo } from "../graphql";
-import NProgress from "nprogress";
 
-import { AuthProvider, UserProvider } from "../context";
+import NProgress from "nprogress";
 
 import "../styles/nprogress.scss";
 import "../styles/app.scss";

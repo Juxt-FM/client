@@ -116,7 +116,7 @@ const Latest = () => {
   );
 };
 
-export default function Activity() {
+export default function Home() {
   return (
     <div>
       <section className="section">

@@ -3,6 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
+import fetch from "cross-fetch";
 import { useMemo } from "react";
 import {
   ApolloClient,
@@ -23,6 +24,7 @@ export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 const httpLink = new HttpLink({
   uri: "http://localhost:4000/graphql",
   credentials: "include",
+  fetch,
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
