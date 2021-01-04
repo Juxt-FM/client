@@ -110,6 +110,7 @@ export const SignupForm = () => {
     onCompleted: ({ createUser: { accessToken } }) => {
       onLogin(accessToken);
     },
+    // tslint:disable-next-line:no-empty
     onError: () => {},
   });
 

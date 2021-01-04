@@ -56,6 +56,7 @@ export const SampleList = ({
         offset: 0,
       },
     },
+    // tslint:disable-next-line:no-empty
     onError: () => {},
   });
 

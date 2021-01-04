@@ -43,6 +43,7 @@ const LoginForm = () => {
     onCompleted: ({ loginUser: { accessToken } }) => {
       onLogin(accessToken);
     },
+    // tslint:disable-next-line:no-empty
     onError: () => {},
   });
 
