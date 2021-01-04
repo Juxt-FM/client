@@ -32,9 +32,9 @@ jobs:
           name: Run tests
           command: yarn test --ci
       - store_artifacts:
-          path: ./test-results/junit
+          path: test-results/junit
       - store_test_results:
-          path: ./test-results
+          path: test-results
 
   build:
     working_directory: ~/app
