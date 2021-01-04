@@ -8,4 +8,5 @@ module.exports = {
       "<rootDir>/__mocks__/fileMock.js",
     "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js",
   },
+  reporters: ["default", ["jest-junit", { outputDirectory: "test-reports" }]],
 };

@@ -30,11 +30,7 @@ jobs:
           at: .
       - run:
           name: Run tests
-          environment:
-            JEST_JUNIT_OUTPUT: ./test-results/junit/results.xml
-          command: |
-            mkdir -p ./test-results/junit
-            yarn test --ci --reporters=jest-junit
+          command: yarn test --ci
       - store_artifacts:
           path: ./test-results/junit
       - store_test_results:
