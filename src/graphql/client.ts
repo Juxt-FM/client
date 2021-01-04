@@ -35,6 +35,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       }
     }
   }
+
+  if (networkError) {
+    // tslint:disable-next-line:no-console
+    console.log(networkError);
+  }
 });
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
@@ -79,7 +84,7 @@ export function initializeApollo(initialState: any = null) {
 
     const data = merge(initialState, existingCache, {
       // We are overwrtiting arrays on merge, by default they concatenate
-      arrayMerge: (dest, source, options) => source,
+      arrayMerge: (dest, source) => source,
     });
 
     // Restore the cache with the merged data

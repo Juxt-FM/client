@@ -3,12 +3,11 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useApolloClient, useLazyQuery } from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
 import jwt_decode from "jwt-decode";
-import _ from "lodash";
 
 import {
   FETCH_USER,
@@ -48,6 +47,7 @@ const buildTokenInfo = (token: string) => {
 const refreshToken = () => {
   const client = createApolloClient({ standalone: true });
 
+  // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     try {
       const { data } = await client.mutate({
