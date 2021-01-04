@@ -30,6 +30,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     for (const err of graphQLErrors) {
       switch (err.extensions.code) {
         default:
+          // tslint:disable-next-line:no-console
           console.log(err);
       }
     }

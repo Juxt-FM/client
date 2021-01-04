@@ -24,9 +24,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Dropdown, { DropdownList } from "./Dropdown";
 
-import Modal from "./Modal";
-import NewPost from "../NewPost";
-
 import styles from "../../styles/modules/header.module.scss";
 
 interface IMenuOption {
@@ -96,12 +93,12 @@ const AccountMenu = () => {
       {
         label: "Help Center",
         icon: faQuestionCircle,
-        action: () => console.log("help center"),
+        action: () => router.push(`/support/help`),
       },
       {
         label: "Contact Us",
         icon: faCommentAlt,
-        action: () => console.log("contact us"),
+        action: () => router.push(`/support/contact`),
       },
     ],
     [
@@ -159,12 +156,18 @@ const NewContentMenu = () => {
     {
       label: "Idea",
       icon: faLightbulb,
-      action: () => console.log("new idea"),
+      action: () => {
+        // tslint:disable-next-line:no-console
+        console.log("new idea");
+      },
     },
     {
       label: "Watchlist",
       icon: faEye,
-      action: () => console.log("new watchlist"),
+      action: () => {
+        // tslint:disable-next-line:no-console
+        console.log("new watchlist");
+      },
     },
   ];
 

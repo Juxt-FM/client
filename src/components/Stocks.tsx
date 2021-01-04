@@ -96,14 +96,14 @@ const HistoricalData = ({ symbol }: { symbol: string }) => {
 
   const renderChart = ({ height, width }: Size) => {
     if (data) {
-      const close = data.intradayRecords.map(({ close }, index) => ({
+      const chartData = data.intradayRecords.map(({ close }, index) => ({
         x: index,
         y: close,
       }));
 
       return (
         <QuoteChart
-          data={close}
+          data={chartData}
           height={height}
           width={width}
           activePoint={

@@ -56,9 +56,7 @@ export const SampleList = ({
         offset: 0,
       },
     },
-    onError: (error) => {
-      console.log(error);
-    },
+    errorPolicy: "ignore",
   });
 
   const renderContent = () => {

@@ -42,6 +42,9 @@ export const initializeStore = (preloadedState: any) => {
 };
 
 export function useStore(initialState: any) {
-  const store = useMemo(() => initializeStore(initialState), [initialState]);
-  return store;
+  const reduxStore = useMemo(() => initializeStore(initialState), [
+    initialState,
+  ]);
+
+  return reduxStore;
 }

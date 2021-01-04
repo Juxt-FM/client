@@ -52,9 +52,6 @@ const ListItem = ({ list }: IListItemProps) => {
     MUTATION_DELETE_WATCHLIST,
     {
       variables: { id: list.id },
-      onError: (err) => {
-        console.log(err);
-      },
       update: (store) => {
         const user: { me: any } = store.readQuery({ query: QUERY_AUTH_USER });
 
@@ -71,6 +68,7 @@ const ListItem = ({ list }: IListItemProps) => {
 
         store.writeQuery({ query: QUERY_AUTH_USER, data: newData });
       },
+      errorPolicy: "ignore",
     }
   );
 

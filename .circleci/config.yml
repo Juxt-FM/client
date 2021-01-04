@@ -4,7 +4,7 @@ orbs:
   node: circleci/node@4.1.0
 
 jobs:
-  prepare-dependencies:
+  prepare:
     working_directory: ~/app
     executor:
       name: node/default
@@ -15,6 +15,9 @@ jobs:
       - node/install-packages:
           app-dir: ~/app
           pkg-manager: yarn
+      - run:
+          name: Lint source code
+          command: yarn lint
       - persist_to_workspace:
           root: .
           paths:
@@ -30,15 +33,13 @@ jobs:
           at: .
       - run:
           name: Run tests
-          command: |
-            yarn test --ci
-            ls
+          command: yarn test --ci
       - store_artifacts:
           path: test-results
       - store_test_results:
           path: test-results
 
-  build-source:
+  build:
     working_directory: ~/app
     executor:
       name: node/default
@@ -49,6 +50,8 @@ jobs:
       - run:
           name: Build app
           command: yarn build
+      - store_artifacts:
+          path: dist
       - persist_to_workspace:
           root: .
           paths:
@@ -70,21 +73,21 @@ workflows:
   version: 2.1
   test-build-deploy:
     jobs:
-      - prepare-dependencies
+      - prepare
       - test:
           requires:
-            - prepare-dependencies
-      - hold:
-          type: approval
+            - prepare
+      - build:
           requires:
             - test
           filters:
             branches:
               only:
                 - master
-      - build-source:
+      - hold:
+          type: approval
           requires:
-            - hold
+            - build
           filters:
             branches:
               only:

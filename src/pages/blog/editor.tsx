@@ -34,6 +34,10 @@ export default function InAppEditor() {
 
   const { post } = router.query;
 
+  const redirect = () => {
+    router.push("/");
+  };
+
   const [createPost, { data: created, loading: creating }] = useMutation<{
     createBlogPost: BlogPost;
   }>(MUTATION_CREATE_POST, {
@@ -43,19 +47,13 @@ export default function InAppEditor() {
         query: { post: createBlogPost.id },
       });
     },
-    onError: (err) => {
-      console.log(err);
-      router.push("/");
-    },
+    onError: redirect,
   });
 
   const [fetchPost, { data: fetched, loading: fetching }] = useLazyQuery<{
     singleBlogPost: BlogPost;
   }>(QUERY_BLOG_POST, {
-    onError: (err) => {
-      console.log(err);
-      router.push("/");
-    },
+    onError: redirect,
   });
 
   useEffect(() => {
