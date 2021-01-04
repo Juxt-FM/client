@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  node: circleci/node:lts
+  node: circleci/node@lts
 
 jobs:
   prepare:
