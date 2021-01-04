@@ -4,7 +4,7 @@ orbs:
   node: circleci/node@4.1.0
 
 jobs:
-  prepare:
+  prepare-dependencies:
     working_directory: ~/app
     executor:
       name: node/default
@@ -32,11 +32,11 @@ jobs:
           name: Run tests
           command: yarn test --ci
       - store_artifacts:
-          path: root/app/test-results
+          path: test-results/junit
       - store_test_results:
           path: test-results
 
-  build:
+  build-source:
     working_directory: ~/app
     executor:
       name: node/default
@@ -68,10 +68,10 @@ workflows:
   version: 2.1
   test-build-deploy:
     jobs:
-      - prepare
+      - prepare-dependencies
       - test:
           requires:
-            - prepare
+            - prepare-dependencies
       - hold:
           type: approval
           requires:
@@ -80,7 +80,7 @@ workflows:
             branches:
               only:
                 - master
-      - build:
+      - build-source:
           requires:
             - hold
           filters:
