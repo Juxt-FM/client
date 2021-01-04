@@ -8,11 +8,8 @@ import {
   LineSeries,
   RVNearestXEventHandler,
   LineSeriesPoint,
-  LineSeriesCanvas,
-  MarkSeriesCanvas,
   MarkSeries,
 } from "react-vis";
-import { useTheme } from "../context";
 import { MouseEvent } from "react";
 
 interface IPoint {
@@ -42,8 +39,6 @@ export const QuoteChart = ({
   onMouseLeave,
   onMouseEnter,
 }: IQuoteChart) => {
-  const { colors } = useTheme();
-
   return (
     <XYPlot
       width={width}
@@ -51,9 +46,10 @@ export const QuoteChart = ({
       margin={5}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      style={{ overflow: "visible" }}
     >
       <LineSeries
-        color={colors.primary}
+        color="#5971ff"
         data={data}
         style={{
           fillOpacity: 0,
@@ -68,7 +64,7 @@ export const QuoteChart = ({
           // @ts-ignore
           size={3}
           fill="white"
-          stroke={colors.primary}
+          stroke="#5971ff"
           style={{ pointerEvents: "none", strokeWidth: 2 }}
           data={[activePoint]}
         />
@@ -77,8 +73,8 @@ export const QuoteChart = ({
         <MarkSeries
           // @ts-ignore
           size={15}
-          fill={colors.primary}
-          stroke={colors.primary}
+          fill="#5971ff"
+          stroke="#5971ff"
           style={{ pointerEvents: "none", opacity: 0.25 }}
           data={[activePoint]}
         />

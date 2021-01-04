@@ -19,7 +19,6 @@ import {
   QUERY_FILTER_POSTS,
   QUERY_INTRADAY_REOCRDS,
 } from "../graphql";
-import { useCurrentBreakpoint } from "../context";
 import { AutoSizer, Size } from "react-virtualized";
 import moment from "moment";
 import _ from "lodash";
@@ -30,7 +29,6 @@ import { SampleList } from "./SampleList";
 import { ListItem, LoadingListItem } from "./BlogPosts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { ClipLoader } from "react-spinners";
 
 import { LineSeriesPoint } from "react-vis";
 
@@ -261,8 +259,6 @@ const CompanyDetails = ({ stock }: { stock: CompanyProfile }) => {
 };
 
 const StockSymbol = ({ stock }: { stock: CompanyProfile }) => {
-  const breakpoint = useCurrentBreakpoint();
-
   return (
     <div className={styles.stockRoot}>
       <div className={styles.splitContent}>
@@ -270,11 +266,7 @@ const StockSymbol = ({ stock }: { stock: CompanyProfile }) => {
           <HistoricalData symbol={stock.symbol} />
           <CompanyDetails stock={stock} />
         </div>
-        {!["xs", "sm", "md"].includes(breakpoint) && (
-          <div>
-            <WatchlistAction />
-          </div>
-        )}
+        <WatchlistAction />
       </div>
       <BlogPosts symbol={stock.symbol} posts={[]} />
     </div>

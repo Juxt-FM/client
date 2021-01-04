@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }: IProvider): JSX.Element => {
 
     unlockApollo();
 
-    onLogout();
+    onLogout(false);
   };
 
   const refresh = () => {
@@ -141,13 +141,15 @@ export function useAuthActions() {
     client.clearStore().then(() => router.push("/"));
   };
 
-  const onLogout = () => {
+  const onLogout = (redirectToLogin = true) => {
     dispatch({ type: LOGOUT_USER });
 
     setAccessToken(undefined);
     cookies.set("logged_in", undefined, { path: "/", expires: new Date() });
 
-    client.clearStore().then(() => router.push("/auth/login"));
+    client.clearStore().then(() => {
+      if (redirectToLogin) router.push("/auth/login");
+    });
   };
 
   return {

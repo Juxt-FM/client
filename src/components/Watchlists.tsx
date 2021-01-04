@@ -68,7 +68,7 @@ const ListItem = ({ list }: IListItemProps) => {
 
         store.writeQuery({ query: QUERY_AUTH_USER, data: newData });
       },
-      errorPolicy: "ignore",
+      onError: () => {},
     }
   );
 

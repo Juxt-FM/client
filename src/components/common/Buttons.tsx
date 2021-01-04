@@ -3,10 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { ButtonHTMLAttributes, DetailedHTMLProps, Fragment } from "react";
-
-import { ClipLoader } from "react-spinners";
-import { useTheme } from "../../context";
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 import styles from "../../styles/modules/buttons.module.scss";
 
@@ -26,30 +23,17 @@ export const Button = ({ color = "primary", ...props }: IButton) => {
   const className = styles[`${color}Btn${props.size === "sm" ? "Sm" : ""}`];
   return (
     <button className={className} {...props}>
-      {props.loading ? (
-        <Fragment>
-          {props.loadingLabel} <ClipLoader color="white" size={14} />
-        </Fragment>
-      ) : (
-        props.label
-      )}
+      {props.loading ? props.loadingLabel : props.label}
     </button>
   );
 };
 
 export const ButtonOutline = ({ color = "primary", ...props }: IButton) => {
-  const { colors } = useTheme();
   const className =
     styles[`${color}BtnOutline${props.size === "sm" ? "Sm" : ""}`];
   return (
     <button className={className} {...props}>
-      {props.loading ? (
-        <Fragment>
-          {props.loadingLabel} <ClipLoader color={colors[color]} size={14} />
-        </Fragment>
-      ) : (
-        props.label
-      )}
+      {props.loading ? props.loadingLabel : props.label}
     </button>
   );
 };

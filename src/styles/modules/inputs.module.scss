@@ -34,7 +34,7 @@
     color: map-get($colors, "grey");
   }
   &.error {
-    border-bottom-color: map-get($colors, "error");
+    border-bottom-color: map-get($colors, "red");
   }
 }
 
@@ -110,6 +110,6 @@ p.error {
   position: absolute;
   font-size: 13px;
   font-weight: 400;
-  color: map-get($colors, "error");
+  color: map-get($colors, "red");
   margin-top: -5px;
 }

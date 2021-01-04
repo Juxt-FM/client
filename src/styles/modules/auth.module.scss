@@ -42,7 +42,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: map-get($colors, "error");
+    background-color: map-get($colors, "red");
     box-shadow: $shadow;
     animation: errorTransition 0.5s;
     & > p {

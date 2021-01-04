@@ -56,7 +56,7 @@ export const SampleList = ({
         offset: 0,
       },
     },
-    errorPolicy: "ignore",
+    onError: () => {},
   });
 
   const renderContent = () => {

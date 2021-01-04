@@ -43,7 +43,7 @@ const LoginForm = () => {
     onCompleted: ({ loginUser: { accessToken } }) => {
       onLogin(accessToken);
     },
-    errorPolicy: "ignore",
+    onError: () => {},
   });
 
   const onLoginUser = (e: FormEvent<HTMLFormElement>) => {

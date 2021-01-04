@@ -63,7 +63,7 @@ ul.dropdownList {
     }
     &.danger {
       font-weight: 500;
-      color: map-get($colors, "error");
+      color: map-get($colors, "red");
     }
   }
 }

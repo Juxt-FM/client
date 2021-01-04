@@ -7,7 +7,6 @@ import React from "react";
 import { useState, MouseEvent } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useCurrentBreakpoint } from "../../context";
 import { Squash as Hamburger } from "hamburger-react";
 import Searchbar from "./Searchbar";
 
@@ -45,7 +44,6 @@ const NavLink = ({ label, path, className }: INavLink) => (
 );
 
 export const ContentHeader = ({ searchEnabled = true }) => {
-  const currentBreakpoint = useCurrentBreakpoint();
   const [showMenu, setShowMenu] = useState(false);
 
   const renderMenuAction = () => {
@@ -69,7 +67,7 @@ export const ContentHeader = ({ searchEnabled = true }) => {
           <Searchbar placeholder="Search blog posts, stocks, and more..." />
         )}
       </div>
-      {["xs", "sm", "md"].includes(currentBreakpoint) && renderMenuAction()}
+      {renderMenuAction()}
       <ul className={styles.headerLinks}>
         <li className={styles.headerLink}>
           <NavLink label="Home" path="/" />

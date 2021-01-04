@@ -92,3 +92,10 @@ workflows:
             branches:
               only:
                 - master
+      - deploy:
+          requires:
+            - hold
+          filters:
+            branches:
+              only:
+                - master

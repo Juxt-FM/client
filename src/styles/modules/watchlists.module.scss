@@ -67,15 +67,15 @@
       & a.action {
         height: 35px;
         width: 35px;
-        color: map-get($colors, "error");
-        background-color: lighten(map-get($colors, "error"), 50);
+        color: map-get($colors, "red");
+        background-color: lighten(map-get($colors, "red"), 50);
       }
     }
   }
 
   & .listError {
     font-size: 14px;
-    color: map-get($colors, "error");
+    color: map-get($colors, "red");
     text-align: center;
   }
 }

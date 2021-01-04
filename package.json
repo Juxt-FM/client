@@ -8,8 +8,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "generate-graph-types": "graphql-codegen",
-    "validate-ci-config": "circleci config validate"
+    "generate-graph-types": "graphql-codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.2.9",

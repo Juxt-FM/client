@@ -110,7 +110,7 @@ export const SignupForm = () => {
     onCompleted: ({ createUser: { accessToken } }) => {
       onLogin(accessToken);
     },
-    errorPolicy: "ignore",
+    onError: () => {},
   });
 
   const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {

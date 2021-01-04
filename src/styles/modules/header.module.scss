@@ -25,7 +25,7 @@ header.authBanner {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: black;
+  background-color: map-get($colors, "darkGrey");
 
   & > .loadingOption {
     display: flex;
@@ -175,6 +175,9 @@ header.header {
 
 .menuAction {
   padding: 0 0 0 25px;
+  @media screen and (min-width: $breakpoint-medium) {
+    display: none;
+  }
 }
 
 .headerLeft {
