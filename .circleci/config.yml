@@ -32,7 +32,7 @@ jobs:
           name: Run tests
           command: yarn test
       - store_test_results:
-        path: test-results
+          path: test-results
 
   build:
     executor:
