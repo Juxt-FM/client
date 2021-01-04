@@ -53,13 +53,13 @@
 
 @mixin btnSm($color) {
   @include btn($color);
-  height: 40px;
+  height: 35px;
   font-size: 14px;
 }
 
 @mixin btnOutlineSm($color) {
   @include btnOutline($color);
-  height: 40px;
+  height: 35px;
   font-size: 14px;
 }
 

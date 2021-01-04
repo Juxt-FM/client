@@ -36,7 +36,7 @@ header.authBanner {
     margin: 0 17.5px;
     border-radius: 30px;
     overflow: hidden;
-    background-color: lighten(black, 30);
+    background-color: map-get($colors, "grey");
   }
 
   & > .option {

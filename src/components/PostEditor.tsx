@@ -40,15 +40,17 @@ const Header = () => {
         </div>
       </div>
       <div className={styles.actions}>
-        <ButtonOutline
+        <Button
           size="sm"
-          color="black"
+          color="purple"
           label="Save"
           loadingLabel="Saving..."
           loading={saving}
           onClick={onSave}
+          rounded
         />
         <Button
+          color="darkBlue"
           label="Publish"
           loadingLabel="Publishing..."
           loading={publishing}

@@ -1,16 +1,31 @@
+# Build stage: create a clean TS->JS build
+
+FROM node:14 AS build
+
+RUN mkdir -p /build
+WORKDIR /build
+
+COPY package.json .
+
+RUN yarn install
+
+COPY . .
+
+RUN yarn build
+
+
+# Build the final slimmed application image
+
 FROM node:14
 
 RUN mkdir -p /app
+
 WORKDIR /app
 
 COPY package.json .
 
-RUN npm install
+RUN yarn install --production
 
-COPY . .
+COPY --from=build /build/.next .
 
-EXPOSE 3000
-
-RUN npm run build
-
-RUN npm run start
+CMD ["yarn", "start"]

@@ -52,11 +52,11 @@ interface IAction {
 const reducer = (state: IState = INITIAL_STATE, action: IAction): IState => {
   switch (action.type) {
     case REFRESH_TOKEN:
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);
       return { ...state, loading: true };
     case REFRESH_TOKEN_SUCCESS:
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);
       return {
         ...state,
@@ -64,33 +64,33 @@ const reducer = (state: IState = INITIAL_STATE, action: IAction): IState => {
         token: action.payload,
       };
     case REFRESH_TOKEN_FAIL:
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);
       return {
         ...state,
         loading: false,
       };
     case LOGIN_USER:
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);
       return { ...state, token: action.payload };
     case LOGOUT_USER:
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);
       return INITIAL_STATE;
     case FETCH_USER:
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);
       return { ...state, user: { ...state.user, loading: true } };
     case FETCH_USER_SUCCESS:
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);
       return {
         ...state,
         user: { ...state.user, loading: false, user: action.payload },
       };
     case FETCH_USER_FAIL:
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);
       return {
         ...state,

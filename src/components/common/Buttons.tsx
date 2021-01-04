@@ -7,6 +7,24 @@ import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 import styles from "../../styles/modules/buttons.module.scss";
 
+type Color =
+  | "primary"
+  | "accent"
+  | "orange"
+  | "blue"
+  | "lightBlue"
+  | "darkBlue"
+  | "yellow"
+  | "red"
+  | "green"
+  | "darkGreen"
+  | "lightGreen"
+  | "purple"
+  | "lightPurple"
+  | "black"
+  | "secondary"
+  | "white";
+
 interface IButton
   extends DetailedHTMLProps<
     ButtonHTMLAttributes<HTMLButtonElement>,
@@ -16,7 +34,8 @@ interface IButton
   loading?: boolean;
   loadingLabel?: string;
   size?: "lg" | "sm";
-  color?: "primary" | "accent" | "black" | "secondary" | "white";
+  color?: Color;
+  rounded?: boolean;
 }
 
 export const Button = ({ color = "primary", ...props }: IButton) => {

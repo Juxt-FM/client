@@ -16,7 +16,7 @@ let locked = false;
  */
 export const setAccessToken = (newToken: string | undefined) => {
   if (newToken !== accessToken) {
-    // tslint:disable-next-line:no-console
+    // eslint-disable-next-line no-console
     console.log("updating token");
 
     accessToken = newToken;
@@ -28,7 +28,7 @@ export const setAccessToken = (newToken: string | undefined) => {
  * all requests wait until it is unlocked
  */
 export const lockApollo = () => {
-  // tslint:disable-next-line:no-console
+  // eslint-disable-next-line no-console
   console.log("locking");
 
   locked = true;
@@ -39,7 +39,7 @@ export const lockApollo = () => {
  * all waiting requests
  */
 export const unlockApollo = () => {
-  // tslint:disable-next-line:no-console
+  // eslint-disable-next-line no-console
   console.log("unlocking");
 
   locked = false;
@@ -58,7 +58,7 @@ export const authLink = setContext((_: any, { headers }: any) => {
     new Promise<any>((resolve) => {
       const buildContext = () => {
         if (!locked) {
-          // tslint:disable-next-line:no-console
+          // eslint-disable-next-line no-console
           console.log("apollo unlocked, fetching");
 
           if (accessToken) {
@@ -76,7 +76,7 @@ export const authLink = setContext((_: any, { headers }: any) => {
         } else if (retries > 15) {
           return headers;
         } else {
-          // tslint:disable-next-line:no-console
+          // eslint-disable-next-line no-console
           console.log("apollo locked, waiting");
 
           setTimeout(buildContext, 100);

@@ -30,14 +30,14 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     for (const err of graphQLErrors) {
       switch (err.extensions.code) {
         default:
-          // tslint:disable-next-line:no-console
+          // eslint-disable-next-line no-console
           console.log(err);
       }
     }
   }
 
   if (networkError) {
-    // tslint:disable-next-line:no-console
+    // eslint-disable-next-line no-console
     console.log(networkError);
   }
 });

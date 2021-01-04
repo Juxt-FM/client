@@ -20,8 +20,8 @@ header.header {
   align-items: center;
   justify-content: space-between;
   background-color: map-get($colors, "background");
-
   padding: 0 25px;
+  border-bottom: solid 0.5px map-get($colors, "border");
 
   & .headerLeft {
     display: flex;
@@ -64,7 +64,7 @@ header.header {
     display: flex;
     margin: 0 -5px 0 5px;
     & > * {
-      width: 150px;
+      width: 100px;
       margin: 0 5px;
     }
   }

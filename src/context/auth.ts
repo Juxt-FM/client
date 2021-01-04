@@ -117,7 +117,7 @@ export const AuthProvider = ({ children }: IProvider): JSX.Element => {
     if (token && token !== prevToken) {
       const timeout = token.expires * 1000 - token.issued * 1000 - 15000;
 
-      // tslint:disable-next-line:no-console
+      // eslint-disable-next-line no-console
       console.log(`Refreshing token in ${timeout / 1000 / 60} minutes`);
 
       setTimeout(refresh, timeout);
