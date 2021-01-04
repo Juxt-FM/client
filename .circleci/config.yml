@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   prepare:
-    working_directory: ~/client
+    working_directory: ~/app
     executor:
       name: node/default
       tag: "lts"
@@ -13,7 +13,7 @@ jobs:
       - checkout
       - node/install-yarn
       - node/install-packages:
-          app-dir: ~/client
+          app-dir: ~/app
           pkg-manager: yarn
       - persist_to_workspace:
           root: .
@@ -21,7 +21,7 @@ jobs:
             - .
 
   test:
-    working_directory: ~/client
+    working_directory: ~/app
     executor:
       name: node/default
       tag: "lts"
@@ -30,12 +30,18 @@ jobs:
           at: .
       - run:
           name: Run tests
-          command: yarn test
+          environment:
+            JEST_JUNIT_OUTPUT: ./test-results/junit/results.xml
+          command: |
+            mkdir -p ./test-results/junit
+            yarn test --ci --reporters=jest-junit
+      - store_artifacts:
+          path: ./test-results/junit
       - store_test_results:
-          path: test-results
+          path: ./test-results
 
   build:
-    working_directory: ~/client
+    working_directory: ~/app
     executor:
       name: node/default
       tag: "lts"
@@ -43,7 +49,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Build client
+          name: Build app
           command: yarn build
       - persist_to_workspace:
           root: .
@@ -51,7 +57,7 @@ jobs:
             - .
 
   deploy:
-    working_directory: ~/client
+    working_directory: ~/app
     executor:
       name: node/default
       tag: "lts"
@@ -59,8 +65,8 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Deploy client
-          command: echo "Deploying client to cloud"
+          name: Deploy app
+          command: echo "Deploying app to cloud"
 
 workflows:
   version: 2.1
