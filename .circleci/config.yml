@@ -31,8 +31,8 @@ jobs:
       - run:
           name: Run tests
           command: |
-            mkdir -p ./test-results/junit
             yarn test --ci
+            ls
       - store_artifacts:
           path: test-results
       - store_test_results:
