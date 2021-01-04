@@ -35,4 +35,4 @@ yarn-error.log*
 
 
 # tests
-/test-reports
+/test-results
