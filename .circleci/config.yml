@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@14.15.3
+  node: cimg/node@14.15.3
 
 jobs:
   prepare:
