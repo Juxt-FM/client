@@ -21,6 +21,7 @@ jobs:
             - .
 
   test:
+    working_directory: ~/client
     executor:
       name: node/default
       tag: "lts"
@@ -34,6 +35,7 @@ jobs:
           path: test-results
 
   build:
+    working_directory: ~/client
     executor:
       name: node/default
       tag: "lts"
@@ -49,6 +51,7 @@ jobs:
             - .
 
   deploy:
+    working_directory: ~/client
     executor:
       name: node/default
       tag: "lts"
