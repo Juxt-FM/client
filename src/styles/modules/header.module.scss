@@ -82,21 +82,22 @@ header.authBanner {
     padding: 15px 10px;
     display: flex;
     align-items: center;
-    font-size: 12px;
+    font-size: 14px;
+
     & > img {
-      height: 32px;
-      width: 32px;
+      height: 40px;
+      width: 40px;
       object-fit: cover;
-      border-radius: 32px;
+      border-radius: 40px;
       margin-right: 10px;
       border-width: 2px;
       border-style: solid;
       border-color: map-get($colors, "primary");
     }
-    & p {
-      font-size: 15px;
+    & h4 {
+      margin: 0;
       font-weight: 600;
-      color: black;
+      line-height: 20px;
     }
 
     &:hover {

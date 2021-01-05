@@ -19,7 +19,7 @@ const Menu = () => {
     if (!loggedIn)
       return (
         <div className={styles.noUser}>
-          <h5>You are not logged in.</h5>
+          <h4>You are not logged in.</h4>
           <p>Start receiving updates about assets in your portfolios.</p>
           <Button
             size="sm"
@@ -35,13 +35,13 @@ const Menu = () => {
     <div className={styles.root}>
       <div className={styles.section}>
         <div className={styles.header}>
-          <h5>Following</h5>
+          <h4>Following</h4>
         </div>
       </div>
 
       <div className={styles.section}>
         <div className={styles.header}>
-          <h5>Watchlists</h5>
+          <h4>Watchlists</h4>
         </div>
       </div>
       {renderWatchlists()}

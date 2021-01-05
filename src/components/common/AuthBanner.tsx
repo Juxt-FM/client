@@ -128,7 +128,7 @@ const AccountMenu = () => {
               alt="profile image"
             />
             <div>
-              <p>{user.profile.name}</p>
+              <h4>{user.profile.name}</h4>
               {user.email.address}
             </div>
           </a>
