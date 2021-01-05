@@ -3,20 +3,28 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { useMemo } from "react";
-import { createStore, combineReducers, Store } from "redux";
-import reducers from "./reducers";
+export * from "./auth";
 
-export * from "./types";
+import { useMemo } from "react";
+import { createStore, combineReducers, Store, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+
+import auth from "./auth";
+
+const reducers = {
+  auth,
+};
 
 let store: Store;
+
+export type AppDispatch = typeof store.dispatch;
 
 const rootReducer = combineReducers(reducers);
 
 export type RootState = ReturnType<typeof rootReducer>;
 
 function initStore(preloadedState: any = {}) {
-  return createStore(rootReducer, preloadedState);
+  return createStore(rootReducer, preloadedState, applyMiddleware(thunk));
 }
 
 export const initializeStore = (preloadedState: any) => {
@@ -48,3 +56,9 @@ export function useStore(initialState: any) {
 
   return reduxStore;
 }
+
+export const selectTokenInfo = (state: RootState) => ({
+  token: state.auth.token,
+});
+
+export const selectAuthUser = (state: RootState) => state.auth.user;

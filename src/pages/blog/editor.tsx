@@ -6,7 +6,11 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { MUTATION_CREATE_POST, BlogPost, QUERY_BLOG_POST } from "../../graphql";
+import {
+  MUTATION_CREATE_POST,
+  BlogPost,
+  QUERY_BLOG_POST,
+} from "../../lib/apollo";
 
 import MetaTags from "../../components/common/MetaTags";
 import { FullLoader } from "../../components/Loaders";

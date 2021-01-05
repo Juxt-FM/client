@@ -5,12 +5,12 @@
 
 import { useState, Fragment, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import { useAuthUser } from "../context";
+import { useAuthUser } from "../lib/context";
 import {
   QUERY_AUTH_USER,
   MUTATION_DELETE_WATCHLIST,
   Watchlist,
-} from "../graphql";
+} from "../lib/apollo";
 import Link from "next/link";
 
 import Dropdown, { DropdownList } from "./common/Dropdown";

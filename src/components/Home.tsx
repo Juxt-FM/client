@@ -6,7 +6,7 @@
 import { ApolloError } from "@apollo/client";
 import _ from "lodash";
 
-import { BlogPost, QUERY_FILTER_POSTS } from "../graphql";
+import { BlogPost, QUERY_FILTER_POSTS } from "../lib/apollo";
 
 import {
   AltListItem,

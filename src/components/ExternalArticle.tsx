@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { StockNews } from "../graphql";
+import { StockNews } from "../lib/apollo";
 
 import styles from "../styles/modules/post.module.scss";
 

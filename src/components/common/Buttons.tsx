@@ -35,7 +35,6 @@ interface IButton
   loadingLabel?: string;
   size?: "lg" | "sm";
   color?: Color;
-  rounded?: boolean;
 }
 
 export const Button = ({ color = "primary", ...props }: IButton) => {

@@ -7,8 +7,8 @@ import { useReducer, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import Link from "next/link";
 
-import { AuthCredentials, MUTATION_SIGNUP } from "../graphql";
-import { useAuthActions } from "../context";
+import { AuthCredentials, MUTATION_SIGNUP } from "../lib/apollo";
+import { useAuthActions } from "../lib/context";
 
 import { FormInput } from "./common/Inputs";
 

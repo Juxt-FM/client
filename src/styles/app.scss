@@ -16,6 +16,8 @@ body {
   background-color: map-get($colors, "background");
   overflow-x: hidden;
   font-family: $lato;
+  overflow-y: scroll;
+  overflow-y: overlay;
 }
 
 * {

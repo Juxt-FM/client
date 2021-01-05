@@ -3,7 +3,12 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
+export * from "./actions";
+export * from "./types";
+
 import {
+  IAuthState,
+  IAuthActionTypes,
   REFRESH_TOKEN,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAIL,
@@ -12,29 +17,9 @@ import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAIL,
-} from "../types";
+} from "./types";
 
-import { User } from "../../graphql";
-import { ApolloError } from "@apollo/client";
-
-interface ITokenInfo {
-  expires?: number;
-  issued?: number;
-}
-
-interface IUserInfo {
-  user: User | undefined;
-  loading: boolean;
-  error: ApolloError;
-}
-
-interface IState {
-  loading: boolean;
-  token: ITokenInfo | undefined;
-  user: IUserInfo;
-}
-
-const INITIAL_STATE: IState = {
+const INITIAL_STATE: IAuthState = {
   loading: false,
   token: undefined,
   user: {
@@ -44,12 +29,7 @@ const INITIAL_STATE: IState = {
   },
 };
 
-interface IAction {
-  type: string;
-  payload: any;
-}
-
-const reducer = (state: IState = INITIAL_STATE, action: IAction): IState => {
+const reducer = (state = INITIAL_STATE, action: IAuthActionTypes) => {
   switch (action.type) {
     case REFRESH_TOKEN:
       // eslint-disable-next-line no-console

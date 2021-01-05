@@ -10,7 +10,7 @@ import {
   addApolloState,
   UserProfile,
   QUERY_USER_PROFILE,
-} from "../../../graphql";
+} from "../../../lib/apollo";
 
 import Page from "../../../components/common/Page";
 import ProfileRoot from "../../../components/UserProfileRoot";

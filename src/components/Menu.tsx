@@ -4,7 +4,7 @@
  */
 
 import { useRouter } from "next/router";
-import { useAuthStatus } from "../context";
+import { useAuthStatus } from "../lib/context";
 
 import Watchlists from "./Watchlists";
 import { Button } from "./common/Buttons";

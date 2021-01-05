@@ -4,9 +4,9 @@
  */
 
 import { ElementType, Fragment } from "react";
-import { useAuthUser } from "../context";
+import { useAuthUser } from "../lib/context";
 import { useRouter } from "next/router";
-import { UserProfile } from "../graphql";
+import { UserProfile } from "../lib/apollo";
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

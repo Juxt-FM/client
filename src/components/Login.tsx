@@ -7,8 +7,8 @@ import { FormEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import Link from "next/link";
 
-import { AuthCredentials, MUTATION_LOGIN } from "../graphql";
-import { useAuthActions } from "../context";
+import { AuthCredentials, MUTATION_LOGIN } from "../lib/apollo";
+import { useAuthActions } from "../lib/context";
 
 import { ContentSection, Header } from "./Authentication";
 

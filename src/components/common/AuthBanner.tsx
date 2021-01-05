@@ -7,7 +7,7 @@ import React, { Fragment, ReactChild, ReactNode } from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useAuthUser, useAuthStatus } from "../../context";
+import { useAuthUser, useAuthStatus } from "../../lib/context";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -191,7 +191,7 @@ const NotificationsMenu = () => (
 
 const AuthBanner = () => {
   const loggedIn = useAuthStatus();
-  const { user } = useAuthUser();
+  const { user, loading } = useAuthUser();
 
   const renderContent = () => {
     if (loggedIn) {
@@ -203,15 +203,14 @@ const AuthBanner = () => {
             <AccountMenu />
           </Fragment>
         );
-      }
-
-      return (
-        <Fragment>
-          <div className={styles.loadingOption}></div>
-          <div className={styles.loadingOption}></div>
-          <div className={styles.loadingOption}></div>
-        </Fragment>
-      );
+      } else if (loading)
+        return (
+          <Fragment>
+            <div className={styles.loadingOption}></div>
+            <div className={styles.loadingOption}></div>
+            <div className={styles.loadingOption}></div>
+          </Fragment>
+        );
     } else {
       return (
         <Fragment>

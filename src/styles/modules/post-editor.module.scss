@@ -7,10 +7,6 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-
-  @media screen and (min-width: $breakpoint-xl) {
-    padding: 0 15% 0px 15%;
-  }
 }
 
 header.header {
@@ -22,6 +18,10 @@ header.header {
   background-color: map-get($colors, "background");
   padding: 0 25px;
   border-bottom: solid 0.5px map-get($colors, "border");
+
+  @media screen and (min-width: $breakpoint-xl) {
+    padding: 0 25% 0px 25%;
+  }
 
   & .headerLeft {
     display: flex;
@@ -74,6 +74,10 @@ header.header {
   display: flex;
   width: 100vw;
   height: calc(100vh - 65px);
+
+  @media screen and (min-width: $breakpoint-xl) {
+    padding: 0 25% 0px 25%;
+  }
 }
 
 .sidebar {
@@ -86,6 +90,12 @@ header.header {
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 1000;
+
+  &::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .sidebarContent {

@@ -5,7 +5,7 @@
 
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { BlogPost, QUERY_BLOG_POST } from "../../graphql";
+import { BlogPost, QUERY_BLOG_POST } from "../../lib/apollo";
 
 import Page from "../../components/common/Page";
 import { DetailItem } from "../../components/BlogPosts";

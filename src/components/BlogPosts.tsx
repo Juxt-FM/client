@@ -5,7 +5,7 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
-import { BlogPost } from "../graphql";
+import { BlogPost } from "../lib/apollo";
 import _ from "lodash";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";

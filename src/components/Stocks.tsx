@@ -18,7 +18,7 @@ import {
   IntradayRecord,
   QUERY_FILTER_POSTS,
   QUERY_INTRADAY_REOCRDS,
-} from "../graphql";
+} from "../lib/apollo";
 import { AutoSizer, Size } from "react-virtualized";
 import moment from "moment";
 import _ from "lodash";

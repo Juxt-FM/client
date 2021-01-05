@@ -12,13 +12,13 @@ import React, {
 } from "react";
 import { useRouter } from "next/router";
 import { ApolloError, useMutation } from "@apollo/client";
-import { MUTATION_UPDATE_POST, BlogPost } from "../graphql";
+import { MUTATION_UPDATE_POST, BlogPost } from "../lib/apollo";
 import moment from "moment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, ButtonOutline } from "./common/Buttons";
+import { Button } from "./common/Buttons";
 
 import styles from "../styles/modules/post-editor.module.scss";
 
@@ -47,7 +47,6 @@ const Header = () => {
           loadingLabel="Saving..."
           loading={saving}
           onClick={onSave}
-          rounded
         />
         <Button
           color="darkBlue"

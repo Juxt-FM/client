@@ -6,9 +6,9 @@
 import * as nextRouter from "next/router";
 import { MockedProvider } from "@apollo/client/testing";
 import { Provider as ReduxProvider } from "react-redux";
-import { useStore } from "../store";
+import { useStore } from "../lib/redux";
 
-import { AuthProvider, UserProvider } from "../context";
+import { AuthProvider, UserProvider } from "../lib/context";
 
 const PageProvider = ({ children, initialReduxState, pathname, mocks }) => {
   const store = useStore(initialReduxState);
