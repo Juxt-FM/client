@@ -44,12 +44,12 @@ const MenuOption = (props: IMenuOption) => {
   };
 
   return (
-    <a className={styles.option} onClick={openDropdown}>
+    <div className={styles.option} onClick={openDropdown}>
       {props.header}
       <Dropdown isOpen={dropdownActive} onClose={closeDropdown}>
         {props.children}
       </Dropdown>
-    </a>
+    </div>
   );
 };
 
@@ -193,35 +193,41 @@ const AuthBanner = () => {
   const loggedIn = useAuthStatus();
   const { user, loading } = useAuthUser();
 
+  const loadingContent = (
+    <Fragment>
+      <div className={styles.loadingOption}></div>
+      <div className={styles.loadingOption}></div>
+      <div className={styles.loadingOption}></div>
+    </Fragment>
+  );
+
+  const authenticatedContent = (
+    <Fragment>
+      <NewContentMenu />
+      <NotificationsMenu />
+      <AccountMenu />
+    </Fragment>
+  );
+
+  const defaultContent = (
+    <Fragment>
+      <Link href="/auth/login">
+        <button className={styles.loginBtn}>Log in</button>
+      </Link>
+      <Link href="/auth/signup">
+        <a>Sign up</a>
+      </Link>
+    </Fragment>
+  );
+
   const renderContent = () => {
     if (loggedIn) {
       if (user) {
-        return (
-          <Fragment>
-            <NewContentMenu />
-            <NotificationsMenu />
-            <AccountMenu />
-          </Fragment>
-        );
-      } else if (loading)
-        return (
-          <Fragment>
-            <div className={styles.loadingOption}></div>
-            <div className={styles.loadingOption}></div>
-            <div className={styles.loadingOption}></div>
-          </Fragment>
-        );
-    } else {
-      return (
-        <Fragment>
-          <Link href="/auth/login">
-            <button className={styles.loginBtn}>Log in</button>
-          </Link>
-          <Link href="/auth/signup">
-            <a>Sign up</a>
-          </Link>
-        </Fragment>
-      );
+        return authenticatedContent;
+      } else if (loading) return loadingContent;
+    } else if (typeof window === "undefined") return loadingContent;
+    else {
+      return defaultContent;
     }
   };
 

@@ -29,6 +29,9 @@ interface IRefreshTokenSuccessAction {
 
 interface IRefreshTokenFailAction {
   type: typeof REFRESH_TOKEN_FAIL;
+  payload: {
+    reset: boolean;
+  };
 }
 
 interface IFetchUserAction {

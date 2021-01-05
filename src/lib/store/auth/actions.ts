@@ -4,6 +4,7 @@
  */
 
 import { ApolloError } from "@apollo/client";
+import { setLoggedInCookie } from "../../cookies";
 
 import {
   lockApollo,
@@ -101,10 +102,14 @@ export const refreshToken = () => {
         setAccessToken(accessToken);
         unlockApollo();
       })
-      .catch(() => {
-        dispatch(refreshTokenFail());
+      .catch((err: ApolloError) => {
+        if (err.graphQLErrors && err.graphQLErrors.length > 0) {
+          dispatch(refreshTokenFail());
 
-        setAccessToken(undefined);
+          setLoggedInCookie(undefined, new Date());
+          setAccessToken(undefined);
+        } else dispatch(refreshTokenFail({ reset: false }));
+
         unlockApollo();
       });
   };
@@ -126,6 +131,7 @@ const refreshTokenSuccess = (accessToken: string) => ({
  *
  * @param dispatch
  */
-const refreshTokenFail = () => ({
+const refreshTokenFail = (payload = { reset: true }) => ({
   type: REFRESH_TOKEN_FAIL,
+  payload,
 });

@@ -48,6 +48,8 @@ header.authBanner {
     min-width: 45px;
     margin: 0 10px;
     font-size: 18px;
+    cursor: pointer;
+    color: white;
 
     & > img {
       height: 28px;

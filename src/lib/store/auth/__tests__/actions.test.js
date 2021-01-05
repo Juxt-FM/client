@@ -153,10 +153,10 @@ describe("Refresh access token", () => {
     });
   });
 
-  it("should fail refresh token", () => {
+  it("should fail refresh token NO RESET", () => {
     helpers.buildTokenInfo.mockReturnValueOnce(MockTokenInfo);
 
-    const mockResponse = Promise.reject(undefined);
+    const mockResponse = Promise.reject(new Error());
 
     createApolloClient.mockReturnValueOnce(mockClient);
     mockClient.mutate.mockImplementationOnce(() => mockResponse);
@@ -171,6 +171,47 @@ describe("Refresh access token", () => {
       },
       {
         type: constants.REFRESH_TOKEN_FAIL,
+        payload: {
+          reset: false,
+        },
+      },
+    ];
+
+    store.dispatch(actions.refreshToken()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+
+      expect(mockClient.mutate).toBeCalled();
+      expect(mockClient.mutate).toBeCalledWith({
+        mutation: MUTATION_REFRESH_TOKEN,
+      });
+
+      expect(unlockApollo).toBeCalled();
+    });
+  });
+
+  it("should fail refresh token WITH RESET", () => {
+    helpers.buildTokenInfo.mockReturnValueOnce(MockTokenInfo);
+
+    const mockResponse = Promise.reject(
+      new ApolloError({ graphQLErrors: [new Error()] })
+    );
+
+    createApolloClient.mockReturnValueOnce(mockClient);
+    mockClient.mutate.mockImplementationOnce(() => mockResponse);
+
+    const store = mockStore({
+      auth: constants.InitialAuthState,
+    });
+
+    const expectedActions = [
+      {
+        type: constants.REFRESH_TOKEN,
+      },
+      {
+        type: constants.REFRESH_TOKEN_FAIL,
+        payload: {
+          reset: true,
+        },
       },
     ];
 

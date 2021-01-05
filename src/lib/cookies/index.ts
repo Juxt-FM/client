@@ -5,7 +5,7 @@
 
 import Cookies from "universal-cookie";
 
-import { LOGGED_IN } from "./types";
+import { LOGGED_IN } from "./constants";
 
 const cookies = new Cookies();
 
