@@ -77,25 +77,25 @@ workflows:
       - test:
           requires:
             - prepare
-      - build:
-          requires:
-            - test
-          filters:
-            branches:
-              only:
-                - master
-      - hold:
-          type: approval
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master
-      - deploy:
-          requires:
-            - hold
-          filters:
-            branches:
-              only:
-                - master
+      # - build:
+      #     requires:
+      #       - test
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      # - hold:
+      #     type: approval
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
+      # - deploy:
+      #     requires:
+      #       - hold
+      #     filters:
+      #       branches:
+      #         only:
+      #           - master
