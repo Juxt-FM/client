@@ -6,6 +6,7 @@
 export * from "./actions";
 export * from "./constants";
 
+import { RootState } from "..";
 import {
   IAuthActionTypes,
   InitialAuthState,
@@ -18,6 +19,12 @@ import {
   FETCH_USER_SUCCESS,
   FETCH_USER_FAIL,
 } from "./constants";
+
+export const selectTokenInfo = (state: RootState) => ({
+  token: state.auth.token,
+});
+
+export const selectAuthUser = (state: RootState) => state.auth.user;
 
 const reducer = (state = InitialAuthState, action: IAuthActionTypes) => {
   switch (action.type) {

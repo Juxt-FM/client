@@ -8,7 +8,7 @@ import Router from "next/router";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { Provider as ReduxProvider } from "react-redux";
 import { AuthProvider, UserProvider } from "../lib/context";
-import { useStore } from "../lib/redux";
+import { useStore } from "../lib/store";
 import { useApollo } from "../lib/apollo";
 
 import NProgress from "nprogress";

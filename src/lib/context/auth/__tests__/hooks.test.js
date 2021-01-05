@@ -10,13 +10,13 @@ import { useDispatch } from "react-redux";
 import { getLoggedInCookie } from "../../../cookies";
 import { useAuthActions, useAuthStatus } from "../hooks";
 import { setAccessToken } from "../../../apollo";
-import { loginUser, logoutUser } from "../../../redux";
+import { loginUser, logoutUser } from "../../../store";
 
 jest.mock("next/router");
 jest.mock("react-redux");
 jest.mock("@apollo/client");
 
-jest.mock("../../../redux");
+jest.mock("../../../store");
 jest.mock("../../../apollo");
 jest.mock("../../../cookies");
 

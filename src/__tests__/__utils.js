@@ -6,7 +6,7 @@
 import * as nextRouter from "next/router";
 import { MockedProvider } from "@apollo/client/testing";
 import { Provider as ReduxProvider } from "react-redux";
-import { useStore } from "../lib/redux";
+import { useStore } from "../lib/store";
 
 import { AuthProvider, UserProvider } from "../lib/context";
 

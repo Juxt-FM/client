@@ -4,7 +4,7 @@
  */
 
 import { useEffect } from "react";
-import { useLazyQuery } from "@apollo/client";
+import { ApolloError, useLazyQuery } from "@apollo/client";
 import { connect } from "react-redux";
 
 import {
@@ -14,7 +14,7 @@ import {
   fetchUserFail,
   fetchUserSuccess,
   fetchUser,
-} from "../../redux";
+} from "../../store";
 
 import { User, QUERY_AUTH_USER } from "../../apollo";
 
@@ -29,14 +29,6 @@ interface IAuthProvider extends IProvider {
   refreshToken: typeof refreshToken;
 }
 
-/**
- * Responsible for refreshing a user token when first
- * entering the site, and continuously refreshing every
- * 14:45 minutes (tokens expire in 15min)
- *
- * @param children A JSX Element
- * @returns {JSX.Element}
- */
 export const AuthenticationProvider = ({
   children,
   token,
@@ -66,9 +58,24 @@ export const AuthenticationProvider = ({
   return children;
 };
 
-export const AuthProvider = connect(selectTokenInfo, { refreshToken })(
-  AuthenticationProvider
-);
+function mapAuthDispatchToProps(dispatch: any) {
+  return {
+    refreshToken: () => dispatch(refreshToken()),
+  };
+}
+
+/**
+ * Responsible for refreshing a user token when first
+ * entering the site, and continuously refreshing every
+ * 14:45 minutes (tokens expire in 15min)
+ *
+ * @param children A JSX Element
+ * @returns {JSX.Element}
+ */
+export const AuthProvider = connect(
+  selectTokenInfo,
+  mapAuthDispatchToProps
+)(AuthenticationProvider);
 
 interface IUserProvider extends IProvider {
   fetchUser: typeof fetchUser;
@@ -76,13 +83,6 @@ interface IUserProvider extends IProvider {
   fetchUserFail: typeof fetchUserFail;
 }
 
-/**
- * Ensures that only one request for the authenticated
- * user from the backend goes through at once.
- *
- * @param children A JSX Element
- * @returns {JSX.Element}
- */
 export const AuthenticatedUserProvider = ({
   children,
   fetchUser,
@@ -114,8 +114,15 @@ export const AuthenticatedUserProvider = ({
   return children;
 };
 
-export const UserProvider = connect(null, {
-  fetchUser,
-  fetchUserSuccess,
-  fetchUserFail,
-})(AuthenticatedUserProvider);
+function mapUserDispatchToProps(dispatch: any) {
+  return {
+    fetchUser: () => dispatch(fetchUser()),
+    fetchUserSuccess: (user: User) => dispatch(fetchUserSuccess(user)),
+    fetchUserFail: (error: ApolloError) => dispatch(fetchUserFail(error)),
+  };
+}
+
+export const UserProvider = connect(
+  null,
+  mapUserDispatchToProps
+)(AuthenticatedUserProvider);

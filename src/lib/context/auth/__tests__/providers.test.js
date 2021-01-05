@@ -13,6 +13,7 @@ import {
 
 import { useAuthStatus } from "../hooks";
 import { QUERY_AUTH_USER } from "../../../apollo";
+import { MockUser } from "../../../../__mocks__/mockData";
 
 jest.mock("../hooks");
 
@@ -23,33 +24,7 @@ const userMocks = [
       query: QUERY_AUTH_USER,
     },
     result: {
-      data: {
-        me: {
-          id: "1",
-          email: {
-            address: "email@email.com",
-            verified: true,
-          },
-          phone: {
-            number: "+11234567890",
-            verified: true,
-          },
-          profile: {
-            id: "1",
-            name: "Test User",
-            location: null,
-            summary: null,
-            imageURL: null,
-            watchlists: [],
-          },
-          verified: true,
-          active: true,
-          suspended: false,
-          lastLogin: new Date(),
-          updatedAt: new Date(),
-          createdAt: new Date(),
-        },
-      },
+      data: { me: MockUser },
     },
   },
 ];

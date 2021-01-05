@@ -56,9 +56,3 @@ export function useStore(initialState: any) {
 
   return reduxStore;
 }
-
-export const selectTokenInfo = (state: RootState) => ({
-  token: state.auth.token,
-});
-
-export const selectAuthUser = (state: RootState) => state.auth.user;

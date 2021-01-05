@@ -12,7 +12,6 @@ import {
   MUTATION_REFRESH_TOKEN,
   setAccessToken,
   User,
-  AuthCredentials,
 } from "../../apollo";
 
 import {
@@ -94,10 +93,20 @@ export const refreshToken = () => {
     dispatch({ type: REFRESH_TOKEN });
 
     return fetch()
-      .then(({ data: { refreshToken } }) =>
-        refreshTokenSuccess(dispatch, refreshToken.accessToken)
-      )
-      .catch(() => refreshTokenFail(dispatch));
+      .then(({ data: { refreshToken } }) => {
+        const { accessToken } = refreshToken;
+
+        dispatch(refreshTokenSuccess(accessToken));
+
+        setAccessToken(accessToken);
+        unlockApollo();
+      })
+      .catch(() => {
+        dispatch(refreshTokenFail());
+
+        setAccessToken(undefined);
+        unlockApollo();
+      });
   };
 };
 
@@ -107,23 +116,16 @@ export const refreshToken = () => {
  * @param dispatch
  * @param accessToken
  */
-const refreshTokenSuccess = (dispatch: any, accessToken: string) => {
-  dispatch({
-    type: REFRESH_TOKEN_SUCCESS,
-    payload: buildTokenInfo(accessToken),
-  });
-
-  setAccessToken(accessToken);
-  unlockApollo();
-};
+const refreshTokenSuccess = (accessToken: string) => ({
+  type: REFRESH_TOKEN_SUCCESS,
+  payload: buildTokenInfo(accessToken),
+});
 
 /**
  * Refresh token fail action creator
  *
  * @param dispatch
  */
-const refreshTokenFail = (dispatch: any) => {
-  dispatch({
-    type: REFRESH_TOKEN_FAIL,
-  });
-};
+const refreshTokenFail = () => ({
+  type: REFRESH_TOKEN_FAIL,
+});
