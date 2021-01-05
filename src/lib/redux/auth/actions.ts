@@ -4,8 +4,6 @@
  */
 
 import { ApolloError } from "@apollo/client";
-import decodeToken from "jwt-decode";
-import moment from "moment";
 
 import {
   lockApollo,
@@ -14,6 +12,7 @@ import {
   MUTATION_REFRESH_TOKEN,
   setAccessToken,
   User,
+  AuthCredentials,
 } from "../../apollo";
 
 import {
@@ -25,32 +24,8 @@ import {
   REFRESH_TOKEN,
   REFRESH_TOKEN_FAIL,
   REFRESH_TOKEN_SUCCESS,
-} from "./types";
-
-/**
- * Turns a timestamp in seconds into a date
- *
- * @param timestamp
- * @returns {Date}
- */
-const getDate = (timestamp: string) =>
-  moment(parseInt(timestamp, 10) * 1000).toDate();
-
-/**
- * Extracts the expiration and issuedAt dates
- * from a JWT
- *
- * @param token
- * @returns {{expires, issued}}
- */
-const buildTokenInfo = (token: string) => {
-  const decoded: any = decodeToken(token);
-
-  return {
-    expires: getDate(decoded.exp),
-    issued: getDate(decoded.iat),
-  };
-};
+} from "./constants";
+import { buildTokenInfo } from "./helpers";
 
 /**
  * Log in action creator
@@ -108,24 +83,21 @@ export const fetchUserFail = (err: ApolloError) => ({
  */
 export const refreshToken = () => {
   const client = createApolloClient({ standalone: true });
+
+  const fetch = () =>
+    client.mutate({
+      mutation: MUTATION_REFRESH_TOKEN,
+    });
+
   return (dispatch: any) => {
     lockApollo();
     dispatch({ type: REFRESH_TOKEN });
 
-    client
-      .mutate({
-        mutation: MUTATION_REFRESH_TOKEN,
-      })
-      .then(({ data }) => {
-        const {
-          refreshToken: { accessToken },
-        } = data;
-
-        refreshTokenSuccess(dispatch, accessToken);
-      })
-      .catch(() => {
-        refreshTokenFail(dispatch);
-      });
+    return fetch()
+      .then(({ data: { refreshToken } }) =>
+        refreshTokenSuccess(dispatch, refreshToken.accessToken)
+      )
+      .catch(() => refreshTokenFail(dispatch));
   };
 };
 

@@ -4,11 +4,11 @@
  */
 
 export * from "./actions";
-export * from "./types";
+export * from "./constants";
 
 import {
-  IAuthState,
   IAuthActionTypes,
+  InitialAuthState,
   REFRESH_TOKEN,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAIL,
@@ -17,19 +17,9 @@ import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAIL,
-} from "./types";
+} from "./constants";
 
-const INITIAL_STATE: IAuthState = {
-  loading: false,
-  token: undefined,
-  user: {
-    loading: false,
-    user: undefined,
-    error: undefined,
-  },
-};
-
-const reducer = (state = INITIAL_STATE, action: IAuthActionTypes) => {
+const reducer = (state = InitialAuthState, action: IAuthActionTypes) => {
   switch (action.type) {
     case REFRESH_TOKEN:
       // eslint-disable-next-line no-console
@@ -57,7 +47,7 @@ const reducer = (state = INITIAL_STATE, action: IAuthActionTypes) => {
     case LOGOUT_USER:
       // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);
-      return INITIAL_STATE;
+      return InitialAuthState;
     case FETCH_USER:
       // eslint-disable-next-line no-console
       console.log("Auth reducer received: ", action.type);

@@ -7,17 +7,6 @@ import { ApolloError } from "@apollo/client";
 
 import { User } from "../../apollo";
 
-export const REFRESH_TOKEN = "refresh_token";
-export const REFRESH_TOKEN_SUCCESS = "refresh_token_success";
-export const REFRESH_TOKEN_FAIL = "refresh_token_fail";
-
-export const LOGIN_USER = "login_user";
-export const LOGOUT_USER = "logout_user";
-
-export const FETCH_USER = "fetch_user";
-export const FETCH_USER_FAIL = "fetch_user_fail";
-export const FETCH_USER_SUCCESS = "fetch_user_success";
-
 export interface ITokenState {
   issued: Date;
   expires: Date;
@@ -80,3 +69,24 @@ export type IAuthActionTypes =
   | IFetchUserFailAction
   | ILoginAction
   | ILogoutAction;
+
+export const REFRESH_TOKEN = "refresh_token";
+export const REFRESH_TOKEN_SUCCESS = "refresh_token_success";
+export const REFRESH_TOKEN_FAIL = "refresh_token_fail";
+
+export const LOGIN_USER = "login_user";
+export const LOGOUT_USER = "logout_user";
+
+export const FETCH_USER = "fetch_user";
+export const FETCH_USER_FAIL = "fetch_user_fail";
+export const FETCH_USER_SUCCESS = "fetch_user_success";
+
+export const InitialAuthState: IAuthState = {
+  loading: false,
+  token: undefined,
+  user: {
+    loading: false,
+    user: undefined,
+    error: undefined,
+  },
+};
