@@ -29,6 +29,14 @@ interface IAuthProvider extends IProvider {
   refreshToken: typeof refreshToken;
 }
 
+/**
+ * Responsible for refreshing a user token when first
+ * entering the site, and continuously refreshing every
+ * 14:45 minutes (tokens expire in 15min)
+ *
+ * @param children A JSX Element
+ * @returns {JSX.Element}
+ */
 export const AuthenticationProvider = ({
   children,
   token,
@@ -64,14 +72,6 @@ function mapAuthDispatchToProps(dispatch: any) {
   };
 }
 
-/**
- * Responsible for refreshing a user token when first
- * entering the site, and continuously refreshing every
- * 14:45 minutes (tokens expire in 15min)
- *
- * @param children A JSX Element
- * @returns {JSX.Element}
- */
 export const AuthProvider = connect(
   selectTokenInfo,
   mapAuthDispatchToProps
@@ -83,6 +83,13 @@ interface IUserProvider extends IProvider {
   fetchUserFail: typeof fetchUserFail;
 }
 
+/**
+ * Ensures that only one request for the authenticated
+ * user from the backend goes through at once.
+ *
+ * @param children A JSX Element
+ * @returns {JSX.Element}
+ */
 export const AuthenticatedUserProvider = ({
   children,
   fetchUser,
@@ -121,7 +128,6 @@ function mapUserDispatchToProps(dispatch: any) {
     fetchUserFail: (error: ApolloError) => dispatch(fetchUserFail(error)),
   };
 }
-
 export const UserProvider = connect(
   null,
   mapUserDispatchToProps
