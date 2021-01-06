@@ -10,7 +10,7 @@ import {
   addApolloState,
   UserProfile,
   QUERY_USER_PROFILE,
-} from "../../../lib/apollo";
+} from "../../../lib/graphql";
 
 import Page from "../../../components/Page";
 import ProfileRoot from "../../../components/UserProfileRoot";
@@ -35,6 +35,7 @@ const UserProfilePage = () => {
           ? `Check out ${data.userProfile.name} on Hedger.`
           : "User profiles."
       }
+      backButton
     >
       <ProfileRoot Component={null} profile={data.userProfile} />
     </Page>

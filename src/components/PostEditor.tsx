@@ -12,7 +12,7 @@ import React, {
 } from "react";
 import { useRouter } from "next/router";
 import { ApolloError, useMutation } from "@apollo/client";
-import { MUTATION_UPDATE_POST, BlogPost } from "../lib/apollo";
+import { MUTATION_UPDATE_POST, BlogPost } from "../lib/graphql";
 import moment from "moment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -1,5 +1,4 @@
 @import "../common/variables";
-@import "../common/fonts";
 
 @mixin btn($color) {
   height: 60px;
@@ -12,7 +11,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 60px;
   font-size: 18px;
   font-weight: 600;
   font-family: $mukta;
@@ -41,7 +40,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 60px;
   font-size: 18px;
   font-weight: 600;
   font-family: $mukta;
@@ -56,7 +55,7 @@
   }
 
   &:hover {
-    border-color: darken($color, 10);
+    background-color: lighten($color, 30);
   }
 }
 
@@ -74,17 +73,74 @@
   font-size: 14px;
 }
 
+@mixin iconButton($color) {
+  height: 60px;
+  width: 60px;
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background-color: $color;
+  color: map-get($colors, "white");
+
+  margin-left: 10px;
+
+  transition: background-color 0.25s;
+  transition: color 0.25s;
+
+  &:hover {
+    background-color: darken($color, 10);
+  }
+}
+
+@mixin iconAction($color) {
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: map-get($colors, "lightGrey");
+
+  margin-left: 10px;
+
+  transition: background-color 0.25s;
+
+  &:hover {
+    color: $color;
+    background-color: lighten($color, 30);
+  }
+}
+
 @each $name, $color in $colors {
-  .#{$name}Btn {
+  button.#{$name}Btn {
     @include btn($color);
   }
-  .#{$name}BtnSm {
+  button.#{$name}BtnSm {
     @include btnSm($color);
   }
-  .#{$name}BtnOutline {
+  button.#{$name}BtnOutline {
     @include btnOutline($color);
   }
-  .#{$name}BtnOutlineSm {
+  button.#{$name}BtnOutlineSm {
     @include btnOutlineSm($color);
   }
+  a.#{$name}IconAction {
+    @include iconAction($color);
+  }
+  a.#{$name}IconBtn {
+    @include iconButton($color);
+  }
+}
+
+button.secondaryBtn {
+  color: map-get($colors, "black") !important;
+}
+
+button.secondaryBtnSm {
+  color: map-get($colors, "black") !important;
 }

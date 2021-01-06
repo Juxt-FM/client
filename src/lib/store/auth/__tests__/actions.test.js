@@ -13,7 +13,7 @@ import {
   lockApollo,
   unlockApollo,
   MUTATION_REFRESH_TOKEN,
-} from "../../../apollo";
+} from "../../../graphql";
 
 import * as actions from "../actions";
 import * as constants from "../constants";

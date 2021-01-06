@@ -5,10 +5,10 @@
 
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { BlogPost, QUERY_BLOG_POST } from "../../lib/apollo";
+import { BlogPost, QUERY_BLOG_POST } from "../../lib/graphql";
 
 import Page from "../../components/Page";
-import { DetailItem } from "../../components/BlogPosts";
+import PostDetail from "../../components/PostDetail";
 
 export default function SinglePost() {
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function SinglePost() {
     const { singleBlogPost: post } = data;
     return (
       <Page title="Post" description="Check out this blog post!">
-        <DetailItem post={post} />
+        <PostDetail post={post} />
       </Page>
     );
   }

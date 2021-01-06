@@ -1,0 +1,45 @@
+@import "../common/variables";
+
+.root {
+  display: flex;
+  border-bottom: solid 0.5px map-get($colors, "border");
+
+  &.sticky {
+    position: sticky;
+    top: $headerHeight;
+    left: 0;
+    display: flex;
+  }
+
+  & > a.tab {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: $lato;
+    padding: 20px 25px;
+    transition: opacity 0.25s;
+
+    @media screen and (max-width: $breakpoint-small) {
+      padding: 15px 20px;
+    }
+
+    &.active {
+      color: map-get($colors, "primary");
+      font-weight: 600;
+      border-style: solid;
+      border-width: 0 0 2px 0;
+      padding: 20px 25px 18px 25px;
+      border-color: map-get($colors, "primary");
+      background-color: lighten(map-get($colors, "primary"), 30);
+      @media screen and (max-width: $breakpoint-small) {
+        padding: 15px 20px 13px 20px;
+      }
+    }
+
+    &:hover {
+      color: map-get($colors, "primary");
+      background-color: lighten(map-get($colors, "primary"), 30);
+    }
+  }
+}

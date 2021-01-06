@@ -50,6 +50,12 @@ interface IClientConfig {
   standalone: boolean;
 }
 
+/**
+ * Create a new Apollo Client instance
+ *
+ * @param {{standalone: boolean}}
+ * @returns {ApolloClient}
+ */
 export const createApolloClient = ({ standalone }: IClientConfig) => {
   if (standalone)
     return new ApolloClient<NormalizedCacheObject>({
@@ -72,6 +78,12 @@ export const createApolloClient = ({ standalone }: IClientConfig) => {
   });
 };
 
+/**
+ * Initializes the application's Apollo Client instance.
+ *
+ * @param initialState
+ * @returns {ApolloClient}
+ */
 export function initializeApollo(initialState: any = null) {
   const _apolloClient =
     apolloClient ?? createApolloClient({ standalone: false });
@@ -100,6 +112,12 @@ export function initializeApollo(initialState: any = null) {
   return _apolloClient;
 }
 
+/**
+ * Merges the existing client cache with the new instance.
+ *
+ * @param client
+ * @param pageProps
+ */
 export function addApolloState(
   client: ApolloClient<NormalizedCacheObject>,
   pageProps: any
@@ -111,6 +129,12 @@ export function addApolloState(
   return pageProps;
 }
 
+/**
+ * Hook used to retrieve the Apollo Client instance
+ * and merges existing cache.
+ *
+ * @param pageProps
+ */
 export function useApollo(pageProps: any) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(() => initializeApollo(state), [state]);

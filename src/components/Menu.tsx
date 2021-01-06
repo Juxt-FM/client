@@ -5,21 +5,22 @@
 
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useAuthStatus } from "../lib/context";
 
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faBitcoin } from "@fortawesome/free-brands-svg-icons";
 import {
+  faFileAlt,
   faHistory,
   faLayerGroup,
-  faPlus,
-  faUser,
+  faLightbulb,
+  faList,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Button } from "./common/Buttons";
+import { Button, IconButton } from "./common/Buttons";
 
 import styles from "../styles/modules/menu.module.scss";
+import { useAuthStatus } from "../lib/context";
 
 const Logo = () => (
   <div className={styles.logoWrapper}>
@@ -56,7 +57,7 @@ const NavItem = ({ label, icon, path }: INavItem) => {
           <div className={styles.icon}>
             <FontAwesomeIcon icon={icon} />
           </div>
-          {label}
+          <p className={styles.label}>{label}</p>
         </a>
       </Link>
     </li>
@@ -65,11 +66,34 @@ const NavItem = ({ label, icon, path }: INavItem) => {
 
 const Menu = () => {
   const router = useRouter();
-  const userID = useAuthStatus();
+  const loggedIn = useAuthStatus();
 
   const onNewPost = () => router.push("/blog/editor");
 
-  const profilePath = `/users/${userID}`;
+  const renderActions = () => {
+    if (loggedIn)
+      return (
+        <ul className={styles.contentActions}>
+          <li>
+            <IconButton icon={faFileAlt} color="blue" onClick={onNewPost} />
+          </li>
+          <li>
+            <IconButton icon={faLightbulb} color="red" onClick={onNewPost} />
+          </li>
+          <li>
+            <IconButton icon={faList} color="lightPurple" onClick={onNewPost} />
+          </li>
+        </ul>
+      );
+    else
+      return (
+        <Button
+          label="Get started"
+          color="lightGreen"
+          onClick={() => router.push("/auth/signup")}
+        />
+      );
+  };
 
   return (
     <div className={styles.root}>
@@ -78,14 +102,8 @@ const Menu = () => {
         <NavItem icon={faHistory} label="Latest" path="/" />
         <NavItem icon={faLayerGroup} label="Stocks" path="/stocks" />
         <NavItem icon={faBitcoin} label="Cryptocurrencies" path="/crypto" />
-        {userID && <NavItem icon={faUser} label="Profile" path={profilePath} />}
       </ul>
-      <Button
-        label="New Post"
-        icon={faPlus}
-        onClick={onNewPost}
-        color="lightGreen"
-      />
+      {renderActions()}
     </div>
   );
 };

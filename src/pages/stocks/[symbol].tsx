@@ -10,7 +10,7 @@ import {
   CompanyProfile,
   initializeApollo,
   addApolloState,
-} from "../../lib/apollo";
+} from "../../lib/graphql";
 
 import Page from "../../components/Page";
 import StockSymbol, { Header } from "../../components/Stocks";

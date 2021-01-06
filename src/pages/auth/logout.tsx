@@ -5,7 +5,7 @@
 
 import { Fragment, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import { MUTATION_LOGOUT } from "../../lib/apollo";
+import { MUTATION_LOGOUT } from "../../lib/graphql";
 import { useAuthActions } from "../../lib/context";
 
 import MetaTags from "../../components/MetaTags";
@@ -41,8 +41,7 @@ export function getServerSideProps({ req }: any) {
         .find((c: string) => c.trim().startsWith("logged_in="));
 
       if (!cookie) return false;
-
-      return cookie.split("=")[1] === "true";
+      return true;
     }
   };
 

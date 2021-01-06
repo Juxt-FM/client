@@ -16,7 +16,9 @@ interface IPage {
   title: string;
   description: string;
   children: React.ReactNode;
+  headerTitle?: string;
   extraContent?: React.ReactNode;
+  backButton?: boolean;
 }
 
 const Page = (props: IPage) => {
@@ -26,7 +28,10 @@ const Page = (props: IPage) => {
       <div className={styles.root}>
         <Menu />
         <div className={styles.page}>
-          <Header title={props.title} />
+          <Header
+            title={props.headerTitle || props.title}
+            backButton={props.backButton}
+          />
           {props.children}
           <Footer />
         </div>

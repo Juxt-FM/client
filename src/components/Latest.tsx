@@ -4,22 +4,42 @@
  */
 
 import styles from "../styles/modules/latest.module.scss";
+import { LoadingListItem } from "./PostListItem";
 
-const Trending = () => {
-  return <div className={styles.trending}></div>;
-};
+interface ISection {
+  title: string;
+  children: React.ReactChild;
+}
 
-const Latest = () => {
-  return <div className={styles.latest}></div>;
+const Section = (props: ISection) => (
+  <section className={styles.section}>
+    <div className={styles.header}>
+      <h3>{props.title}</h3>
+    </div>
+    {props.children}
+  </section>
+);
+
+const Blog = () => {
+  return (
+    <Section title="Following">
+      <div className={styles.blogHighlights}>
+        <ul className={styles.horizontal}>
+          <LoadingListItem />
+        </ul>
+        <div className={styles.divider}></div>
+        <ul className={styles.vertical}></ul>
+      </div>
+    </Section>
+  );
 };
 
 export default function MainContent() {
   return (
     <div className={styles.contentWrapper}>
       <div className={styles.content}>
-        <Latest />
+        <Blog />
       </div>
-      <Trending />
     </div>
   );
 }

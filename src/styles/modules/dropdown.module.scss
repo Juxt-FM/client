@@ -1,5 +1,4 @@
 @import "../common/variables";
-@import "../common/fonts";
 
 @keyframes slideTransition {
   0% {
@@ -21,7 +20,7 @@
   border-radius: 2.5px;
   box-shadow: $shadow;
   background-color: map-get($colors, "background");
-  z-index: 1000;
+  z-index: 10000;
   cursor: default;
   animation: slideTransition 0.25s;
 
@@ -60,9 +59,9 @@ ul.dropdownList {
     height: fit-content;
     padding: 15px 10px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 200;
     font-family: $lato;
-    color: black;
+    color: map-get($colors, "lightGrey");
     &:hover {
       background-color: lighten(map-get($colors, "primary"), 30);
     }

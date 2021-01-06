@@ -5,7 +5,7 @@
 
 import { ApolloError } from "@apollo/client";
 
-import { User } from "../../apollo";
+import { User } from "../../graphql";
 
 export interface ITokenState {
   userID: string;

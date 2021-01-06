@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { StockNews } from "../lib/apollo";
+import { StockNews } from "../lib/graphql";
 import _ from "lodash";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";

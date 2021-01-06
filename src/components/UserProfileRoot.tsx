@@ -3,51 +3,26 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { ElementType, Fragment } from "react";
-import { useAuthUser } from "../lib/context";
-import { useRouter } from "next/router";
-import { UserProfile } from "../lib/apollo";
+import { ElementType } from "react";
+import { useAuthStatus, useAuthUser } from "../lib/context";
+import { UserProfile } from "../lib/graphql";
 
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTwitter,
-  faLinkedin,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
-
-import { Button } from "./common/Buttons";
+import { ButtonOutline } from "./common/Buttons";
 
 import styles from "../styles/modules/profile-root.module.scss";
+import TabBar from "./common/TabBar";
+import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalendarAlt,
+  faInfoCircle,
+  faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 interface IUserProfile {
   profile: UserProfile;
 }
-
-interface INavLink {
-  basePath?: string;
-  path: string;
-  label: string;
-  danger?: boolean;
-}
-
-const NavLink = ({ label, path, basePath, danger = false }: INavLink) => {
-  const router = useRouter();
-
-  const finalPath = `${basePath}${path}`;
-
-  const active = path === router.pathname.split("/users/[id]")[1];
-
-  const classes = [styles.navLink];
-  if (active) classes.push(styles.active);
-  if (danger) classes.push(styles.danger);
-
-  return (
-    <Link href={finalPath}>
-      <a className={classes.join(" ")}>{label}</a>
-    </Link>
-  );
-};
 
 const ProfileHeader = () => (
   <img
@@ -56,73 +31,77 @@ const ProfileHeader = () => (
   ></img>
 );
 
-export const ProfileNavigation = ({ id }: { id: string }) => {
+interface IInfoSection {
+  icon: IconProp;
+  content: string;
+}
+
+const InfoSection = (props: IInfoSection) => (
+  <div className={styles.infoSection}>
+    <FontAwesomeIcon icon={props.icon} className={styles.icon} />
+    <p className={styles.bodyText}>{props.content}</p>
+  </div>
+);
+
+export const ProfileInfo = ({ profile }: IUserProfile) => {
+  const userID = useAuthStatus();
+
+  const isSelf = userID === profile.id;
+
   return (
-    <div className={styles.profileNavigation}>
-      <NavLink label="Posts" basePath={`/users/${id}`} path="" />
-      <NavLink label="Ideas" basePath={`/users/${id}`} path="/ideas" />
-      <NavLink
-        label="Watchlists"
-        basePath={`/users/${id}`}
-        path="/watchlists"
-      />
+    <div className={styles.profileInfo}>
+      <div className={styles.infoHeader}>
+        <img
+          className={styles.profileImage}
+          src="https://www.pererasys.com/_next/static/images/me-0e70979b96b772f832a278693ee0cd0e.jpg"
+          alt="logged in user"
+        />
+        <div className={styles.actions}>
+          <ButtonOutline label={isSelf ? "Edit profile" : "Follow"} size="sm" />
+        </div>
+      </div>
+      <div className={styles.info}>
+        <h3>{profile.name}</h3>
+        <InfoSection icon={faMapMarkerAlt} content="Charleston, SC" />
+        <InfoSection icon={faCalendarAlt} content="Joined June 26, 2018" />
+      </div>
+      <div className={styles.about}>
+        <p className={styles.summary}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam saepe
+          voluptate voluptatibus nostrum voluptatem harum delectus quisquam?
+        </p>
+      </div>
     </div>
   );
 };
 
-export const ProfileInfo = ({ profile }: IUserProfile) => {
-  const { user } = useAuthUser();
-
-  const isSelf = user.id === profile.id;
-
-  return (
-    <div className={styles.profileInfo}>
-      <img
-        src="https://www.artgoa.com/wp-content/uploads/2016/07/DJ1.jpeg"
-        alt="profile image"
-      />
-      <div className={styles.infoContent}>
-        <h3>{profile.name}</h3>
-        <p className={styles.location}>{profile.location}</p>
-        <p>{profile.summary}</p>
-      </div>
-      <div className={styles.profileActions}>
-        <div className={styles.followers}>
-          <p>15K Followers</p>
-          <Button
-            color={isSelf ? "secondary" : "primary"}
-            label={isSelf ? "Update" : "Follow"}
-          />
-        </div>
-        <div className={styles.platforms}>
-          <a className={styles.iconBtn}>
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
-          <a className={styles.iconBtn}>
-            <FontAwesomeIcon icon={faLinkedin} />
-          </a>
-          <a className={styles.iconBtn}>
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-        </div>
-      </div>
-    </div>
-  );
+const getTabs = (id: string, path: string) => {
+  return [
+    { label: "Posts", path: `/users/${id}` },
+    { label: "Ideas", path: `/users/${id}/ideas` },
+    { label: "Watchlists", path: `/users/${id}/watchlists` },
+  ].map((tab) => {
+    const active = tab.path.split(id)[1] === path.split("/users/[id]")[1];
+    return { ...tab, active };
+  });
 };
 
 interface IProfileRoot extends IUserProfile {
   Component: ElementType;
 }
 
-export default function ProfileRoot({ Component, profile }: IProfileRoot) {
+const ProfileRoot = ({ Component, profile }: IProfileRoot) => {
+  const router = useRouter();
+
   return (
     <div className={styles.root}>
       <ProfileHeader />
       <div className={styles.content}>
-        <div className={styles.profileContent}>
-          <ProfileNavigation id={profile.id} />
-        </div>
+        <ProfileInfo profile={profile} />
+        <TabBar tabs={getTabs(profile.id, router.pathname)} />
       </div>
     </div>
   );
-}
+};
+
+export default ProfileRoot;

@@ -6,6 +6,9 @@
 import { InMemoryCache } from "@apollo/client";
 
 export default new InMemoryCache({
+  /**
+   * Defines how data is merged with the existing cache.
+   */
   typePolicies: {
     UserProfile: {
       fields: {

@@ -1,0 +1,48 @@
+@import "../common/variables";
+
+.listItem {
+  flex: 1;
+  display: flex;
+  border-radius: 5px;
+  padding: 10px 0;
+
+  cursor: pointer;
+  transition: opacity 0.25s;
+
+  & .image {
+    width: 150px;
+    height: 100%;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 10px;
+  }
+
+  & .summary {
+    font-size: 14px;
+    line-height: 18px;
+    margin: 2.5px 0;
+  }
+
+  & h3 {
+    margin-bottom: 1%;
+  }
+
+  & .content {
+    flex: 1;
+  }
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.loading {
+  cursor: default;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.altListItem {
+  display: flex;
+}

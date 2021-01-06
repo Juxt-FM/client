@@ -13,7 +13,7 @@ import {
   MUTATION_REFRESH_TOKEN,
   setAccessToken,
   User,
-} from "../../apollo";
+} from "../../graphql";
 
 import {
   FETCH_USER,

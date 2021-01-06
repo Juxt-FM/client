@@ -10,7 +10,7 @@ import {
   MUTATION_CREATE_POST,
   BlogPost,
   QUERY_BLOG_POST,
-} from "../../lib/apollo";
+} from "../../lib/graphql";
 
 import MetaTags from "../../components/MetaTags";
 import { FullLoader } from "../../components/Loaders";
@@ -99,8 +99,7 @@ export function getServerSideProps({ req }: any) {
         .find((c: string) => c.trim().startsWith("logged_in="));
 
       if (!cookie) return false;
-
-      return cookie.split("=")[1] === "true";
+      return true;
     }
   };
 

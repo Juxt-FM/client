@@ -16,7 +16,7 @@ import {
   fetchUser,
 } from "../../store";
 
-import { User, QUERY_AUTH_USER } from "../../apollo";
+import { User, QUERY_AUTH_USER } from "../../graphql";
 
 import { useAuthStatus } from "./hooks";
 

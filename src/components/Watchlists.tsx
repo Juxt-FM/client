@@ -10,7 +10,7 @@ import {
   QUERY_AUTH_USER,
   MUTATION_DELETE_WATCHLIST,
   Watchlist,
-} from "../lib/apollo";
+} from "../lib/graphql";
 import Link from "next/link";
 
 import Dropdown, { DropdownList } from "./common/Dropdown";

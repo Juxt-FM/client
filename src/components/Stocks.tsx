@@ -18,15 +18,14 @@ import {
   IntradayRecord,
   QUERY_FILTER_POSTS,
   QUERY_INTRADAY_REOCRDS,
-} from "../lib/apollo";
+} from "../lib/graphql";
 import { AutoSizer, Size } from "react-virtualized";
 import moment from "moment";
 import _ from "lodash";
 
 import { LoadingChart, QuoteChart } from "./Charts";
 import { NewsArticle } from "./News";
-import { SampleList } from "./SampleList";
-import { ListItem, LoadingListItem } from "./BlogPosts";
+import { ListItem, LoadingListItem } from "./PostListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -167,67 +166,6 @@ export const Header = ({ name }: IHeader) => (
   <h1 className={styles.symbol}>{name}</h1>
 );
 
-const BlogPosts = ({
-  symbol,
-  posts,
-}: {
-  symbol: string;
-  posts: BlogPost[];
-}) => {
-  const renderPost = (post: BlogPost) => <ListItem post={post} key={post.id} />;
-
-  const onData = ({
-    filterBlogPosts,
-  }: {
-    filterBlogPosts: BlogPost[];
-  }): React.ReactNode => {
-    return (
-      <div className={styles.row}>
-        <div className={styles.column}>{filterBlogPosts.map(renderPost)}</div>
-        <div className={styles.column}>
-          {filterBlogPosts.map((item, index) =>
-            renderPost(filterBlogPosts[index === 1 ? 0 : 1])
-          )}
-        </div>
-      </div>
-    );
-  };
-
-  const onLoading = (): React.ReactNode | null => {
-    return (
-      <div className={styles.row}>
-        <div className={styles.column}>
-          {_.range(3).map((index) => (
-            <LoadingListItem key={"1" + String(index)} />
-          ))}
-        </div>
-        <div className={styles.column}>
-          {_.range(3).map((index) => (
-            <LoadingListItem key={"2" + String(index)} />
-          ))}
-        </div>
-      </div>
-    );
-  };
-
-  const onError = (error: ApolloError): React.ReactNode | null => {
-    return null;
-  };
-
-  return (
-    <div className={styles.content}>
-      <div className={styles.recentPosts}>
-        <SampleList
-          title="Recent Posts"
-          summary={`Recent blog posts for ${symbol}.`}
-          query={QUERY_FILTER_POSTS}
-          content={{ onLoading, onData: onLoading, onError }}
-        />
-      </div>
-    </div>
-  );
-};
-
 const News = ({ news }: { news: StockNews[] }) => {
   const renderArticle = (item: StockNews) => (
     <NewsArticle {...item} key={item.url} />
@@ -268,7 +206,6 @@ const StockSymbol = ({ stock }: { stock: CompanyProfile }) => {
         </div>
         <WatchlistAction />
       </div>
-      <BlogPosts symbol={stock.symbol} posts={[]} />
     </div>
   );
 };

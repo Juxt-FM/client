@@ -4,11 +4,10 @@
  */
 
 import React, { Fragment, useState } from "react";
-import { useAuthUser } from "../lib/context";
+import { useAuthStatus, useAuthUser } from "../lib/context";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBell,
+  faArrowLeft,
   faCog,
   faCommentAlt,
   faEllipsisH,
@@ -16,48 +15,67 @@ import {
   faSearch,
   faShieldAlt,
   faSignOutAlt,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Squash as Hamburger } from "hamburger-react";
 
 import styles from "../styles/modules/header.module.scss";
 import Dropdown, { DropdownList } from "./common/Dropdown";
 import { useRouter } from "next/router";
+import { IconAction } from "./common/Buttons";
+import Link from "next/link";
 
 interface IPageInfo {
   title: string;
+  backButton?: boolean;
 }
 
-const PageInfo = ({ title }: IPageInfo) => {
+const PageInfo = ({ backButton = false, title }: IPageInfo) => {
+  const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
+
+  const renderActionButton = () => {
+    if (showMenu && !backButton) {
+      return (
+        <div className={styles.menuAction}>
+          <Hamburger
+            size={24}
+            color="black"
+            toggled={showMenu}
+            toggle={setShowMenu}
+          />
+        </div>
+      );
+    } else if (backButton) {
+      return (
+        <div className={styles.backButton}>
+          <IconAction icon={faArrowLeft} onClick={() => router.back()} />
+        </div>
+      );
+    }
+  };
+
   return (
     <div className={styles.pageInfo}>
-      <div className={styles.menuAction}>
-        <Hamburger
-          size={24}
-          color="black"
-          toggled={showMenu}
-          toggle={setShowMenu}
-        />
-      </div>
-      <h2 className={styles.title}>{title}</h2>
+      {renderActionButton()}
+      <h3 className={styles.title}>{title}</h3>
     </div>
   );
 };
 
-const UserInfo = () => {
+const AccountDropdown = () => {
   const router = useRouter();
   const { user } = useAuthUser();
 
   const renderAnchor = (
     openDropdown: (
       event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-    ) => void,
-    isOpen: boolean
+    ) => void
   ) => (
     <a className={styles.navOption} onClick={openDropdown}>
       <img
         className={styles.profileImage}
-        src="https://i.mdel.net/i/db/2018/8/950736/950736-500w.jpg"
+        src="https://www.pererasys.com/_next/static/images/me-0e70979b96b772f832a278693ee0cd0e.jpg"
         alt="logged in user"
       />
     </a>
@@ -65,6 +83,13 @@ const UserInfo = () => {
 
   const renderContent = () => {
     const lists = [
+      [
+        {
+          label: "Profile",
+          icon: faUser,
+          action: () => router.push(`/users/${user.id}`),
+        },
+      ],
       [
         {
           label: "Settings",
@@ -119,31 +144,30 @@ const UserInfo = () => {
 };
 
 const Navigation = () => {
+  const loggedIn = useAuthStatus();
   return (
     <ul className={styles.navigation}>
       <li>
-        <a className={styles.navOption}>
-          <FontAwesomeIcon icon={faSearch} />
-        </a>
+        <IconAction icon={faSearch} onClick={() => {}} />
       </li>
       <li>
-        <a className={styles.navOption}>
-          <FontAwesomeIcon icon={faEllipsisH} />
-        </a>
+        <IconAction icon={faEllipsisH} onClick={() => {}} />
       </li>
-      <li>
-        <UserInfo />
-      </li>
+      {loggedIn && (
+        <li>
+          <AccountDropdown />
+        </li>
+      )}
     </ul>
   );
 };
 
 interface IHeader extends IPageInfo {}
 
-export const Header = ({ title }: IHeader) => {
+export const Header = ({ title, backButton }: IHeader) => {
   return (
     <header className={styles.header}>
-      <PageInfo title={title} />
+      <PageInfo title={title} backButton={backButton} />
       <Navigation />
     </header>
   );

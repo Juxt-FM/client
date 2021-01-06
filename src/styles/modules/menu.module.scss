@@ -2,6 +2,7 @@
 
 .root {
   position: sticky;
+  top: 0;
   right: 0;
   display: flex;
   flex-direction: column;
@@ -9,7 +10,16 @@
   height: calc(100vh);
   padding-right: 25px;
 
+  @media (max-width: $breakpoint-large) {
+    width: 100px;
+    padding-right: 0;
+  }
+
   &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media screen and (max-width: $breakpoint-small) {
     display: none;
   }
 }
@@ -24,17 +34,22 @@
   width: fit-content;
   align-items: center;
   font-size: 20px;
-  font-weight: 600;
   padding: 0 25px;
-  margin: 15px 0;
-  color: map-get($colors, "text");
-  border-radius: 10px;
+  margin: 10px 0;
+  color: map-get($colors, "lightGrey");
+  font-family: $mukta;
+  border-radius: 60px;
 
   transition: background-color 0.25s;
   transition: color 0.25s;
 
   & > .icon {
     width: 45px;
+  }
+
+  & p.label {
+    color: inherit;
+    font-weight: 600;
   }
 
   &:hover {
@@ -46,17 +61,56 @@
     @include activeLink();
     background-color: lighten(map-get($colors, "primary"), 30);
   }
+
+  @media (max-width: $breakpoint-large) {
+    margin: 0 0 0 25px;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+
+    & > .icon {
+      width: fit-content;
+    }
+    & p.label {
+      display: none;
+    }
+  }
 }
 
 .logo {
-  margin: 50px 0 25px 25px;
+  margin: 50px 0 0 15px;
   height: 32px;
   width: auto;
-  @media screen and (max-width: $breakpoint-small) {
-    height: 24px;
+  @media (max-width: $breakpoint-large) {
+    display: none;
   }
 }
 
 ul.navigation {
   margin: 50px 0;
+
+  @media (max-width: $breakpoint-large) {
+    margin: 15px 0;
+
+    & > * {
+      margin: 10px 0;
+    }
+  }
+}
+
+ul.contentActions {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
+
+  @media (max-width: $breakpoint-large) {
+    flex-direction: column;
+    margin: 0 15px;
+
+    & > * {
+      margin: 10px 0;
+    }
+  }
 }

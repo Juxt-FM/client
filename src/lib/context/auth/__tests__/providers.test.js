@@ -12,7 +12,7 @@ import {
 } from "../providers";
 
 import { useAuthStatus } from "../hooks";
-import { QUERY_AUTH_USER } from "../../../apollo";
+import { QUERY_AUTH_USER } from "../../../graphql";
 import { MockUser } from "../../../../__mocks__/mockData";
 
 jest.mock("../hooks");

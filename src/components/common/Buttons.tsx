@@ -3,7 +3,12 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { ButtonHTMLAttributes, DetailedHTMLProps, Fragment } from "react";
+import {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  Fragment,
+  MouseEvent,
+} from "react";
 
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -71,3 +76,33 @@ export const ButtonOutline = ({ color = "primary", ...props }: IButton) => {
     </button>
   );
 };
+
+interface IIconAction {
+  icon: IconProp;
+  color?: Color;
+  onClick: (
+    event: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>
+  ) => void;
+}
+
+export const IconAction = ({
+  color = "primary",
+  icon,
+  onClick,
+}: IIconAction) => {
+  return (
+    <a className={styles[`${color}IconAction`]} onClick={onClick}>
+      <FontAwesomeIcon icon={icon} className={styles.icon} />
+    </a>
+  );
+};
+
+export const IconButton = ({
+  color = "primary",
+  icon,
+  onClick,
+}: IIconAction) => (
+  <a className={styles[`${color}IconBtn`]} onClick={onClick}>
+    <FontAwesomeIcon icon={icon} className={styles.icon} />
+  </a>
+);
