@@ -3,8 +3,10 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
+import { AltListItem, ListItem, LoadingAltListItem } from "./PostListItem";
+
+import { getMockPost } from "../__mocks__/mockData";
 import styles from "../styles/modules/latest.module.scss";
-import { LoadingListItem } from "./PostListItem";
 
 interface ISection {
   title: string;
@@ -14,21 +16,36 @@ interface ISection {
 const Section = (props: ISection) => (
   <section className={styles.section}>
     <div className={styles.header}>
-      <h3>{props.title}</h3>
+      <h1>{props.title}</h1>
     </div>
     {props.children}
   </section>
 );
 
-const Blog = () => {
+const Posts = () => {
   return (
-    <Section title="Following">
+    <Section title="Recent Posts">
       <div className={styles.blogHighlights}>
-        <ul className={styles.horizontal}>
-          <LoadingListItem />
+        <ul className={styles.vertical}>
+          <ListItem post={getMockPost()} />
+          <ListItem post={getMockPost()} />
+          <ListItem post={getMockPost()} />
         </ul>
         <div className={styles.divider}></div>
-        <ul className={styles.vertical}></ul>
+        <div className={styles.grid}>
+          <div className={styles.row}>
+            <div className={styles.column}>
+              <AltListItem post={getMockPost()} />
+              <AltListItem post={getMockPost()} />
+              <AltListItem post={getMockPost()} />
+            </div>
+            <div className={styles.column}>
+              <AltListItem post={getMockPost()} />
+              <AltListItem post={getMockPost()} />
+              <AltListItem post={getMockPost()} />
+            </div>
+          </div>
+        </div>
       </div>
     </Section>
   );
@@ -38,7 +55,7 @@ export default function MainContent() {
   return (
     <div className={styles.contentWrapper}>
       <div className={styles.content}>
-        <Blog />
+        <Posts />
       </div>
     </div>
   );

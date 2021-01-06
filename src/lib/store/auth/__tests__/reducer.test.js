@@ -3,7 +3,9 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { MockUser } from "../../../../__mocks__/mockData";
+import { getMockUser } from "../../../../__mocks__/mockData";
+
+const MockUser = getMockUser();
 
 import * as constants from "../constants";
 import reducer from "../index";

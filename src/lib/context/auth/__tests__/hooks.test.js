@@ -15,7 +15,7 @@ jest.mock("react-redux");
 jest.mock("@apollo/client");
 
 jest.mock("../../../store");
-jest.mock("../../../apollo");
+jest.mock("../../../graphql");
 jest.mock("../../../cookies");
 
 describe("Get auth actions", () => {

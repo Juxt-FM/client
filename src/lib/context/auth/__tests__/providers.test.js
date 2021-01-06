@@ -13,9 +13,11 @@ import {
 
 import { useAuthStatus } from "../hooks";
 import { QUERY_AUTH_USER } from "../../../graphql";
-import { MockUser } from "../../../../__mocks__/mockData";
+import { getMockUser } from "../../../../__mocks__/mockData";
 
 jest.mock("../hooks");
+
+const MockUser = getMockUser();
 
 const userMocks = [
   {

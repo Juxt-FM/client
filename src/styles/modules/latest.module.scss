@@ -5,21 +5,18 @@
 }
 
 section.section {
-  padding: 2.5%;
+  padding: 15px;
 
   @media (max-width: $breakpoint-small) {
-    padding: 2.5px;
+    padding: 10px;
   }
 }
 
 .blogHighlights {
   display: flex;
+  flex-direction: column;
   & > * {
     flex: 1;
-  }
-
-  @media (max-width: $breakpoint-large) {
-    flex-direction: column;
   }
 }
 
@@ -47,5 +44,25 @@ div.divider {
 
   @media (max-width: $breakpoint-small) {
     flex-direction: column;
+  }
+}
+
+.grid {
+  margin: 0 -5px;
+}
+
+.row {
+  display: flex;
+  & > * {
+    flex: 1;
+    margin: 0 5px;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  & > * {
+    margin: 5px 0;
   }
 }

@@ -1,13 +1,41 @@
 // Colors
-$colors: (
+$acolors: (
   "primary": #5971ff,
   "accent": #ff5555,
   "secondary": #d3d3d3,
-  "background": white,
+  "background": #ffffff,
   "altBackground": #f4f8ff,
   "highlight": lighten(#5971ff, 27.5),
   "text": black,
   "border": #f0efef,
+  "red": #eb5757,
+  "orange": #f2994a,
+  "yellow": #f2c94c,
+  "green": #27ae60,
+  "darkGreen": #219653,
+  "lightGreen": #6fcf97,
+  "blue": #2d9cdb,
+  "darkBlue": #2f80ed,
+  "lightBlue": #56ccf2,
+  "purple": #9b51e0,
+  "lightPurple": #bb6bd9,
+  "black": black,
+  "white": white,
+  "grey": #4f4f4f,
+  "darkGrey": #333333,
+  "lightGrey": #4e5861,
+);
+
+$colors: (
+  "primary": #5971ff,
+  "accent": #ff5555,
+  "secondary": #d3d3d3,
+  "background": #111627,
+  "altBackground": lighten(#111627, 10),
+  "highlight": lighten(#111627, 15),
+  "text": white,
+  "bodyText": #adb0be,
+  "border": #3a3a3a,
   "red": #eb5757,
   "orange": #f2994a,
   "yellow": #f2c94c,
@@ -34,7 +62,7 @@ $breakpoint-large: 1440px;
 $breakpoint-xl: 1920px;
 
 // Styles
-$shadow: 0 0 25px #e6ecf8;
+$shadow: 0 0 25px #252b3f;
 $headerHeight: 60px;
 $mukta: "Mukta", sans-serif;
 $lato: "Lato", sans-serif;

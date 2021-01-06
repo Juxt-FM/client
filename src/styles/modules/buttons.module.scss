@@ -35,7 +35,7 @@
   background: transparent;
   text-decoration: none;
   outline: none;
-  border: solid 2px $color;
+  border: solid 1.5px $color;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -55,7 +55,7 @@
   }
 
   &:hover {
-    background-color: lighten($color, 30);
+    background-color: map-get($colors, "altBackground");
   }
 }
 
@@ -84,8 +84,6 @@
   background-color: $color;
   color: map-get($colors, "white");
 
-  margin-left: 10px;
-
   transition: background-color 0.25s;
   transition: color 0.25s;
 
@@ -112,7 +110,7 @@
 
   &:hover {
     color: $color;
-    background-color: lighten($color, 30);
+    background-color: map-get($colors, "altBackground");
   }
 }
 

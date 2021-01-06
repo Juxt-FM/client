@@ -19,10 +19,12 @@ import * as actions from "../actions";
 import * as constants from "../constants";
 import * as helpers from "../helpers";
 
-import { MockUser } from "../../../../__mocks__/mockData";
+import { getMockUser } from "../../../../__mocks__/mockData";
 import { MockTokenInfo } from "./reducer.test";
 
-jest.mock("../../../apollo");
+const MockUser = getMockUser();
+
+jest.mock("../../../graphql");
 jest.mock("../helpers");
 
 const middlewares = [thunk];

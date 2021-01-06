@@ -31,7 +31,7 @@
       border-width: 0 0 2px 0;
       padding: 20px 25px 18px 25px;
       border-color: map-get($colors, "primary");
-      background-color: lighten(map-get($colors, "primary"), 30);
+      background-color: map-get($colors, "altBackground");
       @media screen and (max-width: $breakpoint-small) {
         padding: 15px 20px 13px 20px;
       }
@@ -39,7 +39,7 @@
 
     &:hover {
       color: map-get($colors, "primary");
-      background-color: lighten(map-get($colors, "primary"), 30);
+      background-color: map-get($colors, "altBackground");
     }
   }
 }

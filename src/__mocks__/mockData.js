@@ -1,19 +1,21 @@
-export const MockUser = {
+import faker from "faker";
+
+export const getMockUser = () => ({
   id: "1",
   email: {
-    address: "email@email.com",
+    address: faker.internet.email(),
     verified: true,
   },
   phone: {
-    number: "+11234567890",
+    number: faker.phone.phoneNumber(),
     verified: true,
   },
   profile: {
     id: "1",
-    name: "Test User",
-    location: null,
-    summary: null,
-    imageURL: null,
+    name: faker.name.findName(),
+    location: faker.address.city + ", " + faker.address.stateAbbr(),
+    summary: faker.company.catchPhrase(),
+    imageURL: faker.image.imageUrl(),
     watchlists: [],
   },
   verified: true,
@@ -22,4 +24,22 @@ export const MockUser = {
   lastLogin: new Date(),
   updatedAt: new Date(),
   createdAt: new Date(),
-};
+});
+
+export const getMockPost = () => ({
+  id: "1",
+  publicationStatus: "public",
+  contentFormat: "markdown",
+  author: "1",
+  title: "Is the market catching up with the economy?",
+  subtitle: faker.company.catchPhrase(),
+  imageURL: faker.image.imageUrl(),
+  content: faker.company.catchPhrase(),
+  symbols: ["NVDA", "QQQ"],
+  tags: ["stock market"],
+  comments: [],
+  reactionCount: 0,
+  reactionStatus: null,
+  createdAt: new Date().getMilliseconds(),
+  updatedAt: new Date().getMilliseconds(),
+});

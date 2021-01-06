@@ -123,7 +123,7 @@ textarea.subtitle {
   line-height: 20px;
   font-weight: 200;
   font-family: $lato;
-  color: black;
+  color: map-get($colors, "text");
   outline: none;
   border-style: solid;
   border-width: 1.5px;
@@ -131,6 +131,7 @@ textarea.subtitle {
   border-color: map-get($colors, "border");
   padding: 10px 10px;
   transition: border-color 0.1s;
+  background-color: map-get($colors, "background");
 
   &:focus {
     border-color: map-get($colors, "primary");
@@ -145,12 +146,13 @@ input[type="text"].input {
   font-size: 16px;
   font-weight: 200;
   font-family: $lato;
-  color: black;
+  color: map-get($colors, "text");
   outline: none;
   border-style: solid;
   border-width: 1.5px;
   border-radius: 2.5px;
   border-color: map-get($colors, "border");
+  background-color: map-get($colors, "background");
   padding: 15px 10px;
   transition: border-color 0.1s;
 
@@ -175,7 +177,8 @@ textarea.editor {
   line-height: 24px;
   font-weight: 200;
   font-family: $lato;
-  color: black;
+  color: map-get($colors, "text");
+  background-color: map-get($colors, "background");
   outline: none;
   border: none;
 }

@@ -31,6 +31,7 @@ ul {
 }
 
 hr {
-  border-top: map-get($colors, "border");
+  border: 0;
+  border-top: solid 0.5px map-get($colors, "border");
   margin: 0;
 }

@@ -20,7 +20,7 @@
   border-radius: 2.5px;
   box-shadow: $shadow;
   background-color: map-get($colors, "background");
-  z-index: 10000;
+  z-index: 1000;
   cursor: default;
   animation: slideTransition 0.25s;
 
@@ -61,9 +61,9 @@ ul.dropdownList {
     font-size: 16px;
     font-weight: 200;
     font-family: $lato;
-    color: map-get($colors, "lightGrey");
+    color: map-get($colors, "text");
     &:hover {
-      background-color: lighten(map-get($colors, "primary"), 30);
+      background-color: map-get($colors, "altBackground");
     }
     &.danger {
       color: map-get($colors, "red");

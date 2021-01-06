@@ -9,9 +9,10 @@ import _ from "lodash";
 
 import { BlogPost } from "../lib/graphql";
 
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 
 import styles from "../styles/modules/post-list.module.scss";
+import SkeletonWrapper from "./SkeletonWrapper";
 
 interface IListItem {
   post: BlogPost | undefined;
@@ -24,19 +25,21 @@ interface IPostLink {
   disabled?: boolean;
 }
 
-export const BlogPostLink = ({ id, children, disabled }: IPostLink) =>
+export const BlogPostLink = ({ id, children, disabled = true }: IPostLink) =>
   disabled ? (
     <Fragment>{children}</Fragment>
   ) : (
     <Link href={`/blog/posts/${id}`}>{children}</Link>
   );
 
-export const LoadingListItem = () => (
-  <SkeletonTheme color="#f2f2f2" highlightColor="#e2e2e2">
-    {_.range(5).map((index) => (
-      <ListItem post={undefined} loading key={String(index)} />
-    ))}
-  </SkeletonTheme>
+export const LoadingListItem = ({ count = 5 }) => (
+  <SkeletonWrapper>
+    <Fragment>
+      {_.range(count).map((index) => (
+        <ListItem post={undefined} loading key={String(index)} />
+      ))}
+    </Fragment>
+  </SkeletonWrapper>
 );
 
 export const ListItem = ({ post, loading }: IListItem) => {
@@ -53,20 +56,41 @@ export const ListItem = ({ post, loading }: IListItem) => {
             alt="blog post image"
           />
         )}
-
         <div className={styles.content}>
-          <h2>{loading ? <Skeleton width={100} /> : post.title}</h2>
+          <h3>{loading ? <Skeleton width="30%" /> : post.title}</h3>
           {loading ? (
             <Fragment>
               <Skeleton width="100%" className={styles.summary} />
               <Skeleton width="75%" className={styles.summary} />
-              <Skeleton width="65%" className={styles.summary} />
             </Fragment>
           ) : (
-            <p className={styles.summary}>{post.subtitle}</p>
+            <p className={styles.summary}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+              ducimus repudiandae mollitia optio consequatur iusto. Deleniti
+              quaerat omnis voluptates. Eos laboriosam ipsam, asperiores
+              officiis distinctio porro optio aliquam corporis eligendi.
+            </p>
           )}
         </div>
       </a>
     </BlogPostLink>
   );
+};
+
+export const LoadingAltListItem = ({ count = 5 }) => (
+  <Fragment>
+    {_.range(count).map((index) => (
+      <SkeletonWrapper key={String(index)}>
+        <AltListItem post={undefined} loading />
+      </SkeletonWrapper>
+    ))}
+  </Fragment>
+);
+
+export const AltListItem = (props: IListItem) => {
+  if (props.loading) {
+    const height = Math.floor((Math.random() + 1) * 100);
+    return <Skeleton height={height} className={styles.altListItem} />;
+  }
+  return <img src={props.post.imageURL} className={styles.altListItem} />;
 };

@@ -75,11 +75,23 @@ const Dropdown = ({
     if (ref.current && !ref.current.contains(e.target)) setOpen(false);
   };
 
+  const onHover = (e: PointerEvent) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      return;
+    } else {
+      e.preventDefault();
+    }
+  };
+
   useEffect(() => {
-    if (open) window.addEventListener("click", onClickAway);
+    if (open) {
+      window.addEventListener("click", onClickAway);
+      window.addEventListener("mouseover", onHover);
+    }
 
     return () => {
       window.removeEventListener("click", onClickAway);
+      window.removeEventListener("mouseover", onHover);
     };
   }, [open]);
 
