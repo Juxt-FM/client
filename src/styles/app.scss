@@ -34,16 +34,3 @@ hr {
   border-top: map-get($colors, "border");
   margin: 0;
 }
-
-.section {
-  padding: 0 15% 0px 15%;
-  @media screen and (max-width: $breakpoint-small) {
-    padding: 0 2% 0px 2%;
-  }
-  @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large) {
-    padding: 0 5% 0px 5%;
-  }
-  @media screen and (min-width: $breakpoint-xl) {
-    padding: 0 25% 0px 25%;
-  }
-}

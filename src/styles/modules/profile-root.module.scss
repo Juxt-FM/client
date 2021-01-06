@@ -1,19 +1,21 @@
 @import "../common/variables";
 @import "../common/fonts";
 
+.root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .profileHeader {
-  border-radius: 5px;
   width: 100%;
   height: 300px;
   background-color: map-get($colors, "altBackground");
   margin-bottom: 25px;
   object-fit: cover;
-  @media screen and (max-width: $breakpoint-xs) {
-    border-radius: 0px;
-  }
 }
 
-.profileRoot {
+.content {
   display: flex;
   width: 100%;
 

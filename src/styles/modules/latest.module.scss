@@ -1,13 +1,15 @@
 @import "../common/variables";
 
-.analysis {
+.contentWrapper {
+  flex: 1;
   position: relative;
   display: flex;
+  flex-direction: column;
   margin-bottom: 100px;
   & > .content {
     flex: 1;
     @media screen and (min-width: $breakpoint-medium) {
-      margin-right: 25px;
+      margin: 0 15px 0 15px;
     }
     & > .mainChart {
       padding: 50px 0px;
@@ -16,35 +18,6 @@
       border-bottom-color: map-get($colors, "border");
     }
   }
-}
-
-.trending {
-  background-color: map-get($colors, "altBackground");
-  padding-top: 100px;
-  padding-bottom: 100px;
-  & > div > h2 {
-    color: white;
-  }
-}
-
-.trendingContent {
-  & > .runnerUps {
-    margin-top: 100px;
-    & > h2 {
-      color: white;
-    }
-    & > a {
-      height: 250px;
-      @media screen and (max-width: $breakpoint-small) {
-        height: auto;
-      }
-    }
-  }
-}
-
-.relevant {
-  padding-top: 100px;
-  padding-bottom: 100px;
 }
 
 .row {

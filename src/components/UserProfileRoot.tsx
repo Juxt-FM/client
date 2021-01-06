@@ -70,65 +70,59 @@ export const ProfileNavigation = ({ id }: { id: string }) => {
   );
 };
 
-interface IProfileInfo extends IUserProfile {
-  isSelf: boolean;
-}
+export const ProfileInfo = ({ profile }: IUserProfile) => {
+  const { user } = useAuthUser();
 
-const ProfileInfo = ({ profile, isSelf = false }: IProfileInfo) => (
-  <div className={styles.profileInfo}>
-    <img
-      src="https://www.artgoa.com/wp-content/uploads/2016/07/DJ1.jpeg"
-      alt="profile image"
-    />
-    <div className={styles.infoContent}>
-      <h3>{profile.name}</h3>
-      <p className={styles.location}>{profile.location}</p>
-      <p>{profile.summary}</p>
-    </div>
-    <div className={styles.profileActions}>
-      <div className={styles.followers}>
-        <p>15K Followers</p>
-        <Button
-          color={isSelf ? "secondary" : "primary"}
-          label={isSelf ? "Update" : "Follow"}
-        />
+  const isSelf = user.id === profile.id;
+
+  return (
+    <div className={styles.profileInfo}>
+      <img
+        src="https://www.artgoa.com/wp-content/uploads/2016/07/DJ1.jpeg"
+        alt="profile image"
+      />
+      <div className={styles.infoContent}>
+        <h3>{profile.name}</h3>
+        <p className={styles.location}>{profile.location}</p>
+        <p>{profile.summary}</p>
       </div>
-      <div className={styles.platforms}>
-        <a className={styles.iconBtn}>
-          <FontAwesomeIcon icon={faTwitter} />
-        </a>
-        <a className={styles.iconBtn}>
-          <FontAwesomeIcon icon={faLinkedin} />
-        </a>
-        <a className={styles.iconBtn}>
-          <FontAwesomeIcon icon={faInstagram} />
-        </a>
+      <div className={styles.profileActions}>
+        <div className={styles.followers}>
+          <p>15K Followers</p>
+          <Button
+            color={isSelf ? "secondary" : "primary"}
+            label={isSelf ? "Update" : "Follow"}
+          />
+        </div>
+        <div className={styles.platforms}>
+          <a className={styles.iconBtn}>
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+          <a className={styles.iconBtn}>
+            <FontAwesomeIcon icon={faLinkedin} />
+          </a>
+          <a className={styles.iconBtn}>
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 interface IProfileRoot extends IUserProfile {
   Component: ElementType;
 }
 
 export default function ProfileRoot({ Component, profile }: IProfileRoot) {
-  const { user } = useAuthUser();
-
   return (
-    <Fragment>
+    <div className={styles.root}>
       <ProfileHeader />
-      <div className={styles.profileRoot}>
-        <div>
-          <ProfileInfo
-            isSelf={user ? profile.id === user.id : false}
-            profile={profile}
-          />
-        </div>
+      <div className={styles.content}>
         <div className={styles.profileContent}>
           <ProfileNavigation id={profile.id} />
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 }

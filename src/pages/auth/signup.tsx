@@ -4,7 +4,7 @@
  */
 
 import Signup from "../../components/Signup";
-import MetaTags from "../../components/common/MetaTags";
+import MetaTags from "../../components/MetaTags";
 
 export default function SignupPage() {
   return (

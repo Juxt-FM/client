@@ -3,13 +3,18 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Page from "../components/common/Page";
-import Home from "../components/Home";
+import Page from "../components/Page";
+import Latest from "../components/Latest";
+import HighlightedContent from "../components/HighlightedContent";
 
-export default function HomePage() {
+export default function LatestContentPage() {
   return (
-    <Page title="Home" description="Welcome to Hedger!">
-      <Home />
+    <Page
+      title="Latest"
+      description="Welcome to Hedger!"
+      extraContent={<HighlightedContent />}
+    >
+      <Latest />
     </Page>
   );
 }

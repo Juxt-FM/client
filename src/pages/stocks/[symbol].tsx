@@ -12,7 +12,7 @@ import {
   addApolloState,
 } from "../../lib/apollo";
 
-import Page from "../../components/common/Page";
+import Page from "../../components/Page";
 import StockSymbol, { Header } from "../../components/Stocks";
 
 interface IStockDetailsQuery {
@@ -32,10 +32,8 @@ const SymbolDetails = () => {
       title={`${symbol || "Stocks"}`}
       description={`Check out ${symbol} on Hedger.`}
     >
-      <section className="section">
-        <Header name={data ? data.companyProfile.companyName : undefined} />
-        <StockSymbol stock={data ? data.companyProfile : undefined} />
-      </section>
+      <Header name={data ? data.companyProfile.companyName : undefined} />
+      <StockSymbol stock={data ? data.companyProfile : undefined} />
     </Page>
   );
 };

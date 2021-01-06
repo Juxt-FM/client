@@ -9,16 +9,15 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { loginUser, logoutUser, selectAuthUser } from "../../store";
 
-import { setAccessToken } from "../../apollo";
-import { getLoggedInCookie, setLoggedInCookie } from "../../cookies";
+import { getLoggedInCookie } from "../../cookies";
 
 /**
- * Returns the auth user info from redux
+ * Returns the auth user ID
  *
- * @returns {boolean} Whether the user is logged in
+ * @returns {string} The logged in user's ID
  */
 export function useAuthStatus() {
-  return getLoggedInCookie() === "true";
+  return getLoggedInCookie();
 }
 
 /**
@@ -50,19 +49,11 @@ export function useAuthActions() {
   const onLogin = (accessToken: string) => {
     dispatch(loginUser(accessToken));
 
-    setLoggedInCookie("true");
-
-    setAccessToken(accessToken);
-
     client.clearStore().then(() => router.push("/"));
   };
 
   const onLogout = (redirectToLogin = true) => {
     dispatch(logoutUser());
-
-    setLoggedInCookie(undefined, new Date());
-
-    setAccessToken(undefined);
 
     client.clearStore().then(() => {
       if (redirectToLogin) router.push("/auth/login");

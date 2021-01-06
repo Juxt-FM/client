@@ -3,16 +3,13 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Page from "../../components/common/Page";
+import Page from "../../components/Page";
 import { TabNavigator } from "../../components/Settings";
 
 export default function PrivacySettings() {
   return (
     <Page title="Privacy" description="Update your account's privacy settings.">
-      <section className="section">
-        <h1>Privacy</h1>
-        <TabNavigator />
-      </section>
+      <TabNavigator />
     </Page>
   );
 }

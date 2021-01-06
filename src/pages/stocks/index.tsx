@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Page from "../../components/common/Page";
+import Page from "../../components/Page";
 
 export default function Stocks() {
   return (
@@ -11,9 +11,7 @@ export default function Stocks() {
       title="Stocks"
       description="Check out the latests posts and analysis on stocks and equities."
     >
-      <section className="section">
-        <h1>Stocks & Equities</h1>
-      </section>
+      <div></div>
     </Page>
   );
 }

@@ -26,6 +26,7 @@ export const buildTokenInfo = (token: string) => {
   const decoded: any = decodeToken(token);
 
   return {
+    userID: decoded.id,
     issued: getDate(decoded.iat),
     expires: getDate(decoded.exp),
   };

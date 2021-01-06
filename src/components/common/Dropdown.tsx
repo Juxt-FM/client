@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import React, { ReactChild, useEffect, useRef } from "react";
+import React, { ReactChild, useEffect, useRef, useState } from "react";
 
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -54,33 +54,52 @@ export const DropdownList = ({ options }: IDropdownList) => (
 );
 
 interface DropdownProps {
-  isOpen: boolean;
-  onClose: () => void;
-  children: ReactChild;
+  anchor: (openDropdown: () => void, isOpen: boolean) => JSX.Element;
+  content: () => JSX.Element;
+  x?: "right" | "left";
+  y?: "top" | "bottom";
+  disabled?: boolean;
 }
 
-const Dropdown = ({ children, isOpen, onClose }: DropdownProps) => {
+const Dropdown = ({
+  x = "right",
+  y = "bottom",
+  disabled = false,
+  anchor,
+  content,
+}: DropdownProps) => {
+  const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
   const onClickAway = (e: MouseEvent) => {
-    if (ref.current && !ref.current.contains(e.target)) onClose();
+    if (ref.current && !ref.current.contains(e.target)) setOpen(false);
   };
 
   useEffect(() => {
-    if (isOpen) window.addEventListener("click", onClickAway);
+    if (open) window.addEventListener("click", onClickAway);
 
     return () => {
       window.removeEventListener("click", onClickAway);
     };
-  }, [isOpen]);
+  }, [open]);
 
-  if (isOpen)
-    return (
-      <div ref={ref} className={styles.root}>
-        {children}
-      </div>
-    );
-  return null;
+  const onOpen = () => {
+    if (!disabled) setOpen(true);
+  };
+
+  return (
+    <div className={styles.root}>
+      {anchor(onOpen, open)}
+      {open && (
+        <div
+          ref={ref}
+          className={[styles.content, styles[x], styles[y]].join(" ")}
+        >
+          {content()}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Dropdown;

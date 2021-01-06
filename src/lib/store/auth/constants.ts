@@ -8,6 +8,7 @@ import { ApolloError } from "@apollo/client";
 import { User } from "../../apollo";
 
 export interface ITokenState {
+  userID: string;
   issued: Date;
   expires: Date;
 }

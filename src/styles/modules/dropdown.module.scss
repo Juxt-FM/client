@@ -11,16 +11,32 @@
 }
 
 .root {
+  position: relative;
+}
+
+.content {
   position: absolute;
-  top: calc(100% + 5px);
-  right: 5px;
+  margin: auto;
+  width: fit-content;
   border-radius: 2.5px;
-  box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: $shadow;
   background-color: map-get($colors, "background");
   z-index: 1000;
-  overflow: hidden;
   cursor: default;
   animation: slideTransition 0.25s;
+
+  &.left {
+    left: 0;
+  }
+  &.right {
+    right: 0;
+  }
+  &.top {
+    bottom: calc(100% + 15px);
+  }
+  &.bottom {
+    top: calc(100% + 15px);
+  }
 }
 
 .dropdownOption {
@@ -34,6 +50,7 @@ ul.dropdownList {
   margin: 5px 0;
   min-width: 200px;
   max-height: 300px;
+
   & > li.option {
     & > .icon {
       width: 35px;
@@ -43,14 +60,13 @@ ul.dropdownList {
     height: fit-content;
     padding: 15px 10px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     font-family: $lato;
     color: black;
     &:hover {
       background-color: lighten(map-get($colors, "primary"), 30);
     }
     &.danger {
-      font-weight: 500;
       color: map-get($colors, "red");
     }
   }

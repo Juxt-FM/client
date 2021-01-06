@@ -12,7 +12,7 @@ import {
   QUERY_USER_PROFILE,
 } from "../../../lib/apollo";
 
-import Page from "../../../components/common/Page";
+import Page from "../../../components/Page";
 import ProfileRoot from "../../../components/UserProfileRoot";
 
 interface IUserProfileQuery {
@@ -36,9 +36,7 @@ const UserProfilePage = () => {
           : "User profiles."
       }
     >
-      <section className="section">
-        <ProfileRoot Component={null} profile={data.userProfile} />
-      </section>
+      <ProfileRoot Component={null} profile={data.userProfile} />
     </Page>
   );
 };

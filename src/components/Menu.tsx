@@ -3,48 +3,89 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAuthStatus } from "../lib/context";
 
-import Watchlists from "./Watchlists";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faBitcoin } from "@fortawesome/free-brands-svg-icons";
+import {
+  faHistory,
+  faLayerGroup,
+  faPlus,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { Button } from "./common/Buttons";
 
 import styles from "../styles/modules/menu.module.scss";
 
+const Logo = () => (
+  <div className={styles.logoWrapper}>
+    <Link href="/">
+      <a>
+        <img
+          className={styles.logo}
+          src={require("../images/logo-primary-sm.png")}
+          alt="brand_logo"
+        />
+      </a>
+    </Link>
+  </div>
+);
+
+interface INavItem {
+  label: string;
+  icon: IconProp;
+  path: string;
+}
+
+const NavItem = ({ label, icon, path }: INavItem) => {
+  const router = useRouter();
+
+  const isActive = router.pathname === path;
+
+  let classes = [styles.navItem];
+  if (isActive) classes.push(styles.active);
+
+  return (
+    <li>
+      <Link href={path}>
+        <a className={classes.join(" ")}>
+          <div className={styles.icon}>
+            <FontAwesomeIcon icon={icon} />
+          </div>
+          {label}
+        </a>
+      </Link>
+    </li>
+  );
+};
+
 const Menu = () => {
   const router = useRouter();
-  const loggedIn = useAuthStatus();
+  const userID = useAuthStatus();
 
-  const renderWatchlists = () => {
-    if (!loggedIn)
-      return (
-        <div className={styles.noUser}>
-          <h4>You are not logged in.</h4>
-          <p>Start receiving updates about assets in your portfolios.</p>
-          <Button
-            size="sm"
-            label="Get started"
-            onClick={() => router.push("/auth/signup")}
-          />
-        </div>
-      );
-    else return <Watchlists />;
-  };
+  const onNewPost = () => router.push("/blog/editor");
+
+  const profilePath = `/users/${userID}`;
 
   return (
     <div className={styles.root}>
-      <div className={styles.section}>
-        <div className={styles.header}>
-          <h4>Following</h4>
-        </div>
-      </div>
-
-      <div className={styles.section}>
-        <div className={styles.header}>
-          <h4>Watchlists</h4>
-        </div>
-      </div>
-      {renderWatchlists()}
+      <Logo />
+      <ul className={styles.navigation}>
+        <NavItem icon={faHistory} label="Latest" path="/" />
+        <NavItem icon={faLayerGroup} label="Stocks" path="/stocks" />
+        <NavItem icon={faBitcoin} label="Cryptocurrencies" path="/crypto" />
+        {userID && <NavItem icon={faUser} label="Profile" path={profilePath} />}
+      </ul>
+      <Button
+        label="New Post"
+        icon={faPlus}
+        onClick={onNewPost}
+        color="lightGreen"
+      />
     </div>
   );
 };

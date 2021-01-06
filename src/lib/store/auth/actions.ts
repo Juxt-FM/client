@@ -33,19 +33,31 @@ import { buildTokenInfo } from "./helpers";
  * @param token
  * @returns {{type, payload}}
  */
-export const loginUser = (token: string) => ({
-  type: LOGIN_USER,
-  payload: buildTokenInfo(token),
-});
+export const loginUser = (accessToken: string) => {
+  const decoded = buildTokenInfo(accessToken);
+
+  setLoggedInCookie(decoded.userID);
+  setAccessToken(accessToken);
+
+  return {
+    type: LOGIN_USER,
+    payload: decoded,
+  };
+};
 
 /**
  * Log out action creator
  *
  * @returns {{type}}
  */
-export const logoutUser = () => ({
-  type: LOGOUT_USER,
-});
+export const logoutUser = () => {
+  setLoggedInCookie(undefined, new Date());
+  setAccessToken(undefined);
+
+  return {
+    type: LOGOUT_USER,
+  };
+};
 
 /**
  * Fetch user action creator

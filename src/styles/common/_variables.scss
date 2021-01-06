@@ -4,7 +4,8 @@ $colors: (
   "accent": #ff5555,
   "secondary": #d3d3d3,
   "background": white,
-  "altBackground": #f9f9f9,
+  "altBackground": #f4f8ff,
+  "highlight": lighten(#5971ff, 27.5),
   "text": black,
   "border": #f0efef,
   "red": #eb5757,
@@ -34,3 +35,4 @@ $breakpoint-xl: 1920px;
 
 // Styles
 $shadow: 0 0 25px #e6ecf8;
+$headerHeight: 60px;

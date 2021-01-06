@@ -7,9 +7,7 @@ import { useRouter } from "next/router";
 import { useApolloClient } from "@apollo/client";
 import { useDispatch } from "react-redux";
 
-import { getLoggedInCookie } from "../../../cookies";
-import { useAuthActions, useAuthStatus } from "../hooks";
-import { setAccessToken } from "../../../apollo";
+import { useAuthActions } from "../hooks";
 import { loginUser, logoutUser } from "../../../store";
 
 jest.mock("next/router");
@@ -19,20 +17,6 @@ jest.mock("@apollo/client");
 jest.mock("../../../store");
 jest.mock("../../../apollo");
 jest.mock("../../../cookies");
-
-describe("Get auth status", () => {
-  it("should return true", async () => {
-    getLoggedInCookie.mockReturnValueOnce("true");
-
-    expect(useAuthStatus()).toBe(true);
-  });
-
-  it("should return false", async () => {
-    getLoggedInCookie.mockReturnValueOnce(undefined);
-
-    expect(useAuthStatus()).toBe(false);
-  });
-});
 
 describe("Get auth actions", () => {
   it("should log in user", () => {
@@ -59,8 +43,6 @@ describe("Get auth actions", () => {
     onLogin("access_token");
 
     expect(dispatch).toBeCalledTimes(1);
-    expect(setAccessToken).toBeCalledTimes(1);
-    expect(setAccessToken).toHaveBeenLastCalledWith("access_token");
     expect(loginUser).toBeCalledTimes(1);
     expect(client.clearStore).toBeCalledTimes(1);
   });
@@ -89,7 +71,6 @@ describe("Get auth actions", () => {
     onLogout();
 
     expect(dispatch).toBeCalledTimes(1);
-    expect(setAccessToken).toHaveBeenLastCalledWith(undefined);
     expect(logoutUser).toBeCalledTimes(1);
     expect(client.clearStore).toBeCalledTimes(1);
   });

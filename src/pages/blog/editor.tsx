@@ -12,7 +12,7 @@ import {
   QUERY_BLOG_POST,
 } from "../../lib/apollo";
 
-import MetaTags from "../../components/common/MetaTags";
+import MetaTags from "../../components/MetaTags";
 import { FullLoader } from "../../components/Loaders";
 
 import PostEditor from "../../components/PostEditor";

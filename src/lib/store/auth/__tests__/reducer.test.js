@@ -115,6 +115,7 @@ test("should handle REFRESH_TOKEN_FAIL", () => {
 });
 
 const mockTokenInfo = {
+  userID: "",
   issued: new Date(),
   expiration: new Date(Date.now() + 2000),
 };

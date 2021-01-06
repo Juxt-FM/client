@@ -2,51 +2,61 @@
 
 .root {
   position: sticky;
-  top: 115px;
   right: 0;
   display: flex;
   flex-direction: column;
-  width: 350px;
-  margin: 0px 0px 25px 0px;
-  height: calc(100vh - 80px - 80px);
-  max-height: 600px;
-  background-color: map-get($colors, "background");
-  overflow-x: hidden;
-  overflow-y: scroll;
-  box-shadow: $shadow;
-  border-radius: 5px;
+  width: 300px;
+  height: calc(100vh);
+  padding-right: 25px;
+
   &::-webkit-scrollbar {
     display: none;
   }
-
-  @media screen and (max-width: $breakpoint-medium) {
-    display: none;
-  }
 }
 
-.noUser {
-  padding: 15px;
-  & > p {
-    font-size: 14px;
-    line-height: 20px;
-    color: #777777;
-    margin-bottom: 10px;
-  }
+@mixin activeLink() {
+  color: map-get($colors, "primary");
 }
 
-.section {
-  border-style: solid;
-  border-width: 0px 0px 0.5px 0px;
-  border-color: map-get($colors, "border");
-}
-
-.header {
+.navItem {
+  height: 60px;
   display: flex;
-  justify-content: space-between;
+  width: fit-content;
   align-items: center;
-  padding: 15px;
-  & > h4 {
-    margin: 0px;
-    font-weight: 600;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 25px;
+  margin: 15px 0;
+  color: map-get($colors, "text");
+  border-radius: 10px;
+
+  transition: background-color 0.25s;
+  transition: color 0.25s;
+
+  & > .icon {
+    width: 45px;
   }
+
+  &:hover {
+    @include activeLink();
+    background-color: map-get($colors, "highlight") !important;
+  }
+
+  &.active {
+    @include activeLink();
+    background-color: lighten(map-get($colors, "primary"), 30);
+  }
+}
+
+.logo {
+  margin: 50px 0 25px 25px;
+  height: 32px;
+  width: auto;
+  @media screen and (max-width: $breakpoint-small) {
+    height: 24px;
+  }
+}
+
+ul.navigation {
+  margin: 50px 0;
 }

@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import MetaTags from "../../components/common/MetaTags";
+import MetaTags from "../../components/MetaTags";
 
 import Login from "../../components/Login";
 

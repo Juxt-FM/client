@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Page from "../../components/common/Page";
+import Page from "../../components/Page";
 import { TabNavigator } from "../../components/Settings";
 
 export default function AccountSettings() {
@@ -12,10 +12,7 @@ export default function AccountSettings() {
       title="Account Settings"
       description="Update account's information and more."
     >
-      <section className="section">
-        <h1>Account Settings</h1>
-        <TabNavigator />
-      </section>
+      <TabNavigator />
     </Page>
   );
 }

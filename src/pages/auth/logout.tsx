@@ -8,7 +8,7 @@ import { useMutation } from "@apollo/client";
 import { MUTATION_LOGOUT } from "../../lib/apollo";
 import { useAuthActions } from "../../lib/context";
 
-import MetaTags from "../../components/common/MetaTags";
+import MetaTags from "../../components/MetaTags";
 import { FullLoader } from "../../components/Loaders";
 
 export default function Logout() {
