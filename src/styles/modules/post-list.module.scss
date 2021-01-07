@@ -4,33 +4,41 @@
   flex: 1;
   display: flex;
   border-radius: 5px;
-  padding: 10px 0;
+  padding: 15px;
 
   cursor: pointer;
-  transition: opacity 0.25s;
+  transition: background-color 0.25s;
 
   & .image {
-    width: 30%;
-    min-width: 150px;
-    height: 100%;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
-    margin-right: 15px;
-    border-radius: 10px;
+    margin-right: 25px;
+    border-radius: 5px;
+
+    @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
+      margin-right: 15px;
+    }
 
     @media (max-width: $breakpoint-small) {
       width: 100%;
       height: 200px;
+      margin-right: 0;
     }
   }
 
-  & .summary {
-    font-size: 14px;
-    line-height: 18px;
-    margin: 2.5px 0;
-  }
-
-  & h3 {
+  & h2 {
+    font-size: 26px;
     margin-bottom: 1%;
+    line-height: 28px;
+
+    @media (max-width: $breakpoint-medium) {
+      font-size: 24px;
+    }
+
+    @media (max-width: $breakpoint-small) {
+      margin-top: 15px;
+    }
   }
 
   & .content {
@@ -38,12 +46,12 @@
   }
 
   &:hover {
-    opacity: 0.75;
-    z-index: 0;
+    background-color: map-get($colors, "altBackground");
   }
 
   @media (max-width: $breakpoint-small) {
     flex-direction: column;
+    padding: 15px 0;
   }
 }
 
@@ -54,13 +62,79 @@
   }
 }
 
-.altListItem {
+p.summary {
+  font-size: 18px;
+  line-height: 24px;
+  margin: 2.5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+
+  @media (max-width: $breakpoint-small) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.altListItemWrapper {
   position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+
+  & > .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+  }
+
+  & > .active {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: background-color 0.25s;
+
+    background-color: rgba(0, 0, 0, 0);
+
+    z-index: 1;
+
+    & > .title {
+      color: map-get($colors, "white");
+      margin: 0;
+      line-height: 20px;
+    }
+
+    & > p.summary {
+      color: map-get($colors, "white");
+      -webkit-line-clamp: 2; /* number of lines to show */
+    }
+  }
+
+  &:hover > .active {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.altListItem {
   vertical-align: middle;
-  border-radius: 15px;
   height: auto;
   width: 100%;
   border: none;
   outline: none;
   background-color: #e2e2e2;
+  object-fit: cover;
+
+  @media (max-width: $breakpoint-small) {
+    min-height: 400px;
+  }
 }

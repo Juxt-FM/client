@@ -18,7 +18,11 @@
     font-weight: 600;
     font-family: $lato;
     padding: 20px 25px;
-    transition: opacity 0.25s;
+    color: map-get($colors, "bodyText");
+    background-color: map-get($colors, "background");
+
+    @include buildTransition(background-color, 0.25s, linear);
+    @include buildTransition(color, 0.15s, linear);
 
     @media screen and (max-width: $breakpoint-small) {
       padding: 15px 20px;
@@ -32,6 +36,7 @@
       padding: 20px 25px 18px 25px;
       border-color: map-get($colors, "primary");
       background-color: map-get($colors, "altBackground");
+
       @media screen and (max-width: $breakpoint-small) {
         padding: 15px 20px 13px 20px;
       }

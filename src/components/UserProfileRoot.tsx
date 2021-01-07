@@ -99,6 +99,7 @@ const ProfileRoot = ({ Component, profile }: IProfileRoot) => {
       <div className={styles.content}>
         <ProfileInfo profile={profile} />
         <TabBar tabs={getTabs(profile.id, router.pathname)} />
+        <Component />
       </div>
     </div>
   );

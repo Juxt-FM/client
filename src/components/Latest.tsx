@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { AltListItem, ListItem, LoadingAltListItem } from "./PostListItem";
+import { AltListItem, ListItem } from "./PostListItem";
 
 import { getMockPost } from "../__mocks__/mockData";
 import styles from "../styles/modules/latest.module.scss";
@@ -37,10 +37,8 @@ const Posts = () => {
             <div className={styles.column}>
               <AltListItem post={getMockPost()} />
               <AltListItem post={getMockPost()} />
-              <AltListItem post={getMockPost()} />
             </div>
             <div className={styles.column}>
-              <AltListItem post={getMockPost()} />
               <AltListItem post={getMockPost()} />
               <AltListItem post={getMockPost()} />
             </div>

@@ -26,13 +26,9 @@
   flex-direction: column;
   border-right: solid 0.5px map-get($colors, "border");
   border-left: solid 0.5px map-get($colors, "border");
-  overflow-x: hidden;
 
   @media screen and (max-width: $breakpoint-small) {
     border: none;
-  }
-  @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
-    border-right: none;
   }
 }
 

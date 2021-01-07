@@ -1,5 +1,5 @@
 // Colors
-$acolors: (
+$colors: (
   "primary": #5971ff,
   "accent": #ff5555,
   "secondary": #d3d3d3,
@@ -8,6 +8,7 @@ $acolors: (
   "highlight": lighten(#5971ff, 27.5),
   "text": black,
   "border": #f0efef,
+  "bodyText": #7c7e88,
   "red": #eb5757,
   "orange": #f2994a,
   "yellow": #f2c94c,
@@ -26,7 +27,7 @@ $acolors: (
   "lightGrey": #4e5861,
 );
 
-$colors: (
+$acolors: (
   "primary": #5971ff,
   "accent": #ff5555,
   "secondary": #d3d3d3,
@@ -62,7 +63,16 @@ $breakpoint-large: 1440px;
 $breakpoint-xl: 1920px;
 
 // Styles
-$shadow: 0 0 25px #252b3f;
+$shadow: 0 0 25px #e6ecf8;
+$darkShadow: 0 0 25px #252b3f;
 $headerHeight: 60px;
 $mukta: "Mukta", sans-serif;
 $lato: "Lato", sans-serif;
+
+@mixin buildTransition($property, $time, $easing) {
+  transition: $property $time $easing;
+  -moz-transition: $property $time $easing; /* Firefox 4 */
+  -webkit-transition: $property $time $easing; /* Safari and Chrome */
+  -o-transition: $property $time $easing; /* Opera */
+  -ms-transition: $property $time $easing; /* Explorer 10 */
+}

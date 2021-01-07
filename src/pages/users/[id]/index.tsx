@@ -37,7 +37,10 @@ const UserProfilePage = () => {
       }
       backButton
     >
-      <ProfileRoot Component={null} profile={data.userProfile} />
+      <ProfileRoot
+        Component={() => <div style={{ height: 2000 }}></div>}
+        profile={data.userProfile}
+      />
     </Page>
   );
 };

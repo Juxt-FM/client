@@ -47,7 +47,7 @@ export default function InAppEditor() {
   }>(MUTATION_CREATE_POST, {
     onCompleted: ({ createBlogPost }) => {
       router.replace({
-        pathname: "/blog/editor",
+        pathname: "/posts/editor",
         query: { post: createBlogPost.id },
       });
     },

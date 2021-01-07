@@ -8,7 +8,7 @@ section.section {
   padding: 15px;
 
   @media (max-width: $breakpoint-small) {
-    padding: 10px;
+    padding: 5px;
   }
 }
 
@@ -48,7 +48,11 @@ div.divider {
 }
 
 .grid {
-  margin: 0 -5px;
+  margin: 25px 10px;
+
+  @media (max-width: $breakpoint-medium) {
+    margin: 25px -5px;
+  }
 }
 
 .row {

@@ -4,7 +4,12 @@
  */
 
 import Page from "../../components/Page";
-import { TabNavigator } from "../../components/Settings";
+import TabBar from "../../components/common/TabBar";
+
+const tabs = [
+  { label: "Account", path: `/settings/account`, active: true },
+  { label: "Privacy", path: `/settings/privacy`, active: false },
+];
 
 export default function AccountSettings() {
   return (
@@ -12,7 +17,7 @@ export default function AccountSettings() {
       title="Account Settings"
       description="Update account's information and more."
     >
-      <TabNavigator />
+      <TabBar tabs={tabs} />
     </Page>
   );
 }

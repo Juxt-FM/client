@@ -4,12 +4,20 @@
  */
 
 import Page from "../../components/Page";
-import { TabNavigator } from "../../components/Settings";
+import TabBar from "../../components/common/TabBar";
+
+const tabs = [
+  { label: "Account", path: `/settings/account`, active: false },
+  { label: "Privacy", path: `/settings/privacy`, active: true },
+];
 
 export default function PrivacySettings() {
   return (
-    <Page title="Privacy" description="Update your account's privacy settings.">
-      <TabNavigator />
+    <Page
+      title="Privacy Settings"
+      description="Update your account's privacy settings."
+    >
+      <TabBar tabs={tabs} />
     </Page>
   );
 }

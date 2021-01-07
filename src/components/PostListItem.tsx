@@ -25,11 +25,11 @@ interface IPostLink {
   disabled?: boolean;
 }
 
-export const BlogPostLink = ({ id, children, disabled = true }: IPostLink) =>
+export const BlogPostLink = ({ id, children, disabled = false }: IPostLink) =>
   disabled ? (
     <Fragment>{children}</Fragment>
   ) : (
-    <Link href={`/blog/posts/${id}`}>{children}</Link>
+    <Link href={`/posts/${id}`}>{children}</Link>
   );
 
 export const LoadingListItem = ({ count = 5 }) => (
@@ -57,7 +57,7 @@ export const ListItem = ({ post, loading }: IListItem) => {
           />
         )}
         <div className={styles.content}>
-          <h3>{loading ? <Skeleton width="30%" /> : post.title}</h3>
+          <h2>{loading ? <Skeleton width="30%" /> : post.title}</h2>
           {loading ? (
             <Fragment>
               <Skeleton width="100%" className={styles.summary} />
@@ -87,10 +87,26 @@ export const LoadingAltListItem = ({ count = 5 }) => (
   </Fragment>
 );
 
-export const AltListItem = (props: IListItem) => {
-  if (props.loading) {
+export const AltListItem = ({ post, loading }: IListItem) => {
+  if (loading) {
     const height = Math.floor((Math.random() + 1) * 100);
     return <Skeleton height={height} className={styles.altListItem} />;
   }
-  return <img src={props.post.imageURL} className={styles.altListItem} />;
+  return (
+    <BlogPostLink id={post ? post.id : ""} disabled={loading}>
+      <a className={styles.altListItemWrapper}>
+        <img src={post.imageURL} className={styles.altListItem} />
+        <div className={styles.overlay}></div>
+        <div className={styles.active}>
+          <h3 className={styles.title}>{post.title}</h3>
+          <p className={styles.summary}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
+            ducimus repudiandae mollitia optio consequatur iusto. Deleniti
+            quaerat omnis voluptates. Eos laboriosam ipsam, asperiores officiis
+            distinctio porro optio aliquam corporis eligendi.
+          </p>
+        </div>
+      </a>
+    </BlogPostLink>
+  );
 };

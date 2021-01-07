@@ -1,14 +1,5 @@
 @import "../common/variables";
 
-@keyframes slideTransition {
-  0% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
 .root {
   position: relative;
 }
@@ -20,9 +11,8 @@
   border-radius: 2.5px;
   box-shadow: $shadow;
   background-color: map-get($colors, "background");
-  z-index: 1000;
+  z-index: 1;
   cursor: default;
-  animation: slideTransition 0.25s;
 
   &.left {
     left: 0;

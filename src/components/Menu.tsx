@@ -10,7 +10,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faBitcoin } from "@fortawesome/free-brands-svg-icons";
 import {
   faFileAlt,
-  faHistory,
+  faFire,
   faLayerGroup,
   faLightbulb,
   faList,
@@ -23,17 +23,15 @@ import styles from "../styles/modules/menu.module.scss";
 import { useAuthStatus } from "../lib/context";
 
 const Logo = () => (
-  <div className={styles.logoWrapper}>
-    <Link href="/">
-      <a>
-        <img
-          className={styles.logo}
-          src={require("../images/logo-primary-sm.png")}
-          alt="brand_logo"
-        />
-      </a>
-    </Link>
-  </div>
+  <Link href="/">
+    <a>
+      <img
+        className={styles.logo}
+        src={require("../images/logo-primary-sm.png")}
+        alt="brand_logo"
+      />
+    </a>
+  </Link>
 );
 
 interface INavItem {
@@ -68,7 +66,7 @@ const Menu = () => {
   const router = useRouter();
   const loggedIn = useAuthStatus();
 
-  const onNewPost = () => router.push("/blog/editor");
+  const onNewPost = () => router.push("/posts/editor");
 
   const renderActions = () => {
     if (loggedIn)
@@ -99,7 +97,7 @@ const Menu = () => {
     <div className={styles.root}>
       <Logo />
       <ul className={styles.navigation}>
-        <NavItem icon={faHistory} label="Latest" path="/" />
+        <NavItem icon={faFire} label="Latest" path="/" />
         <NavItem icon={faLayerGroup} label="Stocks" path="/stocks" />
         <NavItem icon={faBitcoin} label="Cryptocurrencies" path="/crypto" />
       </ul>

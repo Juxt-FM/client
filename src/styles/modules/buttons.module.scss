@@ -84,8 +84,8 @@
   background-color: $color;
   color: map-get($colors, "white");
 
-  transition: background-color 0.25s;
-  transition: color 0.25s;
+  @include buildTransition(background-color, 0.25s, linear);
+  @include buildTransition(color, 0.25s, linear);
 
   &:hover {
     background-color: darken($color, 10);
@@ -106,7 +106,8 @@
 
   margin-left: 10px;
 
-  transition: background-color 0.25s;
+  @include buildTransition(background-color, 0.25s, linear);
+  @include buildTransition(color, 0.15s, linear);
 
   &:hover {
     color: $color;

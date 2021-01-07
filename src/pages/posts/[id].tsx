@@ -9,22 +9,26 @@ import { BlogPost, QUERY_BLOG_POST } from "../../lib/graphql";
 
 import Page from "../../components/Page";
 import PostDetail from "../../components/PostDetail";
+import { getMockPost } from "../../__mocks__/mockData";
 
 export default function SinglePost() {
   const router = useRouter();
   const { id } = router.query;
+  /*
   const { data, loading } = useQuery<{ singleBlogPost: BlogPost }>(
     QUERY_BLOG_POST,
     {
       variables: { id },
     }
   );
+  */
+  const data = getMockPost();
 
   if (data) {
-    const { singleBlogPost: post } = data;
+    //const { singleBlogPost: post } = data;
     return (
-      <Page title="Post" description="Check out this blog post!">
-        <PostDetail post={post} />
+      <Page title="Post" description="Check out this blog post!" backButton>
+        <PostDetail post={data} />
       </Page>
     );
   }
