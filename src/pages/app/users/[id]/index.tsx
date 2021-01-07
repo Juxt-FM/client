@@ -13,7 +13,8 @@ import {
 } from "../../../../lib/graphql";
 
 import Page from "../../../../components/navigation/Page";
-import ProfileRoot from "../../../../components/profiles/UserProfileRoot";
+import ProfileRoot from "../../../../components/pages/User";
+import Posts from "../../../../components/users/Posts";
 
 interface IUserProfileQuery {
   userProfile: UserProfile;
@@ -37,10 +38,7 @@ const UserProfilePage = () => {
       }
       backButton
     >
-      <ProfileRoot
-        Component={() => <div style={{ height: 2000 }}></div>}
-        profile={data.userProfile}
-      />
+      <ProfileRoot Component={Posts} profile={data.userProfile} />
     </Page>
   );
 };

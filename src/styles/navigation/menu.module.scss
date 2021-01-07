@@ -18,6 +18,7 @@
   @media (max-width: $breakpoint-small) {
     position: fixed;
     top: calc(100vh - 50px);
+    left: 0;
     height: $smallMenuHeight;
     width: 100vw;
     padding: 0;

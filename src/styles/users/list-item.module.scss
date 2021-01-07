@@ -1,0 +1,22 @@
+@import "../variables";
+
+.root {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  margin-bottom: 5px;
+
+  & .name {
+    margin-left: 10px;
+  }
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 600;
+  color: map-get($colors, "text");
+
+  &.lg {
+    font-size: 16px;
+  }
+}

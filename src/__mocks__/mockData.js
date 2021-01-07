@@ -45,3 +45,17 @@ export const getMockPost = () => ({
   createdAt: "1609986720",
   updatedAt: "1609986720",
 });
+
+export const getMockIdea = () => ({
+  id: "1",
+  author: "1",
+  content:
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur inventore rem quaerat facere sit, est nulla sed illum molestias dicta ipsa corporis ipsam porro dolore eaque architecto velit voluptates quam.",
+  symbols: ["NVDA", "QQQ"],
+  tags: ["stock market"],
+  comments: [],
+  reactionCount: 0,
+  reactionStatus: null,
+  createdAt: "1609986720",
+  updatedAt: "1609986720",
+});

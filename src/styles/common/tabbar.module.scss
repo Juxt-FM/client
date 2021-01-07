@@ -2,13 +2,14 @@
 
 .root {
   display: flex;
+  background-color: map-get($colors, "background");
   border-bottom: solid 0.5px map-get($colors, "border");
 
   &.sticky {
     position: sticky;
     top: $headerHeight;
     left: 0;
-    display: flex;
+    z-index: 1;
   }
 
   & > a.tab {

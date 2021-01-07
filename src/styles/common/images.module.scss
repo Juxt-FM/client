@@ -1,0 +1,30 @@
+@import "../variables";
+
+.thumbnail {
+  height: 35px;
+  width: 35px;
+  border-radius: 35px;
+  object-fit: cover;
+
+  &.xl {
+    height: 65px;
+    width: 65px;
+    border-radius: 65px;
+  }
+
+  &.md {
+    height: 28px;
+    width: 28px;
+    border-radius: 28px;
+  }
+
+  &.sm {
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+  }
+
+  &.loading {
+    background-color: #f2f2f2;
+  }
+}

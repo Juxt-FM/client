@@ -18,13 +18,13 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { ButtonOutline } from "../common/Buttons";
 import TabBar from "../common/TabBar";
 
-import styles from "../../styles/profiles/profile-root.module.scss";
+import styles from "../../styles/pages/user.module.scss";
 
 interface IUserProfile {
   profile: UserProfile;
 }
 
-const ProfileHeader = () => (
+const CoverImage = () => (
   <img
     src="https://img.freepik.com/free-vector/neon-lights-wallpaper_52683-46462.jpg?size=626&ext=jpg"
     className={styles.profileHeader}
@@ -77,11 +77,11 @@ export const ProfileInfo = ({ profile }: IUserProfile) => {
 
 const getTabs = (id: string, path: string) => {
   return [
-    { label: "Posts", path: `/users/${id}` },
-    { label: "Ideas", path: `/users/${id}/ideas` },
-    { label: "Watchlists", path: `/users/${id}/watchlists` },
+    { label: "Posts", path: `/app/users/${id}` },
+    { label: "Ideas", path: `/app/users/${id}/ideas` },
+    { label: "Watchlists", path: `/app/users/${id}/watchlists` },
   ].map((tab) => {
-    const active = tab.path.split(id)[1] === path.split("/users/[id]")[1];
+    const active = tab.path.split(id)[1] === path.split("/app/users/[id]")[1];
     return { ...tab, active };
   });
 };
@@ -95,11 +95,13 @@ const ProfileRoot = ({ Component, profile }: IProfileRoot) => {
 
   return (
     <div className={styles.root}>
-      <ProfileHeader />
+      <CoverImage />
       <div className={styles.content}>
         <ProfileInfo profile={profile} />
-        <TabBar tabs={getTabs(profile.id, router.pathname)} />
-        <Component />
+        <TabBar tabs={getTabs(profile.id, router.pathname)} sticky />
+        <div className={styles.main}>
+          <Component />
+        </div>
       </div>
     </div>
   );

@@ -26,10 +26,11 @@ const Tab = ({ label, path, active }: ITab) => {
 
 interface ITabBar {
   tabs: ITab[];
+  sticky?: boolean;
 }
 
-const TabBar = ({ tabs }: ITabBar) => (
-  <div className={styles.root}>
+const TabBar = ({ tabs, sticky }: ITabBar) => (
+  <div className={[styles.root, sticky ? styles.sticky : ""].join(" ")}>
     {tabs.map((tab, index) => (
       <Tab {...tab} key={String(index)} />
     ))}

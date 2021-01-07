@@ -13,7 +13,7 @@ import {
 } from "../../../../lib/graphql";
 
 import Page from "../../../../components/navigation/Page";
-import ProfileRoot from "../../../../components/profiles/UserProfileRoot";
+import ProfileRoot from "../../../../components/pages/User";
 
 interface IUserProfileQuery {
   userProfile: UserProfile;
