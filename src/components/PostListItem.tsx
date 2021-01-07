@@ -97,7 +97,7 @@ export const Summary = ({ summary, size = "md" }: ISummary) => (
 
 interface IListItem {
   post: BlogPost | undefined;
-  image: "top" | "right" | "left" | undefined;
+  image?: "top" | "right" | "left";
   loading?: boolean;
   size?: Size;
 }
