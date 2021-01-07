@@ -49,7 +49,7 @@ export function useAuthActions() {
   const onLogin = (accessToken: string) => {
     dispatch(loginUser(accessToken));
 
-    client.clearStore().then(() => router.push("/"));
+    client.clearStore().then(() => router.push("/app"));
   };
 
   const onLogout = (redirectToLogin = true) => {

@@ -18,6 +18,7 @@ import SkeletonWrapper from "../common/SkeletonWrapper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
+  faReply,
   faShare,
   faThumbsDown,
   faThumbsUp,
@@ -115,7 +116,7 @@ const Reactions = ({ loading }: IReactions) => {
         <FontAwesomeIcon icon={faHeart} />
       </a>
       <a className={styles.item}>
-        <FontAwesomeIcon icon={faShare} />
+        <FontAwesomeIcon icon={faReply} />
       </a>
     </div>
   );

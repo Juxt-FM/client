@@ -5,7 +5,7 @@
 
 import Link from "next/link";
 
-import styles from "../styles/modules/auth.module.scss";
+import styles from "../../styles/auth/auth.module.scss";
 
 interface IHeader {
   title: string;
@@ -19,7 +19,7 @@ export const Header = ({ title, description, color }: IHeader) => {
       <Link href="/app">
         <a>
           <img
-            src={require(`../images/logo-${color}-lg.png`)}
+            src={require(`../../images/logo-${color}-lg.png`)}
             alt="brand logo"
             className={styles.logo}
           />

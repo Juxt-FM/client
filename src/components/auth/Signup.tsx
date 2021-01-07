@@ -15,7 +15,7 @@ import { FormInput } from "../common/Inputs";
 import { Button } from "../common/Buttons";
 import { ContentSection, Header } from "./Authentication";
 
-import styles from "../styles/modules/signup.module.scss";
+import styles from "../../styles/auth/signup.module.scss";
 
 const NAME_CHANGED = "name_changed";
 const PASSWORD_CHANGED = "password_changed";

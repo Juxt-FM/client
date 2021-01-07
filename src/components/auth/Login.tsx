@@ -15,7 +15,7 @@ import { ContentSection, Header } from "./Authentication";
 import { FormInput } from "../common/Inputs";
 import { Button } from "../common/Buttons";
 
-import styles from "../styles/modules/login.module.scss";
+import styles from "../../styles/auth/login.module.scss";
 
 const LoginForm = () => {
   const { onLogin } = useAuthActions();

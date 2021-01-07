@@ -15,6 +15,24 @@ import {
 import Page from "../../../../components/navigation/Page";
 import ProfileRoot from "../../../../components/pages/User";
 
+import HighlightedContent, {
+  HighlightedSection,
+} from "../../../../components/common/HighlightedContent";
+
+import { Button } from "../../../../components/common/Buttons";
+
+const RightContent = () => (
+  <HighlightedContent>
+    <HighlightedSection title="Suggested">
+      <div></div>
+    </HighlightedSection>
+    <HighlightedSection title="Trending">
+      <div></div>
+    </HighlightedSection>
+    <Button label="Follow" color="purple" />
+  </HighlightedContent>
+);
+
 interface IUserProfileQuery {
   userProfile: UserProfile;
 }
@@ -35,6 +53,7 @@ const UserProfilePage = () => {
           ? `Check out ${data.userProfile.name} on Hedger.`
           : "User profiles."
       }
+      extraContent={<RightContent />}
       backButton
     >
       <ProfileRoot

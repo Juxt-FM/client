@@ -14,6 +14,7 @@ import Idea from "../ideas/IdeaListItem";
 import { getMockIdea, getMockPost } from "../../__mocks__/mockData";
 
 import styles from "../../styles/pages/home.module.scss";
+import { Fragment } from "react";
 
 const SuggestedPosts = () => (
   <div className={styles.topContent}>
@@ -56,12 +57,11 @@ const FollowingPosts = () => (
 
 export const BlogPosts = () => {
   return (
-    <div className={styles.blogHighlights}>
+    <Fragment>
       <SuggestedPosts />
       <TrendingPosts />
       <FollowingPosts />
-      <div className={styles.divider}></div>
-    </div>
+    </Fragment>
   );
 };
 
