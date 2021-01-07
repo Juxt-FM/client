@@ -3,13 +3,13 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Page from "../../components/navigation/Page";
+import Page from "../../../components/navigation/Page";
 
 export default function Stocks() {
   return (
     <Page
-      title="Stocks"
-      description="Check out the latests posts and analysis on stocks and equities."
+      title="Cryptocurrencies"
+      description="Check out the latests posts and analysis on cryptocurrencies."
     >
       <div></div>
     </Page>

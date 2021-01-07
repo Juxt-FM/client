@@ -23,7 +23,7 @@ import { IconButton } from "../common/Buttons";
 import styles from "../../styles/navigation/menu.module.scss";
 
 const Logo = () => (
-  <Link href="/">
+  <Link href="/app">
     <a>
       <img
         className={styles.logo}
@@ -89,10 +89,10 @@ const Menu = () => {
     <div className={styles.root}>
       <Logo />
       <ul className={styles.navigation}>
-        <NavItem icon={faFire} label="Latest" path="/" />
-        <NavItem icon={faFileAlt} label="Posts" path="/posts" />
-        <NavItem icon={faLayerGroup} label="Stocks" path="/stocks" />
-        <NavItem icon={faBitcoin} label="Cryptocurrencies" path="/crypto" />
+        <NavItem icon={faFire} label="Latest" path="/app/latest" />
+        <NavItem icon={faFileAlt} label="Posts" path="/app/posts" />
+        <NavItem icon={faLayerGroup} label="Stocks" path="/app/stocks" />
+        <NavItem icon={faBitcoin} label="Cryptocurrencies" path="/app/crypto" />
       </ul>
       {renderActions()}
     </div>

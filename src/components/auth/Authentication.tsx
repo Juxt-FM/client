@@ -16,7 +16,7 @@ interface IHeader {
 export const Header = ({ title, description, color }: IHeader) => {
   return (
     <div className={styles.header}>
-      <Link href="/">
+      <Link href="/app">
         <a>
           <img
             src={require(`../images/logo-${color}-lg.png`)}

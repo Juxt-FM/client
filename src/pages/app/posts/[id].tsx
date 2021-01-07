@@ -5,12 +5,12 @@
 
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { BlogPost, QUERY_BLOG_POST } from "../../lib/graphql";
+import { BlogPost, QUERY_BLOG_POST } from "../../../lib/graphql";
 
-import Page from "../../components/navigation/Page";
-import PostDetail from "../../components/posts/PostDetail";
+import Page from "../../../components/navigation/Page";
+import PostDetail from "../../../components/posts/PostDetail";
 
-import { getMockPost } from "../../__mocks__/mockData";
+import { getMockPost } from "../../../__mocks__/mockData";
 
 export default function SinglePost() {
   const router = useRouter();

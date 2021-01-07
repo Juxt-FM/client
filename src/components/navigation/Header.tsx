@@ -87,19 +87,19 @@ const AccountDropdown = () => {
         {
           label: "Profile",
           icon: faUser,
-          path: `/users/${user.id}`,
+          path: `/app/users/${user.id}`,
         },
       ],
       [
         {
           label: "Settings",
           icon: faCog,
-          path: `/settings/account`,
+          path: `/app/settings/account`,
         },
         {
           label: "Privacy",
           icon: faShieldAlt,
-          path: `/settings/privacy`,
+          path: `/app/settings/privacy`,
         },
       ],
       [

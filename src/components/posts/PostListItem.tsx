@@ -29,7 +29,7 @@ export const BlogPostLink = ({ id, children, disabled = false }: IPostLink) =>
   disabled ? (
     <Fragment>{children}</Fragment>
   ) : (
-    <Link href={`/posts/${id}`}>
+    <Link href={`/app/posts/${id}`}>
       <a>{children}</a>
     </Link>
   );
@@ -84,7 +84,7 @@ interface IAuthorLink {
 }
 
 export const AuthorLink = (props: IAuthorLink) => (
-  <Link href={`/users/${props.id}`}>
+  <Link href={`/app/users/${props.id}`}>
     <a className={styles.author}>{props.children}</a>
   </Link>
 );

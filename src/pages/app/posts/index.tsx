@@ -3,8 +3,8 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Page from "../../components/navigation/Page";
-import HighlightedContent from "../../components/common/HighlightedContent";
+import Page from "../../../components/navigation/Page";
+import HighlightedContent from "../../../components/common/HighlightedContent";
 
 export default function LatestContentPage() {
   return (

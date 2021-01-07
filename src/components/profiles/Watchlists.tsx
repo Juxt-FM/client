@@ -31,7 +31,7 @@ interface ISymbol {
 
 const Symbol = ({ symbol }: ISymbol) => {
   return (
-    <Link href={`/stocks/${symbol}`}>
+    <Link href={`/app/stocks/${symbol}`}>
       <a className={styles.symbolRoot}>
         <p className={styles.symbol}>{symbol.toUpperCase()}</p>
       </a>

@@ -10,10 +10,10 @@ import {
   addApolloState,
   UserProfile,
   QUERY_USER_PROFILE,
-} from "../../../lib/graphql";
+} from "../../../../lib/graphql";
 
-import Page from "../../../components/navigation/Page";
-import ProfileRoot from "../../../components/profiles/UserProfileRoot";
+import Page from "../../../../components/navigation/Page";
+import ProfileRoot from "../../../../components/profiles/UserProfileRoot";
 
 interface IUserProfileQuery {
   userProfile: UserProfile;

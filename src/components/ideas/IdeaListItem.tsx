@@ -27,7 +27,7 @@ export const IdeaLink = ({ id, children, disabled = false }: IIdeaLink) =>
   disabled ? (
     <Fragment>{children}</Fragment>
   ) : (
-    <Link href={`/ideas/${id}`}>{children}</Link>
+    <Link href={`/app/ideas/${id}`}>{children}</Link>
   );
 
 export const LoadingIdea = ({ count = 5 }) => (

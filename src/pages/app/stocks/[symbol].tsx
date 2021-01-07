@@ -10,10 +10,10 @@ import {
   CompanyProfile,
   initializeApollo,
   addApolloState,
-} from "../../lib/graphql";
+} from "../../../lib/graphql";
 
-import Page from "../../components/navigation/Page";
-import StockSymbol, { Header } from "../../components/stocks/Stocks";
+import Page from "../../../components/navigation/Page";
+import StockSymbol, { Header } from "../../../components/stocks/Stocks";
 
 interface IStockDetailsQuery {
   companyProfile: CompanyProfile;

@@ -3,19 +3,19 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Page from "../../components/navigation/Page";
-import TabBar from "../../components/common/TabBar";
+import Page from "../../../components/navigation/Page";
+import TabBar from "../../../components/common/TabBar";
 
 const tabs = [
-  { label: "Account", path: `/settings/account`, active: false },
-  { label: "Privacy", path: `/settings/privacy`, active: true },
+  { label: "Account", path: `/settings/account`, active: true },
+  { label: "Privacy", path: `/settings/privacy`, active: false },
 ];
 
-export default function PrivacySettings() {
+export default function AccountSettings() {
   return (
     <Page
-      title="Privacy Settings"
-      description="Update your account's privacy settings."
+      title="Account Settings"
+      description="Update account's information and more."
     >
       <TabBar tabs={tabs} />
     </Page>
