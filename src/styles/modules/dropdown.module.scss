@@ -40,11 +40,8 @@ ul.dropdownList {
   min-width: 200px;
   max-height: 300px;
 
-  & > li.option {
-    & > .icon {
-      width: 35px;
-      padding-right: 10px;
-    }
+  & a.option {
+    display: flex;
     cursor: pointer;
     height: fit-content;
     padding: 15px 10px;
@@ -52,9 +49,16 @@ ul.dropdownList {
     font-weight: 200;
     font-family: $lato;
     color: map-get($colors, "text");
+
+    & > .icon {
+      width: 35px;
+      padding-right: 10px;
+    }
+
     &:hover {
       background-color: map-get($colors, "altBackground");
     }
+
     &.danger {
       color: map-get($colors, "red");
     }

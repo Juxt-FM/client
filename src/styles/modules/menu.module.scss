@@ -18,7 +18,7 @@
   @media (max-width: $breakpoint-small) {
     position: fixed;
     top: calc(100vh - 50px);
-    height: 50px;
+    height: $smallMenuHeight;
     width: 100vw;
     padding: 0;
     margin: 0;
@@ -66,6 +66,7 @@ ul.navigation {
   }
 
   @media (max-width: $breakpoint-small) {
+    height: $smallMenuHeight;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -95,6 +96,8 @@ ul.contentActions {
 
 @mixin activeLink() {
   color: map-get($colors, "primary");
+  @include buildTransition(background-color, 0.25s, linear);
+  @include buildTransition(color, 0.25s, linear);
 }
 
 .navItem {
@@ -108,8 +111,8 @@ ul.contentActions {
   color: map-get($colors, "lightGrey");
   border-radius: 60px;
 
-  transition: background-color 0.25s;
-  transition: color 0.25s;
+  @include buildTransition(background-color, 0.25s, linear);
+  @include buildTransition(color, 0.25s, linear);
 
   & > .icon {
     width: 45px;
@@ -124,27 +127,40 @@ ul.contentActions {
 
   &:hover {
     @include activeLink();
-    background-color: map-get($colors, "highlight") !important;
-    transition: background-color 0.25s;
+    background-color: map-get($colors, "altBackground");
   }
 
   &.active {
     @include activeLink();
-    background-color: map-get($colors, "altBackground");
-    transition: background-color 0.25s;
+    background-color: map-get($colors, "highlight") !important;
   }
 
   @media (max-width: $breakpoint-small) {
-    height: 50px;
-    width: 50px;
+    height: 45px;
+    width: 45px;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     margin: 0;
     padding: 0;
+
+    & > .icon {
+      width: fit-content;
+    }
+    & p.label {
+      display: none;
+    }
+
+    &:hover {
+      background-color: initial !important;
+    }
+
+    &.active {
+      background-color: initial !important;
+    }
   }
 
-  @media (max-width: $breakpoint-large) {
+  @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-large) {
     margin: 5px 0;
     justify-content: center;
     align-items: center;

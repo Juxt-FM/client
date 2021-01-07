@@ -39,7 +39,9 @@
   font-weight: 400;
   border-radius: 5px;
   margin-left: 5px;
-  transition: background-color 0.25s ease-in-out;
+
+  @include buildTransition(background-color, 0.25s, ease-in-out);
+
   &.active {
     color: white;
     background-color: black;

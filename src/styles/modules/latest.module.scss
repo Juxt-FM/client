@@ -5,14 +5,10 @@
 }
 
 section.section {
-  padding: 25px 15px;
+  padding: 25px 0;
 
-  @media (max-width: $breakpoint-small) {
-    padding: 10px;
-  }
-
-  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
-    padding: 0 10px 0 0;
+  @media screen and (max-width: $breakpoint-medium) {
+    padding: 10px 0;
   }
 }
 

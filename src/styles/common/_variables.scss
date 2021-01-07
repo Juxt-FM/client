@@ -55,19 +55,19 @@ $acolors: (
   "lightGrey": #4e5861,
 );
 
-// Breakpoints
 $breakpoint-xs: 0px;
 $breakpoint-small: 550px;
 $breakpoint-medium: 1024px;
 $breakpoint-large: 1280px;
 $breakpoint-xl: 1920px;
 
-// Styles
 $shadow: 0 0 25px #e6ecf8;
 $darkShadow: 0 0 25px #252b3f;
 $headerHeight: 60px;
 $mukta: "Mukta", sans-serif;
 $lato: "Lato", sans-serif;
+
+$smallMenuHeight: 50px;
 
 @mixin buildTransition($property, $time, $easing) {
   transition: $property $time $easing;

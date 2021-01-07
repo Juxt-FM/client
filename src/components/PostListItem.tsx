@@ -148,20 +148,22 @@ export const ListItem = ({
     <SkeletonWrapper>
       <div className={rootClasses.join(" ")}>
         {(image === "left" || image == "top") && (
-          <PostImage imageURL={post.imageURL} size={size} loading={loading} />
+          <BlogPostLink id={post ? post.id : ""} disabled={loading}>
+            <PostImage imageURL={post.imageURL} size={size} loading={loading} />
+          </BlogPostLink>
         )}
         <div className={styles.content}>
-          <BlogPostLink id={post ? post.id : ""} disabled={loading}>
-            <div>
-              <PostAuthor loading={loading} />
+          <div>
+            <PostAuthor loading={loading} />
+            <BlogPostLink id={post ? post.id : ""} disabled={loading}>
               <a>
                 <p className={[styles.title, styles[size]].join(" ")}>
                   {loading ? <Skeleton width="75%" /> : post.title}
                 </p>
               </a>
-              {renderSummary()}
-            </div>
-          </BlogPostLink>
+            </BlogPostLink>
+            {renderSummary()}
+          </div>
           {loading ? (
             <Skeleton width={100} />
           ) : (

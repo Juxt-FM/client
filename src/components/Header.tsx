@@ -22,7 +22,7 @@ import { Squash as Hamburger } from "hamburger-react";
 import styles from "../styles/modules/header.module.scss";
 import Dropdown, { DropdownList } from "./common/Dropdown";
 import { useRouter } from "next/router";
-import { IconAction } from "./common/Buttons";
+import { Button, IconAction } from "./common/Buttons";
 
 interface IPageInfo {
   title: string;
@@ -86,38 +86,38 @@ const AccountDropdown = () => {
         {
           label: "Profile",
           icon: faUser,
-          action: () => router.push(`/users/${user.id}`),
+          path: `/users/${user.id}`,
         },
       ],
       [
         {
           label: "Settings",
           icon: faCog,
-          action: () => router.push(`/settings/account`),
+          path: `/settings/account`,
         },
         {
           label: "Privacy",
           icon: faShieldAlt,
-          action: () => router.push(`/settings/privacy`),
+          path: `/settings/privacy`,
         },
       ],
       [
         {
           label: "Help Center",
           icon: faQuestionCircle,
-          action: () => router.push(`/support/help`),
+          path: `/support/help`,
         },
         {
           label: "Contact Us",
           icon: faCommentAlt,
-          action: () => router.push(`/support/contact`),
+          path: `/support/contact`,
         },
       ],
       [
         {
           label: "Logout",
           icon: faSignOutAlt,
-          action: () => router.push("/auth/logout"),
+          path: "/auth/logout",
           danger: true,
         },
       ],
@@ -143,20 +143,29 @@ const AccountDropdown = () => {
 };
 
 const Navigation = () => {
+  const router = useRouter();
   const loggedIn = useAuthStatus();
+
   return (
     <ul className={styles.navigation}>
-      <li>
+      <li className={styles.navItem}>
         <IconAction icon={faSearch} onClick={() => {}} />
       </li>
-      <li>
+      <li className={styles.navItem}>
         <IconAction icon={faEllipsisH} onClick={() => {}} />
       </li>
-      {loggedIn && (
-        <li>
+      <li className={styles.navItem}>
+        {loggedIn ? (
           <AccountDropdown />
-        </li>
-      )}
+        ) : (
+          <Button
+            label="Get started"
+            color="lightGreen"
+            size="sm"
+            onClick={() => router.push("/auth/signup")}
+          />
+        )}
+      </li>
     </ul>
   );
 };

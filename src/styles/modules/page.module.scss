@@ -30,6 +30,19 @@
   }
 }
 
+.main {
+  padding: 25px 15px;
+
+  @media (max-width: $breakpoint-small) {
+    padding: 5px;
+    margin-bottom: $smallMenuHeight;
+  }
+
+  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
+    padding: 0 10px 0 0;
+  }
+}
+
 .extraContent {
   width: 250px;
   padding: 15px;

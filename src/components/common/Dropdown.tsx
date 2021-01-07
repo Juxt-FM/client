@@ -3,33 +3,56 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import React, { ReactChild, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import styles from "../../styles/modules/dropdown.module.scss";
+import Link from "next/link";
 
-interface ILink {
+interface IDropdownOption {
   label: string;
-  icon: IconProp;
-  onClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  icon?: IconProp;
+  path?: string;
+  danger?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
-export const Link = ({ label, icon, onClick }: ILink) => (
-  <li>
-    <a className={styles.dropdownOption} onClick={onClick}>
-      {icon && <FontAwesomeIcon icon={icon} />}
-      {label}
-    </a>
-  </li>
-);
+export const DropdownOption = (props: IDropdownOption) => {
+  const renderContent = () => {
+    const icon = props.icon && (
+      <FontAwesomeIcon icon={props.icon} className={styles.icon} />
+    );
+    const classes = [styles.option, props.danger ? styles.danger : ""].join(
+      " "
+    );
+
+    if (props.path) {
+      return (
+        <Link href={props.path}>
+          <a className={classes}>
+            {icon}
+            {props.label}
+          </a>
+        </Link>
+      );
+    } else
+      return (
+        <a className={classes} onClick={props.onClick}>
+          {icon}
+          {props.label}
+        </a>
+      );
+  };
+  return <li>{renderContent()}</li>;
+};
 
 interface IListOption {
   label: string;
   icon?: IconProp;
   danger?: boolean;
-  action: (e: any) => void;
+  onClick?: (e: any) => void;
 }
 
 interface IDropdownList {
@@ -39,16 +62,7 @@ interface IDropdownList {
 export const DropdownList = ({ options }: IDropdownList) => (
   <ul className={styles.dropdownList}>
     {options.map((opt) => (
-      <li
-        className={[styles.option, opt.danger ? styles.danger : ""].join(" ")}
-        onClick={opt.action}
-        key={opt.label}
-      >
-        {opt.icon && (
-          <FontAwesomeIcon icon={opt.icon} className={styles.icon} />
-        )}
-        {opt.label}
-      </li>
+      <DropdownOption {...opt} key={opt.label} />
     ))}
   </ul>
 );

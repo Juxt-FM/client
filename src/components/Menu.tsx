@@ -83,14 +83,6 @@ const Menu = () => {
           </li>
         </ul>
       );
-    else
-      return (
-        <Button
-          label="Get started"
-          color="lightGreen"
-          onClick={() => router.push("/auth/signup")}
-        />
-      );
   };
 
   return (

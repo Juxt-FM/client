@@ -52,8 +52,10 @@ header.header {
     align-items: center;
     font-size: 24px;
     color: map-get($colors, "primary");
-    transition: background-color 0.25s;
     margin-right: 25px;
+
+    @include buildTransition(background-color, 0.25s, linear);
+
     &:hover {
       background-color: lighten(map-get($colors, "primary"), 30);
     }
@@ -130,8 +132,9 @@ textarea.subtitle {
   border-radius: 2.5px;
   border-color: map-get($colors, "border");
   padding: 10px 10px;
-  transition: border-color 0.1s;
   background-color: map-get($colors, "background");
+
+  @include buildTransition(border-color, 0.1s, linear);
 
   &:focus {
     border-color: map-get($colors, "primary");
@@ -154,7 +157,8 @@ input[type="text"].input {
   border-color: map-get($colors, "border");
   background-color: map-get($colors, "background");
   padding: 15px 10px;
-  transition: border-color 0.1s;
+
+  @include buildTransition(border-color, 0.1s, linear);
 
   &:focus {
     border-color: map-get($colors, "primary");

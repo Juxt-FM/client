@@ -67,6 +67,7 @@
   display: flex;
   width: fit-content;
   align-items: center;
+  margin-bottom: 5px;
 
   & .authorImg {
     height: 20px;
@@ -168,7 +169,8 @@ p.summary {
     left: 0;
     height: 100%;
     width: 100%;
-    transition: background-color 0.25s;
+
+    @include buildTransition(background-color, 0.25s, linear);
 
     & * {
       color: white !important;

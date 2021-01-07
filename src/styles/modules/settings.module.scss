@@ -27,7 +27,8 @@
     font-family: $lato;
     padding: 20px 25px;
     margin: 10px 0 0 0;
-    transition: opacity 0.25s;
+
+    @include buildTransition(opacity, 0.25s, linear);
 
     @media screen and (max-width: $breakpoint-medium) {
       padding: 10px 5px;

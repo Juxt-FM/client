@@ -32,7 +32,7 @@ const Page = (props: IPage) => {
             title={props.headerTitle || props.title}
             backButton={props.backButton}
           />
-          {props.children}
+          <div className={styles.main}>{props.children}</div>
           <Footer />
         </div>
         <div className={styles.extraContent}>{props.extraContent}</div>
