@@ -20,7 +20,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { Button } from "../common/Buttons";
 
-import styles from "../styles/posts/post-editor.module.scss";
+import styles from "../../styles/posts/post-editor.module.scss";
 
 const Header = () => {
   const router = useRouter();

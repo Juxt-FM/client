@@ -42,7 +42,7 @@ export function getServerSideProps({ req }: any) {
   else
     return {
       redirect: {
-        destination: "/",
+        destination: "/app",
         permanent: false,
       },
     };

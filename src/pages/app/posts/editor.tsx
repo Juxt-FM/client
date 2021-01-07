@@ -47,7 +47,7 @@ export default function InAppEditor() {
   }>(MUTATION_CREATE_POST, {
     onCompleted: ({ createBlogPost }) => {
       router.replace({
-        pathname: "/posts/editor",
+        pathname: "/app/posts/editor",
         query: { post: createBlogPost.id },
       });
     },
@@ -112,7 +112,7 @@ export function getServerSideProps({ req }: any) {
   else
     return {
       redirect: {
-        destination: "/",
+        destination: "/app/posts",
         permanent: false,
       },
     };

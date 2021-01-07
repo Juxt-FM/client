@@ -23,7 +23,7 @@ import { IconButton } from "../common/Buttons";
 import styles from "../../styles/navigation/menu.module.scss";
 
 const Logo = () => (
-  <Link href="/app">
+  <Link href="/app/latest">
     <a>
       <img
         className={styles.logo}
@@ -66,7 +66,7 @@ const Menu = () => {
   const router = useRouter();
   const loggedIn = useAuthStatus();
 
-  const onNewPost = () => router.push("/posts/editor");
+  const onNewPost = () => router.push("/app/posts/editor");
 
   const renderActions = () => {
     if (loggedIn)
