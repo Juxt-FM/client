@@ -9,6 +9,7 @@
   width: 300px;
   height: calc(100vh);
   padding-right: 25px;
+  z-index: 1000;
 
   &::-webkit-scrollbar {
     display: none;
@@ -22,7 +23,6 @@
     padding: 0;
     margin: 0;
     background-color: map-get($colors, "background");
-    z-index: 1;
   }
 
   @media (min-width: $breakpoint-small) and (max-width: $breakpoint-large) {
@@ -141,6 +141,7 @@ ul.contentActions {
     justify-content: space-around;
     align-items: center;
     margin: 0;
+    padding: 0;
   }
 
   @media (max-width: $breakpoint-large) {

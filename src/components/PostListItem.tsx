@@ -16,6 +16,8 @@ import { getMockUser } from "../__mocks__/mockData";
 import styles from "../styles/modules/post-list.module.scss";
 import SkeletonWrapper from "./SkeletonWrapper";
 
+type Size = "sm" | "md" | "lg";
+
 interface IPostLink {
   id: string;
   children: ReactNode;
@@ -47,7 +49,7 @@ const PostDate = ({ timestamp }: { timestamp: string }) => (
 
 interface IPostImage {
   imageURL: string;
-  size?: "sm" | "md" | "lg";
+  size?: Size;
   loading?: boolean;
 }
 
@@ -84,15 +86,20 @@ export const PostAuthor = (props: { profile?: UserProfile }) => {
   );
 };
 
-export const Summary = ({ summary }: { summary: string }) => (
-  <p className={styles.summary}>{summary}</p>
+interface ISummary {
+  summary: string;
+  size: Size;
+}
+
+export const Summary = ({ summary, size = "md" }: ISummary) => (
+  <p className={[styles.summary, styles[size]].join(" ")}>{summary}</p>
 );
 
 interface IListItem {
   post: BlogPost | undefined;
   image: "top" | "right" | "left" | undefined;
   loading?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: Size;
 }
 
 export const ListItem = ({
@@ -118,7 +125,7 @@ export const ListItem = ({
               <p className={styles.title}>
                 {loading ? <Skeleton width="30%" /> : post.title}
               </p>
-              <Summary summary={post.subtitle} />
+              <Summary size={size} summary={post.subtitle} />
             </a>
             <PostDate timestamp={post.createdAt} />
           </div>

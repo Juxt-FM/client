@@ -10,6 +10,7 @@ header.header {
   align-items: center;
   padding: 0 15px;
   background-color: map-get($colors, "background");
+  z-index: 1000;
   // border-bottom: solid 0.5px map-get($colors, "border");
 }
 
