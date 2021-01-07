@@ -1,0 +1,42 @@
+@import "../variables";
+
+.latest {
+  height: 2000px;
+}
+
+.blogHighlights {
+  display: flex;
+  flex-direction: column;
+  & > * {
+    flex: 1;
+  }
+}
+
+.topContent {
+  display: flex;
+
+  & > * {
+    flex: 1;
+  }
+
+  @media (max-width: $breakpoint-medium) {
+    flex-direction: column;
+  }
+}
+
+.topHit {
+  height: auto;
+  margin-bottom: 25px;
+  margin-right: 15px;
+
+  @media (max-width: $breakpoint-medium) {
+    width: 100%;
+    margin-right: 0px;
+  }
+}
+
+div.divider {
+  flex: 0 1 auto;
+  width: 20px;
+  height: 100%;
+}

@@ -1,0 +1,162 @@
+@import "../variables";
+
+.newList {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border-radius: 2.5px;
+  background-color: lighten(map-get($colors, "primary"), 30);
+
+  @include buildTransition(opacity, 0.25s, linear);
+
+  & > .icon {
+    font-size: 16px;
+    color: map-get($colors, "primary");
+  }
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.listForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  & input[type="text"].inputSm,
+  input[type="text"].input {
+    margin: 0 0 25px 0;
+  }
+  & form.symbolInput {
+    display: flex;
+  }
+  & a.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    margin-left: 5px;
+    color: map-get($colors, "primary");
+    padding: 10px;
+    border-radius: 2.5px;
+    font-size: 18px;
+    background-color: lighten(map-get($colors, "primary"), 30);
+  }
+  & h4 {
+    margin: 15px 0;
+  }
+
+  & .activeAssets {
+    margin-bottom: 25px;
+    & > p.empty {
+      font-size: 14px;
+      text-align: center;
+      font-weight: 300;
+    }
+    & .activeSymbol {
+      & > p {
+        font-size: 14px;
+      }
+      height: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & a.action {
+        height: 35px;
+        width: 35px;
+        color: map-get($colors, "red");
+        background-color: lighten(map-get($colors, "red"), 50);
+      }
+    }
+  }
+
+  & .listError {
+    font-size: 14px;
+    color: map-get($colors, "red");
+    text-align: center;
+  }
+}
+
+.listHeader {
+  position: relative;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & > .options {
+    display: flex;
+    & > .icon {
+      font-size: 16px;
+      color: map-get($colors, "secondary");
+      margin: 0px 10px 0px 10px;
+
+      @include buildTransition(color, 0.25s, linear);
+
+      &:hover {
+        color: map-get($colors, "primary");
+      }
+
+      & > .activeSwitch {
+        border-radius: 100%;
+        @include buildTransition(transform, 0.25s, linear);
+
+        &.collapsed {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+  & > h5 {
+    font-size: 14px;
+    margin: 0px;
+    font-weight: 300;
+    font-family: $lato;
+  }
+}
+
+.list {
+  & > .section {
+    & > .listContent {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & > p {
+        font-size: 14px;
+        color: #777777;
+      }
+    }
+  }
+}
+
+.listSymbols {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+
+.symbolRoot {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  height: 60px;
+  & > p.symbol {
+    font-size: 12px;
+    font-weight: 600;
+    color: black;
+  }
+  &:hover {
+    background-color: lighten(map-get($colors, "primary"), 30);
+  }
+}
+
+.loader {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}

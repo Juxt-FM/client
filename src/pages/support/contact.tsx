@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Page from "../../components/Page";
+import Page from "../../components/navigation/Page";
 
 export default function Contact() {
   return (

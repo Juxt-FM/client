@@ -12,10 +12,10 @@ import {
   QUERY_BLOG_POST,
 } from "../../lib/graphql";
 
-import MetaTags from "../../components/MetaTags";
-import { FullLoader } from "../../components/Loaders";
+import MetaTags from "../../components/navigation/MetaTags";
+import { FullLoader } from "../../components/common/Loaders";
 
-import PostEditor from "../../components/PostEditor";
+import PostEditor from "../../components/posts/PostEditor";
 
 interface INewPost {
   title: string;

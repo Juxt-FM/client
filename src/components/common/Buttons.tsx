@@ -13,7 +13,7 @@ import {
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import styles from "../../styles/modules/buttons.module.scss";
+import styles from "../../styles/common/buttons.module.scss";
 
 type Color =
   | "primary"

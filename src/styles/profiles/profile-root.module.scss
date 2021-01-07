@@ -1,0 +1,105 @@
+@import "../variables";
+
+$coverImageHeight: 250px;
+
+.root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: $breakpoint-small) {
+    margin: 0 -5px;
+  }
+}
+
+.profileHeader {
+  width: 100%;
+  height: $coverImageHeight;
+  background-color: map-get($colors, "altBackground");
+  object-fit: cover;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+
+  @media screen and (max-width: $breakpoint-medium) {
+    flex-direction: column;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 2000px;
+  flex: 1;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.infoHeader {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 25px;
+}
+
+img.profileImage {
+  margin-top: -65px;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  object-fit: cover;
+  border: solid 4px map-get($colors, "background");
+  background-color: map-get($colors, "background");
+
+  @media screen and (max-width: $breakpoint-small) {
+    height: 75px;
+    width: 75px;
+    border-radius: 75px;
+    margin-top: -50px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoSection {
+  display: flex;
+  align-items: center;
+
+  margin: 5px 0;
+
+  & p.bodyText {
+    font-size: 14px;
+    color: map-get($colors, "bodyText");
+  }
+  & > .icon {
+    font-size: 15px;
+    color: map-get($colors, "bodyText");
+    margin-right: 15px;
+  }
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 15px 0;
+  & > .actions {
+    align-self: flex-end;
+    max-width: 150px;
+    margin-bottom: 25px;
+  }
+}
+
+p.summary {
+  font-size: 16px;
+  color: map-get($colors, "bodyText");
+}

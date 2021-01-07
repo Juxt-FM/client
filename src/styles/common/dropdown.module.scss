@@ -1,0 +1,66 @@
+@import "../variables";
+
+.root {
+  position: relative;
+}
+
+.content {
+  position: absolute;
+  margin: auto;
+  width: fit-content;
+  border-radius: 2.5px;
+  box-shadow: $shadow;
+  background-color: map-get($colors, "background");
+  z-index: 1000;
+  cursor: default;
+
+  &.left {
+    left: 0;
+  }
+  &.right {
+    right: 0;
+  }
+  &.top {
+    bottom: calc(100% + 15px);
+  }
+  &.bottom {
+    top: calc(100% + 15px);
+  }
+}
+
+.dropdownOption {
+  display: flex;
+  & > * {
+    margin: 0 2.5px;
+  }
+}
+
+ul.dropdownList {
+  margin: 5px 0;
+  min-width: 200px;
+  max-height: 300px;
+
+  & a.option {
+    display: flex;
+    cursor: pointer;
+    height: fit-content;
+    padding: 15px 10px;
+    font-size: 16px;
+    font-weight: 200;
+    font-family: $lato;
+    color: map-get($colors, "text");
+
+    & > .icon {
+      width: 35px;
+      padding-right: 10px;
+    }
+
+    &:hover {
+      background-color: map-get($colors, "altBackground");
+    }
+
+    &.danger {
+      color: map-get($colors, "red");
+    }
+  }
+}

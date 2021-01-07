@@ -1,0 +1,175 @@
+@import "../variables";
+
+.splitContent {
+  position: relative;
+  display: flex;
+  margin-bottom: 100px;
+  & > .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-right: 50px;
+    }
+    & > .mainChart {
+      position: relative;
+    }
+  }
+}
+
+.chartWrapper {
+  display: flex;
+  width: 100%;
+  height: 250px;
+  margin: 25px 0;
+}
+
+.timeframeWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.timeframeSwitch {
+  padding: 5px 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  color: black;
+  font-size: 12px;
+  font-weight: 400;
+  border-radius: 5px;
+  margin-left: 5px;
+
+  @include buildTransition(background-color, 0.25s, ease-in-out);
+
+  &.active {
+    color: white;
+    background-color: black;
+  }
+}
+
+.close {
+  & > h1 {
+    font-family: $lato;
+    font-weight: 400;
+    margin: 0;
+  }
+  & > p {
+    font-size: 14px;
+    color: #777777;
+  }
+  margin: 0 0 25px 0;
+}
+
+.stickySection {
+  position: sticky;
+  height: fit-content;
+  top: 115px;
+  width: 300px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px 25px 0px;
+  background-color: map-get($colors, "background");
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-shadow: $shadow;
+  border-radius: 5px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @media screen and (max-width: $breakpoint-medium) {
+    display: none;
+  }
+  & > .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    & > h4 {
+      margin: 0;
+    }
+    & > a.action {
+      color: map-get($colors, "accent");
+      padding: 5px 10px;
+      border-radius: 2.5px;
+      background-color: lighten(map-get($colors, "accent"), 30);
+    }
+  }
+}
+
+.companyDetails {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  & > .header {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom-style: solid;
+    border-bottom-width: 0.5px;
+    border-bottom-color: map-get($colors, "border");
+    & > img {
+      height: 32px;
+      border-radius: 2.5px;
+    }
+    & > p.name {
+      margin-left: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  & > .content {
+    flex: 1;
+    padding: 15px 0;
+    & > p.description {
+      padding: 5px 0;
+      color: #777777;
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    & > p.description {
+      padding: 5px 0;
+      color: #777777;
+      font-size: 16px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    & > .attribute {
+      padding: 10px 0;
+    }
+  }
+}
+
+h1.symbol {
+  font-family: $lato;
+  font-weight: 500;
+  margin: 0;
+}
+
+.recentPosts {
+  padding: 25px 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  max-width: 50%;
+  padding: 0 4px;
+}

@@ -3,9 +3,9 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import MetaTags from "../../components/MetaTags";
+import MetaTags from "../../components/navigation/MetaTags";
 
-import Login from "../../components/Login";
+import Login from "../../components/auth/Login";
 
 function LoginPage() {
   return (

@@ -1,0 +1,238 @@
+@import "../variables";
+
+.listItem {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+
+  & .content {
+    flex: 1;
+    width: 100%;
+  }
+
+  &.topImage {
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    & .content {
+      margin-top: 10px;
+    }
+  }
+}
+
+.timestamp {
+  font-size: 14px;
+  color: map-get($colors, "bodyText");
+}
+
+.title {
+  font-size: 26px;
+  line-height: 28px;
+  font-weight: 600;
+  font-family: $mukta;
+  color: map-get($colors, "text");
+  margin: 10px 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+
+  &.md {
+    font-size: 24px;
+    line-height: 26px !important;
+    margin: 5px 0;
+  }
+
+  &.sm {
+    font-size: 20px;
+    line-height: 22px !important;
+    margin: 5px 0;
+  }
+
+  @media screen and (max-width: $breakpoint-medium) {
+    &.md {
+      font-size: 20px;
+      line-height: 22px !important;
+      margin: 5px 0;
+    }
+
+    &.sm {
+      font-size: 20px;
+      line-height: 22px !important;
+      margin: 5px 0;
+    }
+  }
+}
+
+.author {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  margin-bottom: 5px;
+
+  & .authorImg {
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    margin-right: 10px;
+  }
+
+  & .name {
+    font-size: 14px;
+    font-weight: 600;
+    color: map-get($colors, "text");
+  }
+}
+
+p.summary {
+  font-size: 18px;
+  line-height: 24px;
+  margin: 2.5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+
+  @media (max-width: $breakpoint-small) {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+
+@mixin imageDimensions($value) {
+  height: $value;
+  width: $value;
+}
+
+.imageRoot {
+  height: fit-content;
+
+  &.lg {
+    width: 100%;
+  }
+
+  & .image {
+    object-fit: cover;
+    background-color: map-get($colors, "secondary");
+
+    &.lg {
+      width: 100%;
+      height: 300px;
+    }
+
+    &.md {
+      @include imageDimensions(150px);
+      @media screen and (max-width: $breakpoint-medium) {
+        @include imageDimensions(125px);
+      }
+    }
+
+    &.sm {
+      width: 100px;
+      height: 100px;
+      @media screen and (max-width: $breakpoint-medium) {
+        @include imageDimensions(75px);
+      }
+      @media screen and (max-width: $breakpoint-small) {
+        @include imageDimensions(50px);
+      }
+    }
+  }
+}
+
+.loading {
+  cursor: default;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.altListItemWrapper {
+  position: relative;
+
+  & > .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+  }
+
+  & > .active {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    @include buildTransition(background-color, 0.25s, linear);
+
+    & * {
+      color: white !important;
+    }
+
+    background-color: rgba(0, 0, 0, 0);
+
+    z-index: 0;
+
+    & > .title {
+      color: map-get($colors, "white");
+      margin: 0;
+      line-height: 20px;
+    }
+
+    & > p.summary {
+      color: map-get($colors, "white");
+      -webkit-line-clamp: 2; /* number of lines to show */
+    }
+  }
+
+  &:hover > .active {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.altListItem {
+  vertical-align: middle;
+  height: 300px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: #e2e2e2;
+  object-fit: cover;
+
+  @media (max-width: $breakpoint-small) {
+    min-height: 400px;
+  }
+}
+
+.divider {
+  &.lg {
+    width: 50px;
+    @media screen and (max-width: $breakpoint-medium) {
+      width: 25px;
+    }
+  }
+  &.md {
+    width: 25px;
+    @media screen and (max-width: $breakpoint-medium) {
+      width: 15px;
+    }
+  }
+  &.sm {
+    width: 15px;
+    @media screen and (max-width: $breakpoint-medium) {
+      width: 10px;
+    }
+  }
+}

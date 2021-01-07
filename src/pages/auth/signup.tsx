@@ -3,8 +3,8 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Signup from "../../components/Signup";
-import MetaTags from "../../components/MetaTags";
+import Signup from "../../components/auth/Signup";
+import MetaTags from "../../components/navigation/MetaTags";
 
 export default function SignupPage() {
   return (

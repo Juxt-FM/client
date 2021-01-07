@@ -8,8 +8,8 @@ import { useMutation } from "@apollo/client";
 import { MUTATION_LOGOUT } from "../../lib/graphql";
 import { useAuthActions } from "../../lib/context";
 
-import MetaTags from "../../components/MetaTags";
-import { FullLoader } from "../../components/Loaders";
+import MetaTags from "../../components/navigation/MetaTags";
+import { FullLoader } from "../../components/common/Loaders";
 
 export default function Logout() {
   const { onLogout } = useAuthActions();

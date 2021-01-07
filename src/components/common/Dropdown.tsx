@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import styles from "../../styles/modules/dropdown.module.scss";
+import styles from "../../styles/common/dropdown.module.scss";
 import Link from "next/link";
 
 interface IDropdownOption {

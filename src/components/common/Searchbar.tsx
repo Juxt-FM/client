@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import styles from "../../styles/modules/searchbar.module.scss";
+import styles from "../../styles/common/searchbar.module.scss";
 
 interface ISearchbar {
   placeholder: string;

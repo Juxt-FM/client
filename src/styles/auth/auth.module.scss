@@ -1,0 +1,51 @@
+@import "../variables";
+
+.header {
+  width: calc(100%);
+  align-self: flex-start;
+
+  & > a > img.logo {
+    height: 50px;
+    margin-bottom: 25px;
+
+    @media screen and (max-width: $breakpoint-small) {
+      height: 24px;
+    }
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
+      height: 38px;
+    }
+  }
+}
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+
+  @media screen and (max-width: $breakpoint-large) {
+    height: auto;
+  }
+  & > * {
+    width: 50%;
+    @media screen and (max-width: $breakpoint-medium) {
+      width: 100%;
+    }
+  }
+  &.reverse {
+    flex-wrap: wrap-reverse;
+  }
+}
+
+section.content {
+  & > p {
+    font-size: 16px;
+    font-weight: 300;
+  }
+  margin-bottom: 50px;
+}
+
+.homeLink {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}

@@ -10,8 +10,7 @@ import {
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
 
-import styles from "../../styles/modules/modal.module.scss";
-import { useRouter } from "next/router";
+import styles from "../../styles/common/modal.module.scss";
 
 interface ModalProps {
   isOpen: boolean;

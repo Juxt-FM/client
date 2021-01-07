@@ -1,0 +1,114 @@
+@import "../variables";
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin formInput() {
+  outline: none;
+  border-style: none;
+  font-family: $lato;
+  font-weight: 300;
+  color: map-get($colors, "text");
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: map-get($colors, "secondary");
+  background-color: map-get($colors, "altBackground");
+  border-radius: 0px;
+  &:focus {
+    border-bottom-color: map-get($colors, "primary");
+  }
+  @include placeholder {
+    color: map-get($colors, "grey");
+  }
+  &.error {
+    border-bottom-color: map-get($colors, "red");
+  }
+}
+
+input[type="text"].input,
+input[type="email"].input,
+input[type="password"].input,
+input[type="tel"].input {
+  @include formInput();
+
+  height: 60px;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+input[type="text"].inputSm,
+input[type="email"].inputSm,
+input[type="password"].inputSm,
+input[type="tel"].inputSm {
+  @include formInput();
+
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+@mixin inputLabel {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  padding-bottom: 2.5px;
+  & > p {
+    font-size: 14px;
+    color: #444444;
+    text-transform: none;
+    margin-bottom: 5px;
+  }
+}
+
+label.input {
+  @include inputLabel;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+label.inputSm {
+  @include inputLabel;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+div.formGroup {
+  padding: 15px 0;
+}
+
+textarea.textArea {
+  width: 100%;
+  border-color: map-get($colors, "secondary");
+  color: map-get($colors, "text");
+  font-family: $lato;
+  font-size: 16px;
+  font-weight: 300;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+p.error {
+  position: absolute;
+  font-size: 13px;
+  font-weight: 400;
+  color: map-get($colors, "red");
+  margin-top: -5px;
+}

@@ -5,7 +5,7 @@
 
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 
-import styles from "../../styles/modules/inputs.module.scss";
+import styles from "../../styles/common/inputs.module.scss";
 
 interface IFormInput
   extends DetailedHTMLProps<
