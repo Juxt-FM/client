@@ -3,62 +3,54 @@
 .listItem {
   flex: 1;
   display: flex;
-  border-radius: 5px;
-  padding: 15px;
-
-  cursor: pointer;
-  transition: background-color 0.25s;
-
-  & .image {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    margin-right: 25px;
-    border-radius: 5px;
-
-    @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
-      margin-right: 15px;
-    }
-
-    @media (max-width: $breakpoint-small) {
-      width: 100%;
-      height: 200px;
-      margin-right: 0;
-    }
-  }
-
-  & h2 {
-    font-size: 26px;
-    margin-bottom: 1%;
-    line-height: 28px;
-
-    @media (max-width: $breakpoint-medium) {
-      font-size: 24px;
-    }
-
-    @media (max-width: $breakpoint-small) {
-      margin-top: 15px;
-    }
-  }
+  align-items: center;
+  margin: 10px 0;
 
   & .content {
     flex: 1;
   }
+}
 
-  &:hover {
-    background-color: map-get($colors, "altBackground");
-  }
+.timestamp {
+  font-size: 14px;
+  margin: 10px 0;
+  color: map-get($colors, "bodyText");
+}
 
-  @media (max-width: $breakpoint-small) {
-    flex-direction: column;
-    padding: 15px 0;
+.title {
+  font-size: 26px;
+  font-weight: 500;
+  font-family: $mukta;
+  color: map-get($colors, "text");
+  margin-bottom: 10px;
+
+  @media screen and (max-width: $breakpoint-medium) {
+    font-size: 20px;
+    margin-bottom: 5px;
   }
 }
 
-.loading {
-  cursor: default;
-  &:hover {
-    opacity: 1;
+.author {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  margin-bottom: 15px;
+
+  @media (max-width: $breakpoint-small) {
+    margin-bottom: 5px;
+  }
+
+  & .authorImg {
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    margin-right: 10px;
+  }
+
+  & .name {
+    font-size: 16px;
+    font-weight: 600;
+    color: map-get($colors, "text");
   }
 }
 
@@ -69,19 +61,55 @@ p.summary {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-line-clamp: 2; /* number of lines to show */
   -webkit-box-orient: vertical;
 
   @media (max-width: $breakpoint-small) {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 18px;
+  }
+}
+
+.imageRoot {
+  height: fit-content;
+  & .image {
+    object-fit: cover;
+
+    &.lg {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.md {
+      width: 150px;
+      height: 150px;
+      @media screen and (max-width: $breakpoint-medium) {
+        width: 125px;
+        height: 125px;
+      }
+    }
+
+    &.sm {
+      width: 100px;
+      height: 100px;
+      @media screen and (max-width: $breakpoint-medium) {
+        width: 75px;
+        height: 75px;
+      }
+    }
+  }
+}
+
+.loading {
+  cursor: default;
+  &:hover {
+    opacity: 1;
   }
 }
 
 .altListItemWrapper {
   position: relative;
   overflow: hidden;
-  border-radius: 5px;
 
   & > .overlay {
     position: absolute;
@@ -103,6 +131,9 @@ p.summary {
     height: 100%;
     width: 100%;
     transition: background-color 0.25s;
+    & * {
+      color: white !important;
+    }
 
     background-color: rgba(0, 0, 0, 0);
 
@@ -136,5 +167,26 @@ p.summary {
 
   @media (max-width: $breakpoint-small) {
     min-height: 400px;
+  }
+}
+
+.divider {
+  &.lg {
+    width: 50px;
+    @media screen and (max-width: $breakpoint-medium) {
+      width: 25px;
+    }
+  }
+  &.md {
+    width: 25px;
+    @media screen and (max-width: $breakpoint-medium) {
+      width: 15px;
+    }
+  }
+  &.sm {
+    width: 15px;
+    @media screen and (max-width: $breakpoint-medium) {
+      width: 10px;
+    }
   }
 }

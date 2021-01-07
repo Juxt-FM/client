@@ -32,14 +32,16 @@ export const getMockPost = () => ({
   contentFormat: "markdown",
   author: "1",
   title: "Is the market catching up with the economy?",
-  subtitle: faker.company.catchPhrase(),
+  subtitle:
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur inventore rem quaerat facere sit, est nulla sed illum molestias dicta ipsa corporis ipsam porro dolore eaque architecto velit voluptates quam.",
   imageURL: faker.image.imageUrl(),
-  content: faker.company.catchPhrase(),
+  content:
+    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur inventore rem quaerat facere sit, est nulla sed illum molestias dicta ipsa corporis ipsam porro dolore eaque architecto velit voluptates quam.",
   symbols: ["NVDA", "QQQ"],
   tags: ["stock market"],
   comments: [],
   reactionCount: 0,
   reactionStatus: null,
-  createdAt: new Date().getMilliseconds(),
-  updatedAt: new Date().getMilliseconds(),
+  createdAt: "1609986720",
+  updatedAt: "1609986720",
 });

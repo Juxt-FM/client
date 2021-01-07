@@ -5,19 +5,16 @@
 
 import { Fragment, ReactNode } from "react";
 import Link from "next/link";
+import moment from "moment";
 import _ from "lodash";
 
-import { BlogPost } from "../lib/graphql";
+import { BlogPost, UserProfile } from "../lib/graphql";
 
 import Skeleton from "react-loading-skeleton";
+import { getMockUser } from "../__mocks__/mockData";
 
 import styles from "../styles/modules/post-list.module.scss";
 import SkeletonWrapper from "./SkeletonWrapper";
-
-interface IListItem {
-  post: BlogPost | undefined;
-  loading?: boolean;
-}
 
 interface IPostLink {
   id: string;
@@ -42,38 +39,98 @@ export const LoadingListItem = ({ count = 5 }) => (
   </SkeletonWrapper>
 );
 
-export const ListItem = ({ post, loading }: IListItem) => {
-  const classes = [styles.listItem, loading ? styles.loading : ""];
+const PostDate = ({ timestamp }: { timestamp: string }) => (
+  <p className={styles.timestamp}>
+    {moment(parseInt(timestamp, 10) * 1000).fromNow()}
+  </p>
+);
+
+interface IPostImage {
+  imageURL: string;
+  size?: "sm" | "md" | "lg";
+  loading?: boolean;
+}
+
+export const PostImage = ({
+  imageURL,
+  size = "md",
+  loading = false,
+}: IPostImage) => (
+  <a className={styles.imageRoot}>
+    {loading ? (
+      <Skeleton className={[styles.image, styles[size]].join(" ")} />
+    ) : (
+      <img
+        className={[styles.image, styles[size]].join(" ")}
+        src={imageURL}
+        alt="blog post image"
+      />
+    )}
+  </a>
+);
+
+export const PostAuthor = (props: { profile?: UserProfile }) => {
+  const profile = getMockUser().profile;
+
   return (
-    <BlogPostLink id={post ? post.id : ""} disabled={loading}>
-      <a className={classes.join(" ")}>
-        {loading ? (
-          <Skeleton className={styles.image} />
-        ) : (
-          <img
-            className={styles.image}
-            src={post.imageURL}
-            alt="blog post image"
-          />
-        )}
-        <div className={styles.content}>
-          <h2>{loading ? <Skeleton width="30%" /> : post.title}</h2>
-          {loading ? (
-            <Fragment>
-              <Skeleton width="100%" className={styles.summary} />
-              <Skeleton width="75%" className={styles.summary} />
-            </Fragment>
-          ) : (
-            <p className={styles.summary}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-              ducimus repudiandae mollitia optio consequatur iusto. Deleniti
-              quaerat omnis voluptates. Eos laboriosam ipsam, asperiores
-              officiis distinctio porro optio aliquam corporis eligendi.
-            </p>
-          )}
-        </div>
-      </a>
-    </BlogPostLink>
+    <a className={styles.author}>
+      <img
+        className={styles.authorImg}
+        src={profile.imageURL}
+        alt="author profile image"
+      />
+      <p className={styles.name}>{profile.name}</p>
+    </a>
+  );
+};
+
+export const Summary = ({ summary }: { summary: string }) => (
+  <p className={styles.summary}>{summary}</p>
+);
+
+interface IListItem {
+  post: BlogPost | undefined;
+  image: "top" | "right" | "left" | undefined;
+  loading?: boolean;
+  size?: "sm" | "md" | "lg";
+}
+
+export const ListItem = ({
+  post,
+  image,
+  size = "md",
+  loading = false,
+}: IListItem) => {
+  const classes = [
+    styles.listItem,
+    styles[size],
+    loading ? styles.loading : "",
+  ];
+
+  return (
+    <div className={classes.join(" ")}>
+      {image === "left" && <PostImage size={size} imageURL={post.imageURL} />}
+      <div className={[styles.content, image ? styles[image] : ""].join(" ")}>
+        <BlogPostLink id={post ? post.id : ""} disabled={loading}>
+          <div>
+            <PostAuthor />
+            <a>
+              <p className={styles.title}>
+                {loading ? <Skeleton width="30%" /> : post.title}
+              </p>
+              <Summary summary={post.subtitle} />
+            </a>
+            <PostDate timestamp={post.createdAt} />
+          </div>
+        </BlogPostLink>
+      </div>
+      <div className={[styles.divider, styles[size]].join(" ")}></div>
+      {image === "right" && (
+        <BlogPostLink id={post ? post.id : ""} disabled={loading}>
+          <PostImage size={size} imageURL={post.imageURL} loading={loading} />
+        </BlogPostLink>
+      )}
+    </div>
   );
 };
 
@@ -98,13 +155,9 @@ export const AltListItem = ({ post, loading }: IListItem) => {
         <img src={post.imageURL} className={styles.altListItem} />
         <div className={styles.overlay}></div>
         <div className={styles.active}>
-          <h3 className={styles.title}>{post.title}</h3>
-          <p className={styles.summary}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-            ducimus repudiandae mollitia optio consequatur iusto. Deleniti
-            quaerat omnis voluptates. Eos laboriosam ipsam, asperiores officiis
-            distinctio porro optio aliquam corporis eligendi.
-          </p>
+          <PostAuthor />
+          <h4 className={styles.title}>{post.title}</h4>
+          <PostDate timestamp={post.createdAt} />
         </div>
       </a>
     </BlogPostLink>

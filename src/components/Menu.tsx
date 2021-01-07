@@ -27,7 +27,7 @@ const Logo = () => (
     <a>
       <img
         className={styles.logo}
-        src={require("../images/logo-primary-sm.png")}
+        src={require("../images/logo-black-sm.png")}
         alt="brand_logo"
       />
     </a>
@@ -73,13 +73,13 @@ const Menu = () => {
       return (
         <ul className={styles.contentActions}>
           <li>
-            <IconButton icon={faFileAlt} color="blue" onClick={onNewPost} />
+            <IconButton icon={faFileAlt} color="black" onClick={onNewPost} />
           </li>
           <li>
-            <IconButton icon={faLightbulb} color="red" onClick={onNewPost} />
+            <IconButton icon={faLightbulb} color="black" onClick={onNewPost} />
           </li>
           <li>
-            <IconButton icon={faList} color="lightPurple" onClick={onNewPost} />
+            <IconButton icon={faList} color="black" onClick={onNewPost} />
           </li>
         </ul>
       );

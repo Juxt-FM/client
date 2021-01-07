@@ -37,11 +37,7 @@
     }
 
     & > h1 {
-      @media screen and (max-width: $breakpoint-medium) {
-        line-height: 38px;
-      }
-      font-weight: 600;
-      line-height: 50px;
+      margin: 0;
     }
     & > p {
       font-size: 22px;

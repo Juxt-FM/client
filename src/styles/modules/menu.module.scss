@@ -10,9 +10,8 @@
   height: calc(100vh);
   padding-right: 25px;
 
-  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-large) {
-    width: 100px;
-    padding-right: 0;
+  &::-webkit-scrollbar {
+    display: none;
   }
 
   @media (max-width: $breakpoint-small) {
@@ -26,7 +25,70 @@
     z-index: 1;
   }
 
-  &::-webkit-scrollbar {
+  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-large) {
+    width: 100px;
+    padding-right: 0;
+  }
+
+  @media (min-width: $breakpoint-large) and (max-width: $breakpoint-xl) {
+    width: 250px;
+  }
+}
+
+.logo {
+  margin: 50px 0 0 15px;
+  height: 32px;
+  width: auto;
+  @media (max-width: $breakpoint-large) {
+    display: none;
+  }
+  @media (max-width: $breakpoint-xl) {
+    margin: 15px 0 0 15px;
+  }
+}
+
+ul.navigation {
+  display: flex;
+  flex-direction: column;
+  margin: 50px 0;
+
+  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-large) {
+    margin: 15px 0;
+    align-items: center;
+
+    & > * {
+      margin: 10px 0;
+    }
+  }
+
+  @media (min-width: $breakpoint-large) and (max-width: $breakpoint-xl) {
+    margin: 25px 0;
+  }
+
+  @media (max-width: $breakpoint-small) {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+ul.contentActions {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
+
+  @media (max-width: $breakpoint-large) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & > * {
+      margin: 10px 0;
+    }
+  }
+
+  @media (max-width: $breakpoint-small) {
     display: none;
   }
 }
@@ -72,6 +134,15 @@
     transition: background-color 0.25s;
   }
 
+  @media (max-width: $breakpoint-small) {
+    height: 50px;
+    width: 50px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+  }
+
   @media (max-width: $breakpoint-large) {
     margin: 5px 0;
     justify-content: center;
@@ -88,63 +159,16 @@
     }
   }
 
-  @media (max-width: $breakpoint-small) {
+  @media (min-width: $breakpoint-large) and (max-width: $breakpoint-xl) {
     height: 50px;
-    width: 50px;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0;
-  }
-}
+    border-radius: 50px;
+    padding: 0 15px;
 
-.logo {
-  margin: 50px 0 0 15px;
-  height: 32px;
-  width: auto;
-  @media (max-width: $breakpoint-large) {
-    display: none;
-  }
-}
-
-ul.navigation {
-  display: flex;
-  flex-direction: column;
-  margin: 50px 0;
-
-  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-large) {
-    margin: 15px 0;
-    align-items: center;
-
-    & > * {
-      margin: 10px 0;
+    & > .icon {
+      width: 35px;
     }
-  }
-
-  @media (max-width: $breakpoint-small) {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0;
-  }
-}
-
-ul.contentActions {
-  display: flex;
-  justify-content: space-around;
-  margin: 15px 0;
-
-  @media (max-width: $breakpoint-large) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    & > * {
-      margin: 10px 0;
+    & p.label {
+      font-size: 20px;
     }
-  }
-
-  @media (max-width: $breakpoint-small) {
-    display: none;
   }
 }

@@ -9,27 +9,21 @@ import { getMockPost } from "../__mocks__/mockData";
 import styles from "../styles/modules/latest.module.scss";
 
 interface ISection {
-  title: string;
   children: React.ReactChild;
 }
 
 const Section = (props: ISection) => (
-  <section className={styles.section}>
-    <div className={styles.header}>
-      <h1>{props.title}</h1>
-    </div>
-    {props.children}
-  </section>
+  <section className={styles.section}>{props.children}</section>
 );
 
 const Posts = () => {
   return (
-    <Section title="Recent Posts">
+    <Section>
       <div className={styles.blogHighlights}>
         <ul className={styles.vertical}>
-          <ListItem post={getMockPost()} />
-          <ListItem post={getMockPost()} />
-          <ListItem post={getMockPost()} />
+          <ListItem post={getMockPost()} image="right" />
+          <ListItem post={getMockPost()} image="right" />
+          <ListItem post={getMockPost()} image="right" />
         </ul>
         <div className={styles.divider}></div>
         <div className={styles.grid}>

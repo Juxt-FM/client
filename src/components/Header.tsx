@@ -23,7 +23,6 @@ import styles from "../styles/modules/header.module.scss";
 import Dropdown, { DropdownList } from "./common/Dropdown";
 import { useRouter } from "next/router";
 import { IconAction } from "./common/Buttons";
-import Link from "next/link";
 
 interface IPageInfo {
   title: string;

@@ -29,17 +29,17 @@ h1 {
   font-family: $mukta;
   font-weight: 500;
   color: map-get($colors, "text");
-  @media (max-width: $breakpoint-small) {
+  @media (max-width: $breakpoint-medium) {
     font-size: 32px;
+    line-height: 32px;
   }
-  @media (min-width: $breakpoint-small) {
+  @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-xl) {
     font-size: 32px;
+    line-height: 32px;
   }
-  @media (min-width: $breakpoint-medium) {
+  @media (min-width: $breakpoint-xl) {
     font-size: 38px;
-  }
-  @media (min-width: $breakpoint-large) {
-    font-size: 45px;
+    line-height: 38px;
   }
 }
 
@@ -47,16 +47,19 @@ h2 {
   margin: 0px;
   margin-bottom: 10px;
   font-family: $mukta;
-  font-weight: 600;
+  font-weight: 500;
   color: map-get($colors, "text");
   @media (max-width: $breakpoint-small) {
     font-size: 24px;
+    line-height: 24px;
   }
-  @media (min-width: $breakpoint-small) {
+  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
     font-size: 28px;
+    line-height: 28px;
   }
   @media (min-width: $breakpoint-medium) {
     font-size: 32px;
+    line-height: 32px;
   }
 }
 
@@ -64,16 +67,19 @@ h3 {
   margin: 0px;
   margin-bottom: 10px;
   font-family: $mukta;
-  font-weight: 600;
+  font-weight: 500;
   color: map-get($colors, "text");
   @media (max-width: $breakpoint-small) {
-    font-size: 20px;
-  }
-  @media (min-width: $breakpoint-small) {
     font-size: 22px;
+    line-height: 22px;
+  }
+  @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
+    font-size: 24px;
+    line-height: 24px;
   }
   @media (min-width: $breakpoint-medium) {
-    font-size: 24px;
+    font-size: 28px;
+    line-height: 28px;
   }
 }
 
