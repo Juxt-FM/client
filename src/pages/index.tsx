@@ -11,7 +11,7 @@ export default function LatestContentPage() {
   return (
     <Page
       title="Latest"
-      description="Welcome to Hedger!"
+      description="The latest posts, ideas, and market updates."
       extraContent={<HighlightedContent />}
     >
       <Latest />

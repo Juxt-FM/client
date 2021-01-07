@@ -98,6 +98,7 @@ const Menu = () => {
       <Logo />
       <ul className={styles.navigation}>
         <NavItem icon={faFire} label="Latest" path="/" />
+        <NavItem icon={faFileAlt} label="Posts" path="/posts" />
         <NavItem icon={faLayerGroup} label="Stocks" path="/stocks" />
         <NavItem icon={faBitcoin} label="Cryptocurrencies" path="/crypto" />
       </ul>

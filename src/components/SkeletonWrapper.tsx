@@ -10,7 +10,7 @@ interface ISkeletonWrapper {
 }
 
 const SkeletonWrapper = (props: ISkeletonWrapper) => (
-  <SkeletonTheme color="#14192c" highlightColor="#151c31">
+  <SkeletonTheme color="#f2f2f2" highlightColor="#eeeeee">
     {props.children}
   </SkeletonTheme>
 );

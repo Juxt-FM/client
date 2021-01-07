@@ -11,10 +11,11 @@ import _ from "lodash";
 import { BlogPost, UserProfile } from "../lib/graphql";
 
 import Skeleton from "react-loading-skeleton";
+import SkeletonWrapper from "./SkeletonWrapper";
+
 import { getMockUser } from "../__mocks__/mockData";
 
 import styles from "../styles/modules/post-list.module.scss";
-import SkeletonWrapper from "./SkeletonWrapper";
 
 type Size = "sm" | "md" | "lg";
 
@@ -41,7 +42,11 @@ export const LoadingListItem = ({ count = 5 }) => (
   </SkeletonWrapper>
 );
 
-const PostDate = ({ timestamp }: { timestamp: string }) => (
+interface IPostDate {
+  timestamp: string;
+}
+
+const PostDate = ({ timestamp }: IPostDate) => (
   <p className={styles.timestamp}>
     {moment(parseInt(timestamp, 10) * 1000).fromNow()}
   </p>
@@ -58,7 +63,7 @@ export const PostImage = ({
   size = "md",
   loading = false,
 }: IPostImage) => (
-  <a className={styles.imageRoot}>
+  <a className={[styles.imageRoot, styles[size]].join(" ")}>
     {loading ? (
       <Skeleton className={[styles.image, styles[size]].join(" ")} />
     ) : (
@@ -71,28 +76,39 @@ export const PostImage = ({
   </a>
 );
 
-export const PostAuthor = (props: { profile?: UserProfile }) => {
+interface IPostAuthor {
+  profile?: UserProfile;
+  loading?: boolean;
+}
+
+export const PostAuthor = ({ loading = false }: IPostAuthor) => {
   const profile = getMockUser().profile;
 
   return (
     <a className={styles.author}>
-      <img
-        className={styles.authorImg}
-        src={profile.imageURL}
-        alt="author profile image"
-      />
-      <p className={styles.name}>{profile.name}</p>
+      {loading ? (
+        <Skeleton className={styles.authorImg} />
+      ) : (
+        <img
+          className={styles.authorImg}
+          src={profile.imageURL}
+          alt="author profile image"
+        />
+      )}
+
+      <p className={styles.name}>
+        {loading ? <Skeleton width={100} /> : profile.name}
+      </p>
     </a>
   );
 };
 
 interface ISummary {
   summary: string;
-  size: Size;
 }
 
-export const Summary = ({ summary, size = "md" }: ISummary) => (
-  <p className={[styles.summary, styles[size]].join(" ")}>{summary}</p>
+export const Summary = ({ summary }: ISummary) => (
+  <p className={styles.summary}>{summary}</p>
 );
 
 interface IListItem {
@@ -108,36 +124,58 @@ export const ListItem = ({
   size = "md",
   loading = false,
 }: IListItem) => {
-  const classes = [
+  const rootClasses = [
     styles.listItem,
     styles[size],
+    image === "top" ? styles.topImage : "",
     loading ? styles.loading : "",
   ];
 
+  const renderSummary = () => {
+    if (size !== "sm") {
+      if (loading)
+        return (
+          <Fragment>
+            <Skeleton width="100%" />
+            <Skeleton width="75%" />
+          </Fragment>
+        );
+      else return <p className={styles.summary}>{post.subtitle}</p>;
+    }
+  };
+
   return (
-    <div className={classes.join(" ")}>
-      {image === "left" && <PostImage size={size} imageURL={post.imageURL} />}
-      <div className={[styles.content, image ? styles[image] : ""].join(" ")}>
-        <BlogPostLink id={post ? post.id : ""} disabled={loading}>
-          <div>
-            <PostAuthor />
-            <a>
-              <p className={styles.title}>
-                {loading ? <Skeleton width="30%" /> : post.title}
-              </p>
-              <Summary size={size} summary={post.subtitle} />
-            </a>
+    <SkeletonWrapper>
+      <div className={rootClasses.join(" ")}>
+        {(image === "left" || image == "top") && (
+          <PostImage imageURL={post.imageURL} size={size} loading={loading} />
+        )}
+        <div className={styles.content}>
+          <BlogPostLink id={post ? post.id : ""} disabled={loading}>
+            <div>
+              <PostAuthor loading={loading} />
+              <a>
+                <p className={[styles.title, styles[size]].join(" ")}>
+                  {loading ? <Skeleton width="75%" /> : post.title}
+                </p>
+              </a>
+              {renderSummary()}
+            </div>
+          </BlogPostLink>
+          {loading ? (
+            <Skeleton width={100} />
+          ) : (
             <PostDate timestamp={post.createdAt} />
-          </div>
-        </BlogPostLink>
+          )}
+        </div>
+        <div className={[styles.divider, styles[size]].join(" ")}></div>
+        {image === "right" && (
+          <BlogPostLink id={post ? post.id : ""} disabled={loading}>
+            <PostImage size={size} imageURL={post.imageURL} loading={loading} />
+          </BlogPostLink>
+        )}
       </div>
-      <div className={[styles.divider, styles[size]].join(" ")}></div>
-      {image === "right" && (
-        <BlogPostLink id={post ? post.id : ""} disabled={loading}>
-          <PostImage size={size} imageURL={post.imageURL} loading={loading} />
-        </BlogPostLink>
-      )}
-    </div>
+    </SkeletonWrapper>
   );
 };
 
@@ -153,8 +191,7 @@ export const LoadingAltListItem = ({ count = 5 }) => (
 
 export const AltListItem = ({ post, loading }: IListItem) => {
   if (loading) {
-    const height = Math.floor((Math.random() + 1) * 100);
-    return <Skeleton height={height} className={styles.altListItem} />;
+    return <Skeleton height={300} className={styles.altListItem} />;
   }
   return (
     <BlogPostLink id={post ? post.id : ""} disabled={loading}>
@@ -163,7 +200,9 @@ export const AltListItem = ({ post, loading }: IListItem) => {
         <div className={styles.overlay}></div>
         <div className={styles.active}>
           <PostAuthor />
-          <h4 className={styles.title}>{post.title}</h4>
+          <p className={[styles.title, styles.md].join(" ")}>
+            {loading ? <Skeleton width="30%" /> : post.title}
+          </p>
           <PostDate timestamp={post.createdAt} />
         </div>
       </a>

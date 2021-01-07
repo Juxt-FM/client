@@ -1,6 +1,7 @@
 @import "../common/variables";
 
 .listItem {
+  position: relative;
   flex: 1;
   display: flex;
   align-items: center;
@@ -8,6 +9,20 @@
 
   & .content {
     flex: 1;
+    width: 100%;
+  }
+
+  &.sm {
+    margin: 10px 0;
+  }
+
+  &.topImage {
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    & .content {
+      margin-top: 10px;
+    }
   }
 }
 
@@ -18,10 +33,29 @@
 
 .title {
   font-size: 26px;
-  font-weight: 500;
+  line-height: 28px;
+  font-weight: 600;
   font-family: $mukta;
   color: map-get($colors, "text");
-  margin-bottom: 10px;
+  margin: 10px 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+
+  &.md {
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 5px;
+  }
+
+  &.sm {
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 5px;
+  }
 
   @media screen and (max-width: $breakpoint-medium) {
     font-size: 20px;
@@ -33,11 +67,6 @@
   display: flex;
   width: fit-content;
   align-items: center;
-  margin-bottom: 15px;
-
-  @media (max-width: $breakpoint-small) {
-    margin-bottom: 5px;
-  }
 
   & .authorImg {
     height: 20px;
@@ -47,7 +76,7 @@
   }
 
   & .name {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: map-get($colors, "text");
   }
@@ -69,26 +98,31 @@ p.summary {
   }
 }
 
+@mixin imageDimensions($value) {
+  height: $value;
+  width: $value;
+}
+
 .imageRoot {
   height: fit-content;
+
+  &.lg {
+    width: 100%;
+  }
+
   & .image {
     object-fit: cover;
+    background-color: map-get($colors, "secondary");
 
     &.lg {
       width: 100%;
-      height: 100%;
+      height: 300px;
     }
 
     &.md {
-      width: 150px;
-      height: 150px;
+      @include imageDimensions(150px);
       @media screen and (max-width: $breakpoint-medium) {
-        width: 125px;
-        height: 125px;
-      }
-      @media screen and (max-width: $breakpoint-small) {
-        width: 75px;
-        height: 75px;
+        @include imageDimensions(125px);
       }
     }
 
@@ -96,12 +130,10 @@ p.summary {
       width: 100px;
       height: 100px;
       @media screen and (max-width: $breakpoint-medium) {
-        width: 75px;
-        height: 75px;
+        @include imageDimensions(75px);
       }
       @media screen and (max-width: $breakpoint-small) {
-        width: 50px;
-        height: 50px;
+        @include imageDimensions(50px);
       }
     }
   }
@@ -165,7 +197,7 @@ p.summary {
 
 .altListItem {
   vertical-align: middle;
-  height: auto;
+  height: 300px;
   width: 100%;
   border: none;
   outline: none;

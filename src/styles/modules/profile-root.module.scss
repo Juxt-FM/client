@@ -54,6 +54,7 @@ img.profileImage {
   border-radius: 100px;
   object-fit: cover;
   border: solid 4px map-get($colors, "background");
+  background-color: map-get($colors, "background");
 
   @media screen and (max-width: $breakpoint-small) {
     height: 75px;
