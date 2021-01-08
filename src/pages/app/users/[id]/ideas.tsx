@@ -30,7 +30,7 @@ const RightContent = () => (
     <HighlightedSection title="Trending">
       <div></div>
     </HighlightedSection>
-    <Button label="Follow" color="purple" />
+    <Button label="Follow" />
   </HighlightedContent>
 );
 

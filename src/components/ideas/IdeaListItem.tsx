@@ -18,10 +18,9 @@ import SkeletonWrapper from "../common/SkeletonWrapper";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
-  faReply,
-  faShare,
   faThumbsDown,
   faThumbsUp,
+  faCommentAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import Skeleton from "react-loading-skeleton";
 
@@ -116,7 +115,7 @@ const Reactions = ({ loading }: IReactions) => {
         <FontAwesomeIcon icon={faHeart} />
       </a>
       <a className={styles.item}>
-        <FontAwesomeIcon icon={faReply} />
+        <FontAwesomeIcon icon={faCommentAlt} />
       </a>
     </div>
   );
@@ -145,30 +144,31 @@ const Idea = ({ idea, loading = false }: IIdea) => {
   return (
     <SkeletonWrapper>
       <li>
-        <IdeaLink id={idea ? idea.id : ""} disabled={loading}>
-          <div className={rootClasses.join(" ")}>
-            <div className={styles.userImage}>
+        <div className={rootClasses.join(" ")}>
+          <div className={styles.userImage}>
+            <ProfileLink id="1" disabled={loading}>
+              <ProfileImage
+                size="xl"
+                loading={loading}
+                imageURL="https://www.pererasys.com/_next/static/images/logo-primary-6159c5340e68d805f65665a10107a1ed.png"
+              />
+            </ProfileLink>
+          </div>
+          <div className={styles.container}>
+            <div className={styles.header}>
               <ProfileLink id="1" disabled={loading}>
-                <ProfileImage
-                  size="xl"
-                  loading={loading}
-                  imageURL="https://pererasys.com/_next/static/images/me-0e70979b96b772f832a278693ee0cd0e.jpg"
-                />
+                <ProfileName name="Andrew Perera" loading={loading} size="md" />
               </ProfileLink>
+              <IdeaDate timestamp={idea.createdAt} loading={loading} />
             </div>
-            <div className={styles.container}>
-              <div className={styles.header}>
-                <ProfileName name="Andrew Perera" loading={loading} size="lg" />
-                <IdeaDate timestamp={idea.createdAt} loading={loading} />
-              </div>
-              <Tags loading={loading} />
-              {renderContent()}
-              <div className={styles.footer}>
-                <Reactions loading={loading} />
-              </div>
+            <IdeaLink id={idea ? idea.id : ""} disabled={loading}>
+              <a>{renderContent()}</a>
+            </IdeaLink>
+            <div className={styles.footer}>
+              <Reactions loading={loading} />
             </div>
           </div>
-        </IdeaLink>
+        </div>
       </li>
     </SkeletonWrapper>
   );

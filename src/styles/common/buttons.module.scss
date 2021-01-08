@@ -3,6 +3,7 @@
 @mixin btn($color) {
   height: 60px;
   width: 100%;
+  border-radius: 1.5px;
   background-color: $color;
   text-decoration: none;
   outline: none;
@@ -87,25 +88,43 @@
   }
 }
 
-@mixin iconAction($color) {
-  position: relative;
-  overflow: hidden;
+@mixin iconButtonSm($color) {
+  @include iconButton($color);
+
   height: 40px;
   width: 40px;
   border-radius: 40px;
+  font-size: 18px;
+}
+
+@mixin iconAction($color) {
+  position: relative;
+  overflow: hidden;
+  height: 60px;
+  width: 60px;
+  border-radius: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  color: map-get($colors, "lightGrey");
+  color: $color;
+  background-color: map-get($colors, "altBackground");
 
   @include buildTransition(background-color, 0.25s, linear);
   @include buildTransition(color, 0.15s, linear);
 
   &:hover {
-    color: $color;
-    background-color: map-get($colors, "altBackground");
+    color: darken($color, 10);
+    background-color: lighten($color, 25);
   }
+}
+
+@mixin iconActionSm($color) {
+  @include iconAction($color);
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  font-size: 18px;
 }
 
 @each $name, $color in $colors {
@@ -124,8 +143,14 @@
   a.#{$name}IconAction {
     @include iconAction($color);
   }
+  a.#{$name}IconActionSm {
+    @include iconActionSm($color);
+  }
   a.#{$name}IconBtn {
     @include iconButton($color);
+  }
+  a.#{$name}IconBtnSm {
+    @include iconButtonSm($color);
   }
 }
 

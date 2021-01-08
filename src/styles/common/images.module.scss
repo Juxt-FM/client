@@ -10,12 +10,50 @@
     height: 65px;
     width: 65px;
     border-radius: 65px;
+
+    @media screen and (max-width: $breakpoint-small) {
+      height: 45px;
+      width: 45px;
+      border-radius: 45px;
+    }
+
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
+      height: 55px;
+      width: 55px;
+      border-radius: 55px;
+    }
+  }
+
+  &.lg {
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+
+    @media screen and (max-width: $breakpoint-small) {
+      height: 32px;
+      width: 32px;
+      border-radius: 32px;
+    }
+
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
+      height: 38px;
+      width: 38px;
+      border-radius: 38px;
+    }
   }
 
   &.md {
-    height: 28px;
-    width: 28px;
-    border-radius: 28px;
+    @media screen and (max-width: $breakpoint-small) {
+      height: 28px;
+      width: 28px;
+      border-radius: 28px;
+    }
+
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-medium) {
+      height: 32px;
+      width: 32px;
+      border-radius: 32px;
+    }
   }
 
   &.sm {

@@ -5,17 +5,11 @@
   flex: 1;
   width: 100%;
   display: flex;
-  padding: 15px 10px;
-  cursor: pointer;
-  border-bottom: solid 0.5px map-get($colors, "border");
+  padding: 15px 0;
 
   &.loading {
     background-color: initial !important;
     cursor: default;
-  }
-
-  &:hover {
-    background-color: darken(map-get($colors, "background"), 2);
   }
 }
 
@@ -27,6 +21,9 @@
 
 .userImage {
   margin: 5px 15px;
+  @media screen and (max-width: $breakpoint-small) {
+    margin: 5px 10px 5px 0;
+  }
 }
 
 .header {
@@ -47,19 +44,19 @@ ul.tags {
   padding: 0 15px;
   margin: 0 2.5px;
   border-radius: 30px;
-  background-color: lighten(map-get($colors, "lightGreen"), 30);
-  color: map-get($colors, "green");
+  background-color: lighten(map-get($colors, "red"), 30);
+  color: map-get($colors, "red");
   display: flex;
 }
 
 p.content {
   font-size: 18px;
-  line-height: 20px;
+  line-height: 24px;
   padding: 10px 0;
 
-  @media screen and (max-width: $breakpoint-medium) {
+  @media screen and (max-width: $breakpoint-small) {
     font-size: 16px;
-    line-height: 18px;
+    line-height: 20px;
     padding: 5px 0;
   }
 }
@@ -98,7 +95,10 @@ p.content {
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    color: map-get($colors, "bodyText");
+    color: map-get($colors, "secondary");
+
+    @include buildTransition(background-color, 0.25s, linear);
+    @include buildTransition(color, 0.25s, linear);
 
     &:hover {
       color: map-get($colors, "primary");

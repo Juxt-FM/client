@@ -34,12 +34,12 @@ h1 {
     line-height: 32px;
   }
   @media (min-width: $breakpoint-medium) and (max-width: $breakpoint-xl) {
-    font-size: 32px;
-    line-height: 32px;
+    font-size: 45px;
+    line-height: 45px;
   }
   @media (min-width: $breakpoint-xl) {
-    font-size: 38px;
-    line-height: 38px;
+    font-size: 50px;
+    line-height: 50px;
   }
 }
 

@@ -21,6 +21,10 @@ const MetaTags = ({ title, description, image }: IMeta) => {
       <Head>
         <title>{`${title} | JUXT`}</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
         <meta name="title" content={`${title} | JUXT`} key="title" />
         <meta name="description" content={description} key="desc" />
 

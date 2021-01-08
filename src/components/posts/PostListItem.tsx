@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { Fragment, ReactNode } from "react";
+import { Fragment, ReactChild, ReactChildren, ReactNode } from "react";
 import Link from "next/link";
 import moment from "moment";
 import _ from "lodash";
@@ -24,7 +24,7 @@ interface IPostComponent {
 
 interface IPostLink {
   id: string;
-  children: ReactNode;
+  children: ReactChild | ReactChildren;
   disabled?: boolean;
 }
 
@@ -61,27 +61,38 @@ const PostDate = ({ timestamp, loading = false }: IPostDate) => (
   </p>
 );
 
+/**
+ *
+ * We need to create a new link in the image component
+ * because it fucks with the sizing if we have a parent a tag
+ * in the main BlogPostLink component.
+ *
+ */
 interface IPostImage extends IPostComponent {
+  id: string;
   imageURL: string;
   size?: Size;
 }
 
 export const PostImage = ({
+  id,
   imageURL,
   size = "md",
   loading = false,
 }: IPostImage) => (
-  <div className={[styles.imageRoot, styles[size]].join(" ")}>
-    {loading ? (
-      <Skeleton className={[styles.image, styles[size]].join(" ")} />
-    ) : (
-      <img
-        className={[styles.image, styles[size]].join(" ")}
-        src={imageURL}
-        alt="blog post image"
-      />
-    )}
-  </div>
+  <Link href={`/app/posts/${id}`}>
+    <a className={[styles.imageRoot, styles[size]].join(" ")}>
+      {loading ? (
+        <Skeleton className={[styles.image, styles[size]].join(" ")} />
+      ) : (
+        <img
+          className={[styles.image, styles[size]].join(" ")}
+          src={imageURL}
+          alt="blog post image"
+        />
+      )}
+    </a>
+  </Link>
 );
 
 interface IPostSummary extends IPostComponent {
@@ -133,9 +144,12 @@ export const ListItem = ({ post, image, loading, size = "md" }: IListItem) => {
     <SkeletonWrapper>
       <div className={rootClasses.join(" ")}>
         {(image === "left" || image == "top") && (
-          <BlogPostLink {...linkProps}>
-            <PostImage imageURL={post.imageURL} size={size} loading={loading} />
-          </BlogPostLink>
+          <PostImage
+            id={post.id}
+            imageURL={post.imageURL}
+            size={size}
+            loading={loading}
+          />
         )}
         {image === "left" && (
           <div className={[styles.divider, styles[size]].join(" ")}></div>
@@ -155,13 +169,12 @@ export const ListItem = ({ post, image, loading, size = "md" }: IListItem) => {
         {image === "right" && (
           <Fragment>
             <div className={[styles.divider, styles[size]].join(" ")}></div>
-            <BlogPostLink {...linkProps}>
-              <PostImage
-                size={size}
-                imageURL={post.imageURL}
-                loading={loading}
-              />
-            </BlogPostLink>
+            <PostImage
+              id={post.id}
+              size={size}
+              imageURL={post.imageURL}
+              loading={loading}
+            />
           </Fragment>
         )}
       </div>

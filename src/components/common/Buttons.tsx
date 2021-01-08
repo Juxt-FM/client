@@ -80,6 +80,7 @@ export const ButtonOutline = ({ color = "primary", ...props }: IButton) => {
 interface IIconAction {
   icon: IconProp;
   color?: Color;
+  size?: "sm" | "default";
   onClick: (
     event: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>
   ) => void;
@@ -87,11 +88,15 @@ interface IIconAction {
 
 export const IconAction = ({
   color = "primary",
+  size = "default",
   icon,
   onClick,
 }: IIconAction) => {
   return (
-    <a className={styles[`${color}IconAction`]} onClick={onClick}>
+    <a
+      className={styles[`${color}IconAction${size === "sm" ? "Sm" : ""}`]}
+      onClick={onClick}
+    >
       <FontAwesomeIcon icon={icon} className={styles.icon} />
     </a>
   );
@@ -99,10 +104,14 @@ export const IconAction = ({
 
 export const IconButton = ({
   color = "primary",
+  size = "default",
   icon,
   onClick,
 }: IIconAction) => (
-  <a className={styles[`${color}IconBtn`]} onClick={onClick}>
+  <a
+    className={styles[`${color}IconBtn${size === "sm" ? "Sm" : ""}`]}
+    onClick={onClick}
+  >
     <FontAwesomeIcon icon={icon} className={styles.icon} />
   </a>
 );

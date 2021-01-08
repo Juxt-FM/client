@@ -1,53 +1,92 @@
 @import "../variables";
 
-.detailRoot {
-  position: relative;
-  min-height: 100vh;
-  padding: 15px;
+img.image {
+  width: 100%;
+  height: auto;
+  min-height: 30vh;
+  max-height: 50vh;
+  object-fit: cover;
+  background-color: map-get($colors, "secondary");
+}
+
+.info {
+  margin: 50px 0;
+
   @media screen and (max-width: $breakpoint-small) {
-    padding: 0;
+    margin: 25px 0;
   }
 }
 
-.header {
-  position: relative;
+.title {
+  line-height: 110%;
+  margin: 15px 0;
+  @media screen and (max-width: $breakpoint-small) {
+    margin: 10px 0;
+  }
+}
+
+.author {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+
+  & .authorInfo {
+    margin: 0 25px 0 15px;
+  }
+}
+
+p.summary {
+  font-size: 22px;
+  line-height: 32px;
+  font-weight: 200;
+  color: map-get($colors, "bodyText");
+
+  @media screen and (max-width: $breakpoint-small) {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.timestamp {
+  font-size: 16px;
+  line-height: 22px;
+  color: map-get($colors, "bodyText");
+}
+
+.reactions {
+  width: 100%;
+  max-width: 400px;
+  margin: 15px 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
   @media screen and (max-width: $breakpoint-small) {
-    flex-direction: column;
+    max-width: unset;
+    justify-content: space-around;
   }
-  & > :nth-child(even) {
-    margin-left: 25px;
-    @media screen and (max-width: $breakpoint-small) {
-      margin: 0;
-    }
-  }
-  & > img {
-    width: 30%;
-    border-radius: 5px;
+}
 
-    @media screen and (max-width: $breakpoint-small) {
-      width: 100%;
-      border-radius: 0;
-    }
-  }
-  & > .info {
-    @media screen and (max-width: $breakpoint-small) {
-      margin: 10px;
-    }
+.content {
+  margin: 50px 0;
 
-    & > h1 {
-      margin: 0;
-    }
-    & > p {
-      font-size: 22px;
-      line-height: 32px;
-      font-weight: 200;
-      @media screen and (max-width: $breakpoint-small) {
-        font-size: 16;
-        line-height: inherit;
-        color: map-get($colors, "bodyText");
-      }
-    }
+  & p {
+    margin: 25px 0;
+    font-size: 20px;
+    line-height: 28px;
   }
+
+  & img {
+    max-width: 100%;
+  }
+
+  & a {
+    font-size: 20px;
+    line-height: 28px;
+    color: map-get($colors, "blue");
+  }
+}
+
+.ideas {
+  margin: 25px 0;
 }

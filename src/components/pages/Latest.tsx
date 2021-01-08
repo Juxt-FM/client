@@ -46,11 +46,11 @@ const TrendingPosts = () => (
 
 const FollowingPosts = () => (
   <Section>
-    <h4>Based on who you follow</h4>
+    <h4>Based on people you follow</h4>
     <List>
-      <ListItem post={getMockPost()} image="left" />
-      <ListItem post={getMockPost()} image="left" />
-      <ListItem post={getMockPost()} image="left" />
+      <ListItem post={getMockPost()} image="right" />
+      <ListItem post={getMockPost()} image="right" />
+      <ListItem post={getMockPost()} image="right" />
     </List>
   </Section>
 );

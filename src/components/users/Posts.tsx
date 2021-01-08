@@ -13,7 +13,7 @@ import { getMockPost } from "../../__mocks__/mockData";
 const Posts = () => (
   <List>
     {_.range(15).map((_, index) => (
-      <ListItem post={getMockPost()} image="right" key={String(index)} />
+      <ListItem post={getMockPost()} image="left" key={String(index)} />
     ))}
   </List>
 );

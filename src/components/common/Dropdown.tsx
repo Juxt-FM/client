@@ -51,6 +51,7 @@ export const DropdownOption = (props: IDropdownOption) => {
 interface IListOption {
   label: string;
   icon?: IconProp;
+  path?: string;
   danger?: boolean;
   onClick?: (e: any) => void;
 }

@@ -11,6 +11,17 @@ import Page from "../../../components/navigation/Page";
 import PostDetail from "../../../components/posts/PostDetail";
 
 import { getMockPost } from "../../../__mocks__/mockData";
+import HighlightedContent, {
+  HighlightedSection,
+} from "../../../components/common/HighlightedContent";
+
+const ExtraContent = () => (
+  <HighlightedContent>
+    <HighlightedSection title="">
+      <div></div>
+    </HighlightedSection>
+  </HighlightedContent>
+);
 
 export default function SinglePost() {
   const router = useRouter();
@@ -28,7 +39,13 @@ export default function SinglePost() {
   if (data) {
     //const { singleBlogPost: post } = data;
     return (
-      <Page title="Post" description="Check out this blog post!" backButton>
+      <Page
+        title={data.title}
+        headerTitle=" "
+        description="Check out this blog post!"
+        extraContent={<ExtraContent />}
+        backButton
+      >
         <PostDetail post={data} />
       </Page>
     );

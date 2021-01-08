@@ -49,7 +49,11 @@ const PageInfo = ({ backButton = false, title }: IPageInfo) => {
     } else if (backButton) {
       return (
         <div className={styles.backButton}>
-          <IconAction icon={faArrowLeft} onClick={() => router.back()} />
+          <IconAction
+            icon={faArrowLeft}
+            size="sm"
+            onClick={() => router.back()}
+          />
         </div>
       );
     }
@@ -63,8 +67,59 @@ const PageInfo = ({ backButton = false, title }: IPageInfo) => {
   );
 };
 
+const SettingsDropdown = () => {
+  const { user } = useAuthUser();
+
+  const renderAnchor = (
+    openDropdown: (
+      event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    ) => void
+  ) => <IconAction icon={faEllipsisH} size="sm" onClick={openDropdown} />;
+
+  const renderContent = () => {
+    const lists = [
+      [
+        {
+          label: "Settings",
+          icon: faCog,
+          path: `/app/settings/account`,
+        },
+        {
+          label: "Privacy",
+          icon: faShieldAlt,
+          path: `/app/settings/privacy`,
+        },
+      ],
+      [
+        {
+          label: "Help Center",
+          icon: faQuestionCircle,
+          path: `/support/help`,
+        },
+        {
+          label: "Contact Us",
+          icon: faCommentAlt,
+          path: `/support/contact`,
+        },
+      ],
+    ];
+
+    return (
+      <Fragment>
+        {lists.map((options, index) => (
+          <Fragment key={String(index)}>
+            <DropdownList options={options} />
+            {index + 1 !== lists.length && <hr />}
+          </Fragment>
+        ))}
+      </Fragment>
+    );
+  };
+
+  return <Dropdown anchor={renderAnchor} content={renderContent} />;
+};
+
 const AccountDropdown = () => {
-  const router = useRouter();
   const { user } = useAuthUser();
 
   const renderAnchor = (
@@ -88,30 +143,6 @@ const AccountDropdown = () => {
           label: "Profile",
           icon: faUser,
           path: `/app/users/${user.id}`,
-        },
-      ],
-      [
-        {
-          label: "Settings",
-          icon: faCog,
-          path: `/app/settings/account`,
-        },
-        {
-          label: "Privacy",
-          icon: faShieldAlt,
-          path: `/app/settings/privacy`,
-        },
-      ],
-      [
-        {
-          label: "Help Center",
-          icon: faQuestionCircle,
-          path: `/support/help`,
-        },
-        {
-          label: "Contact Us",
-          icon: faCommentAlt,
-          path: `/support/contact`,
         },
       ],
       [
@@ -150,10 +181,10 @@ const Navigation = () => {
   return (
     <ul className={styles.navigation}>
       <li className={styles.navItem}>
-        <IconAction icon={faSearch} onClick={() => {}} />
+        <IconAction icon={faSearch} size="sm" onClick={() => {}} />
       </li>
       <li className={styles.navItem}>
-        <IconAction icon={faEllipsisH} onClick={() => {}} />
+        <SettingsDropdown />
       </li>
       <li className={styles.navItem}>
         {loggedIn ? (

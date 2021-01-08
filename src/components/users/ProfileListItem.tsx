@@ -28,10 +28,10 @@ interface IProfileLink {
 
 export const ProfileLink = (props: IProfileLink) =>
   props.disabled ? (
-    <div className={styles.root}>{props.children}</div>
+    <div>{props.children}</div>
   ) : (
     <Link href={`/app/users/${props.id}`}>
-      <a className={styles.root}>{props.children}</a>
+      <a>{props.children}</a>
     </Link>
   );
 
@@ -51,10 +51,10 @@ export const ProfileImage = ({ size = "sm", ...props }: IProfileImage) => (
 
 interface IProfileName extends IProfileComponent {
   name: string;
-  size?: "md" | "lg";
+  size?: "sm" | "md" | "lg";
 }
 
-export const ProfileName = ({ name, loading, size = "md" }: IProfileName) => (
+export const ProfileName = ({ name, loading, size = "sm" }: IProfileName) => (
   <p className={[styles.name, styles[size]].join(" ")}>
     {loading ? <Skeleton width={100} /> : name}
   </p>
@@ -69,10 +69,10 @@ export const ProfileListItem = ({ loading, touchable = true }: IProfile) => {
   const profile = getMockUser().profile;
 
   const renderContent = () => (
-    <Fragment>
+    <div className={styles.root}>
       <ProfileImage imageURL={profile.imageURL} size="sm" loading={loading} />
       <ProfileName name={profile.name} loading={loading} />
-    </Fragment>
+    </div>
   );
 
   if (touchable)

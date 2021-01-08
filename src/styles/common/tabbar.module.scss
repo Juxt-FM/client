@@ -29,6 +29,10 @@
       padding: 15px 20px;
     }
 
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-xl) {
+      padding: 15px 25px !important;
+    }
+
     &.active {
       color: map-get($colors, "primary");
       font-weight: 600;
@@ -40,6 +44,10 @@
 
       @media screen and (max-width: $breakpoint-small) {
         padding: 15px 20px 13px 20px;
+      }
+
+      @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-xl) {
+        padding: 15px 25px 13px 25px !important;
       }
     }
 

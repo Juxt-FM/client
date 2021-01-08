@@ -1,0 +1,59 @@
+@import "../variables";
+
+.root {
+  flex: 1;
+  display: flex;
+}
+
+.userImage {
+  margin: 5px 15px;
+
+  @media screen and (max-width: $breakpoint-small) {
+    margin: 5px 10px 5px 0;
+  }
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  margin: 10px 0;
+
+  & .actions {
+    display: flex;
+    justify-content: flex-end;
+
+    & > * {
+      max-width: 100px;
+    }
+  }
+}
+
+textarea.content {
+  width: 100%;
+  min-height: 100px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 200;
+  font-family: $lato;
+  color: map-get($colors, "text");
+  outline: none;
+  border-style: solid;
+  border-width: 1.5px;
+  border-radius: 2.5px;
+  border-color: map-get($colors, "border");
+  padding: 10px 10px;
+  background-color: map-get($colors, "background");
+
+  @include buildTransition(border-color, 0.1s, linear);
+
+  &:focus {
+    border-color: map-get($colors, "primary");
+  }
+  &:hover {
+    border-color: lighten(map-get($colors, "primary"), 10);
+  }
+}

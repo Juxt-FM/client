@@ -17,9 +17,9 @@
 
   @media (max-width: $breakpoint-small) {
     position: fixed;
-    top: calc(100vh - 50px);
-    left: 0;
+    top: calc(100vh - 60px);
     height: $smallMenuHeight;
+    left: 0;
     width: 100vw;
     padding: 0;
     margin: 0;
@@ -137,8 +137,8 @@ ul.contentActions {
   }
 
   @media (max-width: $breakpoint-small) {
-    height: 45px;
-    width: 45px;
+    height: $smallMenuHeight;
+    width: $smallMenuHeight;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;

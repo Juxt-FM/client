@@ -30,7 +30,7 @@ const RightContent = () => (
     <HighlightedSection title="Trending">
       <div></div>
     </HighlightedSection>
-    <Button label="Follow" color="purple" />
+    <Button label="Follow" />
   </HighlightedContent>
 );
 
@@ -49,6 +49,7 @@ const UserProfilePage = () => {
   return (
     <Page
       title={`${data.userProfile.name || "Users"}`}
+      headerTitle=" "
       description={
         data
           ? `Check out ${data.userProfile.name} on Hedger.`
