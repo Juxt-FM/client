@@ -6,6 +6,7 @@
 import { create, act } from "react-test-renderer";
 import "@testing-library/jest-dom/extend-expect";
 
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,12 +18,20 @@ import {
 } from "../common/Buttons";
 import { Column, List, Row, Section } from "../common/Containers";
 import Dropdown, { DropdownList, DropdownOption } from "../common/Dropdown";
-import Link from "next/link";
 import HighlightedContent, {
   HighlightedSection,
 } from "../common/HighlightedContent";
 import { Thumbnail } from "../common/Images";
 import { FormInput } from "../common/Inputs";
+import Modal from "../common/Modal";
+
+import { useClickAwayAction } from "../../lib/context";
+
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import TabBar from "../common/TabBar";
+
+jest.mock("body-scroll-lock");
+jest.mock("../../lib/context");
 
 describe("<Button />", () => {
   const setup = (props) => {
@@ -217,14 +226,15 @@ describe("<List />", () => {
 });
 
 describe("<Dropdown />", () => {
-  const setup = () => {
+  const setup = (props) => {
     const renderAnchor = (onOpen, isOpen) => (
       <a onClick={onOpen}>{isOpen ? "Clicked" : "Click Me"}</a>
     );
-    const renderContent = () => <div id="content">dropdown content</div>;
 
     const component = create(
-      <Dropdown anchor={renderAnchor} content={renderContent} />
+      <Dropdown renderAnchor={renderAnchor} {...props}>
+        <div id="content">dropdown content</div>
+      </Dropdown>
     );
 
     const anchor = component.root.findByType("a");
@@ -235,10 +245,18 @@ describe("<Dropdown />", () => {
     };
   };
 
-  it("should behave to clicks", () => {
-    const { anchor, component } = setup();
+  it("should be disabled", () => {
+    const { anchor } = setup({ disabled: true });
 
     expect(anchor.children).toContain("Click Me");
+
+    act(anchor.props.onClick);
+
+    expect(anchor.children).toContain("Click Me");
+  });
+
+  it("should show content", () => {
+    const { anchor, component } = setup();
 
     act(anchor.props.onClick);
 
@@ -250,11 +268,11 @@ describe("<Dropdown />", () => {
 });
 
 describe("<DropdownList />", () => {
-  const setup = (renderContent) => {
+  const setup = ({ children }) => {
     const renderAnchor = (onOpen) => <a onClick={onOpen}>open</a>;
 
     const component = create(
-      <Dropdown anchor={renderAnchor} content={renderContent} />
+      <Dropdown renderAnchor={renderAnchor}>{children}</Dropdown>
     );
 
     const anchor = component.root.findByType("a");
@@ -268,11 +286,11 @@ describe("<DropdownList />", () => {
   it("should show option with icon", () => {
     const onClick = jest.fn();
 
-    const renderContent = () => (
+    const children = (
       <DropdownList options={[{ label: "test", icon: faPlus, onClick }]} />
     );
 
-    const { anchor, component } = setup(renderContent);
+    const { anchor, component } = setup({ children });
 
     act(anchor.props.onClick);
 
@@ -295,11 +313,9 @@ describe("<DropdownList />", () => {
   it("should show option without icon", () => {
     const onClick = jest.fn();
 
-    const renderContent = () => (
-      <DropdownList options={[{ label: "test", onClick }]} />
-    );
+    const children = <DropdownList options={[{ label: "test", onClick }]} />;
 
-    const { anchor, component } = setup(renderContent);
+    const { anchor, component } = setup({ children });
 
     act(anchor.props.onClick);
 
@@ -313,9 +329,9 @@ describe("<DropdownList />", () => {
   it("should show option with router link", () => {
     const option = { label: "test", path: "/" };
 
-    const renderContent = () => <DropdownList options={[option]} />;
+    const children = <DropdownList options={[option]} />;
 
-    const { anchor, component } = setup(renderContent);
+    const { anchor, component } = setup({ children });
 
     act(anchor.props.onClick);
 
@@ -433,5 +449,105 @@ describe("<FormInput />", () => {
     const error = component.root.findByType("p");
 
     expect(error.children).toContain(errorMsg);
+  });
+});
+
+describe("<Modal />", () => {
+  const setup = (props) => {
+    const renderAnchor = (onOpen, isOpen) => (
+      <a onClick={onOpen}>{isOpen ? "Clicked" : "Click Me"}</a>
+    );
+
+    const component = create(
+      <Modal renderAnchor={renderAnchor} {...props}>
+        <div id="content">modal content</div>
+      </Modal>
+    );
+
+    const anchor = component.root.findByType("a");
+
+    return {
+      anchor,
+      component,
+    };
+  };
+
+  it("should initialize a click away action", () => {
+    setup();
+
+    expect(useClickAwayAction).toBeCalled();
+  });
+
+  it("should lock and unlock scrolling", () => {
+    const { anchor, component } = setup();
+
+    expect(useClickAwayAction).toBeCalled();
+
+    act(anchor.props.onClick);
+
+    expect(disableBodyScroll).toBeCalled();
+
+    component.unmount();
+
+    expect(enableBodyScroll).toBeCalled();
+  });
+
+  it("should be disabled", () => {
+    const { anchor } = setup({ disabled: true });
+
+    expect(anchor.children).toContain("Click Me");
+
+    act(anchor.props.onClick);
+
+    expect(anchor.children).toContain("Click Me");
+  });
+
+  it("should show content", () => {
+    const { anchor, component } = setup();
+
+    act(anchor.props.onClick);
+
+    const content = component.root.findByProps({ id: "content" });
+
+    expect(anchor.children).toContain("Clicked");
+    expect(content.children).toContain("modal content");
+  });
+});
+
+describe("<TabBar />", () => {
+  const setup = (tabs) => {
+    const component = create(<TabBar tabs={tabs} />);
+
+    const tabbar = component.root.findByType("div");
+
+    return {
+      tabbar,
+      component,
+    };
+  };
+
+  it("should display tabs", () => {
+    const home = { path: "/home", label: "Home", active: true };
+    const account = { path: "/account", label: "Account", active: false };
+    const tabs = [home, account];
+
+    const { component } = setup(tabs);
+
+    const homeTab = component.root.findByProps({ label: "Home" });
+    const homeLink = component.root.findByProps({ href: home.path });
+
+    const accountTab = component.root.findByProps({ label: "Account" });
+    const accountLink = component.root.findByProps({ href: account.path });
+
+    expect(homeTab.props.path).toEqual(home.path);
+    expect(homeTab.props.label).toEqual(home.label);
+    expect(homeTab.props.active).toEqual(home.active);
+
+    expect(accountTab.props.path).toEqual(account.path);
+    expect(accountTab.props.label).toEqual(account.label);
+    expect(accountTab.props.active).toEqual(account.active);
+
+    expect(accountLink.type).toEqual(Link);
+    expect(homeLink.type).toEqual(Link);
   });
 });

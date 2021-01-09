@@ -3,6 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
+import { MouseEvent } from "react";
 import {
   XYPlot,
   LineSeries,
@@ -10,7 +11,6 @@ import {
   LineSeriesPoint,
   MarkSeries,
 } from "react-vis";
-import { MouseEvent } from "react";
 
 interface IPoint {
   x: number;

@@ -22,13 +22,12 @@ import moment from "moment";
 import _ from "lodash";
 
 import { LoadingChart, QuoteChart } from "./Charts";
-import { NewsArticle } from "../articles/News";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { LineSeriesPoint } from "react-vis";
 
-import styles from "../../styles/modules/stocks.module.scss";
+import styles from "../../styles/stocks/stocks.module.scss";
 
 interface ITimeframeSwitch {
   timeframe: string;
@@ -163,19 +162,6 @@ export const Header = ({ name }: IHeader) => (
   <h1 className={styles.symbol}>{name}</h1>
 );
 
-const News = ({ news }: { news: StockNews[] }) => {
-  const renderArticle = (item: StockNews) => (
-    <NewsArticle {...item} key={item.url} />
-  );
-
-  return (
-    <Fragment>
-      <h3>Recent News</h3>
-      {news.map(renderArticle)}
-    </Fragment>
-  );
-};
-
 const CompanyDetails = ({ stock }: { stock: CompanyProfile }) => {
   return (
     <div className={styles.companyDetails}>
@@ -187,7 +173,6 @@ const CompanyDetails = ({ stock }: { stock: CompanyProfile }) => {
         <h3>About</h3>
         <p className={styles.description}>{stock.description}</p>
         <div className={styles.attribute}></div>
-        <News news={stock.news} />
       </div>
     </div>
   );

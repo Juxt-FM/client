@@ -116,7 +116,7 @@ const SettingsDropdown = () => {
     );
   };
 
-  return <Dropdown anchor={renderAnchor} content={renderContent} />;
+  return <Dropdown renderAnchor={renderAnchor}>{renderContent()}</Dropdown>;
 };
 
 const AccountDropdown = () => {
@@ -168,7 +168,7 @@ const AccountDropdown = () => {
   };
 
   if (user) {
-    return <Dropdown anchor={renderAnchor} content={renderContent} />;
+    return <Dropdown renderAnchor={renderAnchor}>{renderContent()}</Dropdown>;
   } else {
     return <div className={styles.loadingNavOption}></div>;
   }

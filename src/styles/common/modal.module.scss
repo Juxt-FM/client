@@ -1,6 +1,6 @@
 @import "../variables";
 
-.modal {
+.root {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -34,7 +34,7 @@
   }
 }
 
-.modalContent {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

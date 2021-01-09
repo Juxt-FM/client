@@ -3,56 +3,63 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import React, { ReactChild, useEffect, useRef } from "react";
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from "body-scroll-lock";
+import React, {
+  Fragment,
+  ReactChild,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+
+import { useClickAwayAction } from "../../lib/context";
 
 import styles from "../../styles/common/modal.module.scss";
 
 interface ModalProps {
-  isOpen: boolean;
   children: ReactChild;
-  onClose: () => void;
+  disabled?: boolean;
+  renderAnchor: (openDropdown: () => void, isOpen: boolean) => JSX.Element;
 }
 
-const Modal = ({ children, isOpen, onClose }: ModalProps) => {
+const Modal = ({ children, disabled, renderAnchor }: ModalProps) => {
+  const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
-  const onClickAway = (e: MouseEvent) => {
-    if (!ref.current.contains(e.target)) {
-      onClose();
-    }
-  };
+  useClickAwayAction(ref, { isActive: open, action: () => setOpen(false) });
 
   useEffect(() => {
     const elem = document.getElementById("__next");
 
-    if (isOpen) {
-      window.addEventListener("click", onClickAway);
-      disableBodyScroll(elem);
-    } else {
-      enableBodyScroll(elem);
-    }
+    if (open) disableBodyScroll(elem);
+    else enableBodyScroll(elem);
 
     return () => {
-      window.removeEventListener("click", onClickAway);
-      clearAllBodyScrollLocks();
+      enableBodyScroll(elem);
     };
-  }, [isOpen]);
+  }, [open]);
 
-  if (isOpen)
-    return (
-      <div className={styles.modal}>
-        <div ref={ref} className={styles.modalContent}>
-          {children}
+  const onOpen = () => {
+    if (!disabled) setOpen(true);
+  };
+
+  const renderContent = () => {
+    if (open)
+      return (
+        <div className={styles.root}>
+          <div ref={ref} className={styles.content}>
+            {children}
+          </div>
         </div>
-      </div>
-    );
+      );
+  };
 
-  return null;
+  return (
+    <Fragment>
+      {renderAnchor(onOpen, open)}
+      {renderContent()}
+    </Fragment>
+  );
 };
 
 export default Modal;
