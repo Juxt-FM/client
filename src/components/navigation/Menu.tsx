@@ -5,7 +5,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useAuthStatus } from "../../lib/context";
+import { useAuthStatus } from "../../lib/auth";
 
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faBitcoin } from "@fortawesome/free-brands-svg-icons";

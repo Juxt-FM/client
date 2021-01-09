@@ -25,13 +25,13 @@ import { Thumbnail } from "../common/Images";
 import { FormInput } from "../common/Inputs";
 import Modal from "../common/Modal";
 
-import { useClickAwayAction } from "../../lib/context";
+import { useClickAwayAction } from "../../lib/ui";
 
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import TabBar from "../common/TabBar";
 
 jest.mock("body-scroll-lock");
-jest.mock("../../lib/context");
+jest.mock("../../lib/ui");
 
 describe("<Button />", () => {
   const setup = (props) => {

@@ -8,7 +8,7 @@ import { useMutation } from "@apollo/client";
 import Link from "next/link";
 
 import { AuthCredentials, MUTATION_SIGNUP } from "../../lib/graphql";
-import { useAuthActions } from "../../lib/context";
+import { useAuthActions } from "../../lib/auth";
 
 import { FormInput } from "../common/Inputs";
 

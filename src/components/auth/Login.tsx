@@ -8,7 +8,7 @@ import { ApolloError, useMutation } from "@apollo/client";
 import Link from "next/link";
 
 import { AuthCredentials, MUTATION_LOGIN } from "../../lib/graphql";
-import { useAuthActions } from "../../lib/context";
+import { useAuthActions } from "../../lib/auth";
 
 import { ContentSection, Header } from "./Authentication";
 

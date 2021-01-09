@@ -7,9 +7,9 @@ import { useApolloClient } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 
-import { loginUser, logoutUser, selectAuthUser } from "../../store";
+import { loginUser, logoutUser, selectAuthUser } from "../store";
 
-import { getLoggedInCookie } from "../../cookies";
+import { getLoggedInCookie } from "../cookies";
 
 /**
  * Returns the auth user ID

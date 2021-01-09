@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { useAuthUser } from "../../lib/context";
+import { useAuthUser } from "../../lib/auth";
 
 import { ProfileImage, ProfileName } from "../users/ProfileListItem";
 import { Button } from "../common/Buttons";

@@ -3,7 +3,6 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { screen, render, act as tlAct } from "@testing-library/react";
 import { create, act } from "react-test-renderer";
 
 import { useRef } from "react";

@@ -6,7 +6,7 @@
 import { Fragment } from "react";
 import _ from "lodash";
 
-import { useAuthStatus } from "../../lib/context";
+import { useAuthStatus } from "../../lib/auth";
 
 import { AltListItem, ListItem } from "../posts/PostListItem";
 import { Column, List, Row, Section } from "../common/Containers";

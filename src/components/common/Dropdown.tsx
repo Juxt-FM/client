@@ -4,7 +4,7 @@
  */
 
 import React, { ReactChild, ReactChildren, useRef, useState } from "react";
-import { useClickAwayAction } from "../../lib/context";
+import { useClickAwayAction } from "../../lib/ui";
 
 import Link from "next/link";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";

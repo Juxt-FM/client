@@ -7,12 +7,12 @@ import { create, act } from "react-test-renderer";
 import { MockedProvider } from "@apollo/client/testing";
 import { GraphQLError } from "graphql";
 
-import { useAuthActions } from "../../lib/context";
+import { useAuthActions } from "../../lib/auth";
 import { MUTATION_LOGIN, MUTATION_SIGNUP } from "../../lib/graphql";
 import Signup from "../auth/Signup";
 import Login, { Error as LoginError } from "../auth/Login";
 
-jest.mock("../../lib/context");
+jest.mock("../../lib/auth");
 
 jest.mock("next/link", () => ({ children }) => children);
 

@@ -8,7 +8,7 @@ import { MockedProvider } from "@apollo/client/testing";
 import { Provider as ReduxProvider } from "react-redux";
 import { useStore } from "../lib/store";
 
-import { AuthProvider, UserProvider } from "../lib/context";
+import { AuthProvider, UserProvider } from "../lib/auth";
 
 const PageProvider = ({ children, initialReduxState, pathname, mocks }) => {
   const store = useStore(initialReduxState);

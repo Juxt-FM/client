@@ -12,7 +12,7 @@ import React, {
 } from "react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
-import { useClickAwayAction } from "../../lib/context";
+import { useClickAwayAction } from "../../lib/ui";
 
 import styles from "../../styles/common/modal.module.scss";
 

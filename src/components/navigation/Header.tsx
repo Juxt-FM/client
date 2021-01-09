@@ -5,7 +5,7 @@
 
 import React, { Fragment, useState } from "react";
 import { useRouter } from "next/router";
-import { useAuthStatus, useAuthUser } from "../../lib/context";
+import { useAuthStatus, useAuthUser } from "../../lib/auth";
 
 import {
   faArrowLeft,

@@ -14,9 +14,9 @@ import {
   fetchUserFail,
   fetchUserSuccess,
   fetchUser,
-} from "../../store";
+} from "../store";
 
-import { User, QUERY_AUTH_USER } from "../../graphql";
+import { User, QUERY_AUTH_USER } from "../graphql";
 
 import { useAuthStatus } from "./hooks";
 

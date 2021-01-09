@@ -5,7 +5,7 @@
 
 import { ElementType } from "react";
 import { useRouter } from "next/router";
-import { useAuthStatus } from "../../lib/context";
+import { useAuthStatus } from "../../lib/auth";
 import { UserProfile } from "../../lib/graphql";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

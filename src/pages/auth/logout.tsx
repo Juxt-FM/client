@@ -6,7 +6,7 @@
 import { Fragment, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { MUTATION_LOGOUT } from "../../lib/graphql";
-import { useAuthActions } from "../../lib/context";
+import { useAuthActions } from "../../lib/auth";
 
 import MetaTags from "../../components/navigation/MetaTags";
 import { FullLoader } from "../../components/common/Loaders";
