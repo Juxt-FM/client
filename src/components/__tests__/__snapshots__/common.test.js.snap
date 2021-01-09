@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HighlightedSection /> should render content appropriately 1`] = `
+<div>
+  <div>
+    <h4>
+      Test Title
+    </h4>
+  </div>
+  <div
+    id="content"
+  >
+    hello
+  </div>
+</div>
+`;

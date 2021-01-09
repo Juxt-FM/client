@@ -1,17 +1,113 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Login /> renders without crashing 1`] = `
+<div
+  className=" "
+>
+  <div>
+    <section>
+      <h2>
+        Title 1
+      </h2>
+      <p>
+         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores praesentium similique aliquam culpa suscipit, itaque, id architecto nihil voluptatem consequatur et atque aspernatur ex totam cupiditate obcaecati quos autem sed.
+      </p>
+    </section>
+    <section>
+      <h2>
+        Title 2
+      </h2>
+      <p>
+         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores praesentium similique aliquam culpa suscipit, itaque, id architecto nihil voluptatem consequatur et atque aspernatur ex totam cupiditate obcaecati quos autem sed.
+      </p>
+    </section>
+  </div>
+  <div>
+    <div>
+      <div>
+        <a>
+          <img
+            alt="brand logo"
+            src="placeholder-file"
+          />
+        </a>
+        <h2>
+          Log in to your account
+        </h2>
+      </div>
+      <form
+        id="loginForm"
+        onSubmit={[Function]}
+      >
+        <div>
+          <label
+            htmlFor="identifier"
+          >
+            Email or phone number
+          </label>
+          <input
+            className=" "
+            id="identifier"
+            name="identifier"
+            onChange={[Function]}
+            placeholder="Email or phone number"
+            required={true}
+            type="text"
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            className=" "
+            id="password"
+            name="password"
+            onChange={[Function]}
+            placeholder="Password"
+            required={true}
+            type="password"
+          />
+        </div>
+        <button
+          disabled={true}
+          id="login"
+          type="submit"
+        >
+          Log in
+        </button>
+        <div />
+      </form>
+      <div>
+        <div>
+          <p>
+            Don't have an account?
+          </p>
+          <a>
+            Sign up
+          </a>
+        </div>
+        <a>
+          Forgot password
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`<Signup /> renders without crashing 1`] = `
 <div>
   <div>
     <div>
       <div>
         <a>
-          <a>
-            <img
-              alt="brand logo"
-              src="placeholder-file"
-            />
-          </a>
+          <img
+            alt="brand logo"
+            src="placeholder-file"
+          />
         </a>
         <h2>
           Create your account
@@ -125,9 +221,7 @@ exports[`<Signup /> renders without crashing 1`] = `
             Already have an account?
           </p>
           <a>
-            <a>
-              Log in
-            </a>
+            Log in
           </a>
         </div>
       </div>
