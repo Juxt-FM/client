@@ -107,30 +107,4 @@ describe("<Signup />", () => {
     expect(button.props.loading).toEqual(false);
     expect(onLogin).toBeCalledWith(mockToken);
   });
-
-  it("should throw field error", async () => {
-    const { form, email, name, password, confirmPassword, button } = setup(
-      mocks
-    );
-
-    act(() => {
-      email.props.onChange({ target: { value: mockInput.email } });
-      name.props.onChange({ target: { value: mockInput.name } });
-      password.props.onChange({ target: { value: mockInput.password } });
-      confirmPassword.props.onChange({
-        target: { value: mockInput.confirmPassword },
-      });
-    });
-
-    act(() => {
-      form.props.onSubmit({ preventDefault: jest.fn() });
-    });
-
-    expect(button.props.loading).toEqual(true);
-
-    await act(async () => new Promise((resolve) => setTimeout(resolve, 0)));
-
-    expect(button.props.loading).toEqual(false);
-    expect(onLogin).toBeCalledWith(mockToken);
-  });
 });
