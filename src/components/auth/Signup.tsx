@@ -158,7 +158,7 @@ export const SignupForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form id="signupForm" onSubmit={onSubmit}>
       <div className={styles.signupForm}>
         <div className={styles.signupColumn}>
           <FormInput
@@ -216,6 +216,7 @@ export const SignupForm = () => {
       </div>
 
       <Button
+        id="signup"
         color="accent"
         label="Sign up"
         loading={loading}

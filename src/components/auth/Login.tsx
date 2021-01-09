@@ -3,8 +3,8 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { FormEvent, useState } from "react";
-import { useMutation } from "@apollo/client";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { ApolloError, useMutation } from "@apollo/client";
 import Link from "next/link";
 
 import { AuthCredentials, MUTATION_LOGIN } from "../../lib/graphql";
@@ -17,19 +17,33 @@ import { Button } from "../common/Buttons";
 
 import styles from "../../styles/auth/login.module.scss";
 
+export const Error = ({ message }: { message: string }) => (
+  <div className={styles.error}>
+    <p>{message}</p>
+  </div>
+);
+
+export const LoginErrors = ({ error }: { error: ApolloError }) => {
+  const renderContent = () => {
+    if (error) {
+      if (error.graphQLErrors && error.graphQLErrors.length > 0) {
+        return error.graphQLErrors.map((err) => (
+          <Error message={err.message} key={err.message} />
+        ));
+      } else if (error.networkError) {
+        return <Error message={error.networkError.message} />;
+      }
+    }
+  };
+
+  return <div className={styles.loginErrors}>{renderContent()}</div>;
+};
+
 const LoginForm = () => {
   const { onLogin } = useAuthActions();
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-
-  const onIdentifierChange = (event: any) => {
-    setIdentifier(event.target.value);
-  };
-
-  const onPasswordChange = (event: any) => {
-    setPassword(event.target.value);
-  };
 
   const [login, { loading, error }] = useMutation<{
     loginUser: AuthCredentials;
@@ -47,37 +61,21 @@ const LoginForm = () => {
     onError: () => {},
   });
 
+  const onIdentifierChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setIdentifier(event.target.value);
+  };
+
+  const onPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
   const onLoginUser = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     login();
   };
 
-  const renderErrors = () => {
-    if (error) {
-      if (error.graphQLErrors && error.graphQLErrors.length > 0) {
-        return (
-          <div className={styles.loginErrors}>
-            {error.graphQLErrors.map((err) => (
-              <div className={styles.error} key={err.message}>
-                <p>{err.message}</p>
-              </div>
-            ))}
-          </div>
-        );
-      } else if (error.networkError) {
-        return (
-          <div className={styles.loginErrors}>
-            <div className={styles.error}>
-              <p>No internet connection.</p>
-            </div>
-          </div>
-        );
-      }
-    }
-  };
-
   return (
-    <form className={styles.loginForm} onSubmit={onLoginUser}>
+    <form id="loginForm" className={styles.loginForm} onSubmit={onLoginUser}>
       <FormInput
         id="identifier"
         name="identifier"
@@ -95,12 +93,14 @@ const LoginForm = () => {
         required
       />
       <Button
+        id="login"
         label="Log in"
+        disabled={!identifier || !password}
         loading={loading}
         loadingLabel="Just a moment..."
         type="submit"
       />
-      {renderErrors()}
+      <LoginErrors error={error} />
     </form>
   );
 };

@@ -74,6 +74,7 @@ p.summary {
     margin: 25px 0;
     font-size: 20px;
     line-height: 28px;
+    color: darken(map-get($colors, "bodyText"), 10);
   }
 
   & img {

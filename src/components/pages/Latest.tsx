@@ -3,6 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
+import { Fragment } from "react";
 import _ from "lodash";
 
 import { useAuthStatus } from "../../lib/context";
@@ -10,11 +11,11 @@ import { useAuthStatus } from "../../lib/context";
 import { AltListItem, ListItem } from "../posts/PostListItem";
 import { Column, List, Row, Section } from "../common/Containers";
 import Idea from "../ideas/IdeaListItem";
+import NewIdea from "../ideas/NewIdea";
 
 import { getMockIdea, getMockPost } from "../../__mocks__/mockData";
 
-import styles from "../../styles/pages/home.module.scss";
-import { Fragment } from "react";
+import styles from "../../styles/pages/latest.module.scss";
 
 const SuggestedPosts = () => (
   <div className={styles.topContent}>
@@ -67,11 +68,16 @@ export const BlogPosts = () => {
 
 export const Ideas = () => {
   return (
-    <List>
-      {_.range(10).map((i, index) => (
-        <Idea idea={getMockIdea()} key={String(index)} />
-      ))}
-    </List>
+    <Fragment>
+      <Section>
+        <NewIdea />
+      </Section>
+      <List>
+        {_.range(10).map((i, index) => (
+          <Idea idea={getMockIdea()} key={String(index)} />
+        ))}
+      </List>
+    </Fragment>
   );
 };
 

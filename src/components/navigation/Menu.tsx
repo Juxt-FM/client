@@ -73,13 +73,13 @@ const Menu = () => {
       return (
         <ul className={styles.contentActions}>
           <li>
-            <IconButton icon={faFileAlt} color="black" onClick={onNewPost} />
+            <IconButton icon={faFileAlt} color="red" onClick={onNewPost} />
           </li>
           <li>
-            <IconButton icon={faLightbulb} color="black" onClick={onNewPost} />
+            <IconButton icon={faLightbulb} color="blue" onClick={onNewPost} />
           </li>
           <li>
-            <IconButton icon={faList} color="black" onClick={onNewPost} />
+            <IconButton icon={faList} color="lightGreen" onClick={onNewPost} />
           </li>
         </ul>
       );

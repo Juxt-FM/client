@@ -16,7 +16,12 @@ interface INewIdea {
 
 const IdeaInput = ({ replyTo }: INewIdea) => (
   <form className={styles.form}>
-    <textarea className={styles.content} name="content" id="content" />
+    <textarea
+      className={styles.content}
+      name="content"
+      id="content"
+      placeholder="Say something!"
+    />
     <div className={styles.actions}>
       <Button label={replyTo ? "Reply" : "Post"} size="sm" />
     </div>

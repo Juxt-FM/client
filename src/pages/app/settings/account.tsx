@@ -7,8 +7,8 @@ import Page from "../../../components/navigation/Page";
 import TabBar from "../../../components/common/TabBar";
 
 const tabs = [
-  { label: "Account", path: `/settings/account`, active: true },
-  { label: "Privacy", path: `/settings/privacy`, active: false },
+  { label: "Account", path: `/app/settings/account`, active: true },
+  { label: "Privacy", path: `/app/settings/privacy`, active: false },
 ];
 
 export default function AccountSettings() {

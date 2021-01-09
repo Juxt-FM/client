@@ -46,33 +46,47 @@ interface IButton
   color?: Color;
 }
 
-export const Button = ({ color = "primary", ...props }: IButton) => {
-  const className = styles[`${color}Btn${props.size === "sm" ? "Sm" : ""}`];
+export const Button = ({
+  label,
+  icon,
+  loading,
+  loadingLabel,
+  size,
+  disabled,
+  color = "primary",
+  ...props
+}: IButton) => {
+  const className = styles[`${color}Btn${size === "sm" ? "Sm" : ""}`];
+
   return (
-    <button className={className} {...props}>
-      {props.loading ? (
-        props.loadingLabel
+    <button className={className} disabled={disabled || loading} {...props}>
+      {loading ? (
+        loadingLabel
       ) : (
         <Fragment>
-          {props.label}
-          {props.icon && (
-            <FontAwesomeIcon icon={props.icon} className={styles.icon} />
-          )}
+          {label}
+          {icon && <FontAwesomeIcon icon={icon} className={styles.icon} />}
         </Fragment>
       )}
     </button>
   );
 };
 
-export const ButtonOutline = ({ color = "primary", ...props }: IButton) => {
-  const className =
-    styles[`${color}BtnOutline${props.size === "sm" ? "Sm" : ""}`];
+export const ButtonOutline = ({
+  label,
+  icon,
+  loading,
+  loadingLabel,
+  size,
+  disabled,
+  color = "primary",
+  ...props
+}: IButton) => {
+  const className = styles[`${color}BtnOutline${size === "sm" ? "Sm" : ""}`];
   return (
-    <button className={className} {...props}>
-      {props.loading ? props.loadingLabel : props.label}
-      {props.icon && (
-        <FontAwesomeIcon icon={props.icon} className={styles.icon} />
-      )}
+    <button className={className} disabled={disabled || loading} {...props}>
+      {loading ? loadingLabel : label}
+      {icon && <FontAwesomeIcon icon={icon} className={styles.icon} />}
     </button>
   );
 };

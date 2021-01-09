@@ -5,11 +5,23 @@
   flex: 1;
   width: 100%;
   display: flex;
-  padding: 15px 0;
+  padding: 15px 15px 15px 0;
+  cursor: pointer;
+  border-bottom: solid 0.5px map-get($colors, "border");
+
+  @include buildTransition(background-color, 0.25s, linear);
+
+  @media screen and (max-width: $breakpoint-small) {
+    padding: 25px 5px 15px 0;
+  }
 
   &.loading {
     background-color: initial !important;
     cursor: default;
+  }
+
+  &:hover {
+    background-color: map-get($colors, "altBackground");
   }
 }
 
@@ -21,6 +33,7 @@
 
 .userImage {
   margin: 5px 15px;
+
   @media screen and (max-width: $breakpoint-small) {
     margin: 5px 10px 5px 0;
   }
@@ -53,6 +66,7 @@ p.content {
   font-size: 18px;
   line-height: 24px;
   padding: 10px 0;
+  color: darken(map-get($colors, "bodyText"), 10);
 
   @media screen and (max-width: $breakpoint-small) {
     font-size: 16px;

@@ -18,6 +18,7 @@ interface IFormInput
 }
 
 export const FormInput = ({
+  name,
   label,
   error,
   inputSize = "lg",
@@ -30,10 +31,11 @@ export const FormInput = ({
 
   return (
     <div className={styles.formGroup}>
-      <label htmlFor={props.name} className={inputClass}>
+      <label htmlFor={name} className={inputClass}>
         {label}
       </label>
       <input
+        name={name}
         className={classes}
         placeholder={props.placeholder || label}
         {...props}

@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Signup /> renders without crashing 1`] = `
+<div>
+  <div>
+    <div>
+      <div>
+        <a>
+          <a>
+            <img
+              alt="brand logo"
+              src="placeholder-file"
+            />
+          </a>
+        </a>
+        <h2>
+          Create your account
+        </h2>
+        <p>
+          Gain access to unlimited blog posts and real-time market analysis.
+        </p>
+      </div>
+      <form
+        id="signupForm"
+        onSubmit={[Function]}
+      >
+        <div>
+          <div>
+            <div>
+              <label
+                htmlFor="name"
+              >
+                Full name
+              </label>
+              <input
+                className=" "
+                id="name"
+                name="name"
+                onChange={[Function]}
+                placeholder="Full name"
+                type="text"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+              >
+                Email address
+              </label>
+              <input
+                className=" "
+                id="email"
+                name="email"
+                onChange={[Function]}
+                placeholder="Email address"
+                required={true}
+                type="email"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="phone"
+              >
+                Phone number
+              </label>
+              <input
+                className=" "
+                id="phone"
+                name="phone"
+                onChange={[Function]}
+                placeholder="Phone number"
+                type="tel"
+              />
+            </div>
+          </div>
+          <div>
+            <p>
+              Passwords must be longer than 8 characters.
+            </p>
+            <div>
+              <label
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <input
+                className=" "
+                id="password"
+                name="password"
+                onChange={[Function]}
+                placeholder="Password"
+                required={true}
+                type="password"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="confirmPassword"
+              >
+                Confirm Password
+              </label>
+              <input
+                className=" "
+                id="confirmPassword"
+                name="confirmPassword"
+                onChange={[Function]}
+                placeholder="Confirm Password"
+                required={true}
+                type="password"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          disabled={false}
+          id="signup"
+          type="submit"
+        >
+          Sign up
+        </button>
+      </form>
+      <div>
+        <div>
+          <p>
+            Already have an account?
+          </p>
+          <a>
+            <a>
+              Log in
+            </a>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <section>
+      <h2>
+        Title 1
+      </h2>
+      <p>
+         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores praesentium similique aliquam culpa suscipit, itaque, id architecto nihil voluptatem consequatur et atque aspernatur ex totam cupiditate obcaecati quos autem sed.
+      </p>
+    </section>
+    <section>
+      <h2>
+        Title 2
+      </h2>
+      <p>
+         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores praesentium similique aliquam culpa suscipit, itaque, id architecto nihil voluptatem consequatur et atque aspernatur ex totam cupiditate obcaecati quos autem sed.
+      </p>
+    </section>
+    <section>
+      <h2>
+        Title 3
+      </h2>
+      <p>
+         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores praesentium similique aliquam culpa suscipit, itaque, id architecto nihil voluptatem consequatur et atque aspernatur ex totam cupiditate obcaecati quos autem sed.
+      </p>
+    </section>
+  </div>
+</div>
+`;

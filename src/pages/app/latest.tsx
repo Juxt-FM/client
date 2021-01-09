@@ -35,6 +35,7 @@ export default function LatestContentPage() {
       extraContent={<RightContent />}
     >
       <BlogPosts />
+      <hr />
       <Ideas />
     </Page>
   );
