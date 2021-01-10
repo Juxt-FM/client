@@ -7,6 +7,7 @@ import { AppProps } from "next/app";
 import Router from "next/router";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { Provider as ReduxProvider } from "react-redux";
+
 import { AuthProvider, UserProvider } from "../lib/auth";
 import { useStore } from "../lib/store";
 import { useApollo } from "../lib/graphql";

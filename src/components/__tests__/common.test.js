@@ -4,7 +4,6 @@
  */
 
 import { create, act } from "react-test-renderer";
-import "@testing-library/jest-dom/extend-expect";
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

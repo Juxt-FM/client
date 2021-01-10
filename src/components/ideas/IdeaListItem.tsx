@@ -56,7 +56,7 @@ interface IIdeaDate {
   loading?: boolean;
 }
 
-const IdeaDate = ({ timestamp, loading = false }: IIdeaDate) => (
+export const IdeaDate = ({ timestamp, loading = false }: IIdeaDate) => (
   <p className={styles.timestamp}>
     {loading ? (
       <Skeleton width={100} />
@@ -159,7 +159,10 @@ const Idea = ({ idea, loading = false }: IIdea) => {
               <ProfileLink id="1" disabled={loading}>
                 <ProfileName name="Andrew Perera" loading={loading} size="md" />
               </ProfileLink>
-              <IdeaDate timestamp={idea.createdAt} loading={loading} />
+              <IdeaDate
+                timestamp={idea ? idea.createdAt : ""}
+                loading={loading}
+              />
             </div>
             <IdeaLink id={idea ? idea.id : ""} disabled={loading}>
               <a>{renderContent()}</a>

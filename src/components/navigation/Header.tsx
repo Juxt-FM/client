@@ -30,8 +30,19 @@ interface IPageInfo {
   backButton?: boolean;
 }
 
-const PageInfo = ({ backButton = false, title }: IPageInfo) => {
+export const BackButton = () => {
   const router = useRouter();
+
+  const onBack = () => router.back();
+
+  return (
+    <div className={styles.backButton}>
+      <IconAction icon={faArrowLeft} size="sm" onClick={onBack} />
+    </div>
+  );
+};
+
+export const PageInfo = ({ backButton = false, title }: IPageInfo) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const renderActionButton = () => {
@@ -47,15 +58,7 @@ const PageInfo = ({ backButton = false, title }: IPageInfo) => {
         </div>
       );
     } else if (backButton) {
-      return (
-        <div className={styles.backButton}>
-          <IconAction
-            icon={faArrowLeft}
-            size="sm"
-            onClick={() => router.back()}
-          />
-        </div>
-      );
+      return <BackButton />;
     }
   };
 
@@ -67,9 +70,7 @@ const PageInfo = ({ backButton = false, title }: IPageInfo) => {
   );
 };
 
-const SettingsDropdown = () => {
-  const { user } = useAuthUser();
-
+export const SettingsDropdown = () => {
   const renderAnchor = (
     openDropdown: (
       event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
@@ -119,7 +120,7 @@ const SettingsDropdown = () => {
   return <Dropdown renderAnchor={renderAnchor}>{renderContent()}</Dropdown>;
 };
 
-const AccountDropdown = () => {
+export const AccountDropdown = () => {
   const { user } = useAuthUser();
 
   const renderAnchor = (
@@ -174,7 +175,7 @@ const AccountDropdown = () => {
   }
 };
 
-const Navigation = () => {
+export const Navigation = () => {
   const router = useRouter();
   const loggedIn = useAuthStatus();
 
@@ -202,9 +203,7 @@ const Navigation = () => {
   );
 };
 
-interface IHeader extends IPageInfo {}
-
-export const Header = ({ title, backButton }: IHeader) => {
+const Header = ({ title, backButton }: IPageInfo) => {
   return (
     <header className={styles.header}>
       <PageInfo title={title} backButton={backButton} />

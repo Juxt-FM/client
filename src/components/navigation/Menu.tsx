@@ -3,10 +3,11 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import Link from "next/link";
+import { ReactChild, ReactChildren } from "react";
 import { useRouter } from "next/router";
 import { useAuthStatus } from "../../lib/auth";
 
+import Link from "next/link";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faBitcoin } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -22,7 +23,7 @@ import { IconButton } from "../common/Buttons";
 
 import styles from "../../styles/navigation/menu.module.scss";
 
-const Logo = () => (
+export const Logo = () => (
   <Link href="/app/latest">
     <a>
       <img
@@ -40,7 +41,7 @@ interface INavItem {
   path: string;
 }
 
-const NavItem = ({ label, icon, path }: INavItem) => {
+export const NavItem = ({ label, icon, path }: INavItem) => {
   const router = useRouter();
 
   const isActive = router.pathname === path;
@@ -62,41 +63,56 @@ const NavItem = ({ label, icon, path }: INavItem) => {
   );
 };
 
-const Menu = () => {
+export const ContentActions = () => {
   const router = useRouter();
-  const loggedIn = useAuthStatus();
 
   const onNewPost = () => router.push("/app/posts/editor");
 
-  const renderActions = () => {
-    if (loggedIn)
-      return (
-        <ul className={styles.contentActions}>
-          <li>
-            <IconButton icon={faFileAlt} color="red" onClick={onNewPost} />
-          </li>
-          <li>
-            <IconButton icon={faLightbulb} color="blue" onClick={onNewPost} />
-          </li>
-          <li>
-            <IconButton icon={faList} color="lightGreen" onClick={onNewPost} />
-          </li>
-        </ul>
-      );
-  };
+  return (
+    <ul className={styles.contentActions}>
+      <li>
+        <IconButton icon={faFileAlt} color="red" onClick={onNewPost} />
+      </li>
+      <li>
+        <IconButton icon={faLightbulb} color="blue" onClick={onNewPost} />
+      </li>
+      <li>
+        <IconButton icon={faList} color="lightGreen" onClick={onNewPost} />
+      </li>
+    </ul>
+  );
+};
 
+interface IBaseMenu {
+  routes: INavItem[];
+  children: ReactChild | ReactChildren | ReactChild[] | ReactChildren[];
+}
+
+export const BaseMenu = ({ routes, children }: IBaseMenu) => {
   return (
     <div className={styles.root}>
       <Logo />
       <ul className={styles.navigation}>
-        <NavItem icon={faFire} label="Latest" path="/app/latest" />
-        <NavItem icon={faFileAlt} label="Posts" path="/app/posts" />
-        <NavItem icon={faLayerGroup} label="Stocks" path="/app/stocks" />
-        <NavItem icon={faBitcoin} label="Cryptocurrencies" path="/app/crypto" />
+        {routes.map((route) => (
+          <NavItem {...route} key={route.label} />
+        ))}
       </ul>
-      {renderActions()}
+      {children}
     </div>
   );
+};
+
+const ROUTES = [
+  { icon: faFire, label: "Latest", path: "/app/latest" },
+  { icon: faFileAlt, label: "Posts", path: "/app/posts" },
+  { icon: faLayerGroup, label: "Stocks", path: "/app/stocks" },
+  { icon: faBitcoin, label: "Cryptocurrencies", path: "/app/crypto" },
+];
+
+const Menu = () => {
+  const loggedIn = useAuthStatus();
+
+  return <BaseMenu routes={ROUTES}>{loggedIn && <ContentActions />}</BaseMenu>;
 };
 
 export default Menu;

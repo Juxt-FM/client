@@ -27,6 +27,7 @@ const Searchbar = ({
   const onFocus = () => {
     setActive(true);
   };
+
   const onBlur = () => {
     setActive(false);
   };
