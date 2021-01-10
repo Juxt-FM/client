@@ -22,11 +22,7 @@ import { List } from "../common/Containers";
 import NewIdea from "../ideas/NewIdea";
 import Idea from "../ideas/IdeaListItem";
 
-import {
-  ProfileImage,
-  ProfileLink,
-  ProfileName,
-} from "../users/ProfileListItem";
+import { ProfileImage, ProfileLink, ProfileName } from "../users/Profile";
 import { Button, IconAction } from "../common/Buttons";
 
 import styles from "../../styles/posts/post-detail.module.scss";

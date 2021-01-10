@@ -5,7 +5,7 @@
 
 import { useAuthUser } from "../../lib/auth";
 
-import { ProfileImage, ProfileName } from "../users/ProfileListItem";
+import { ProfileImage, ProfileName } from "../users/Profile";
 import { Button } from "../common/Buttons";
 
 import styles from "../../styles/ideas/new-idea.module.scss";

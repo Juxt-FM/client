@@ -8,11 +8,7 @@ import Link from "next/link";
 import moment from "moment";
 import _ from "lodash";
 
-import {
-  ProfileImage,
-  ProfileLink,
-  ProfileName,
-} from "../users/ProfileListItem";
+import { ProfileImage, ProfileLink, ProfileName } from "../users/Profile";
 import SkeletonWrapper from "../common/SkeletonWrapper";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

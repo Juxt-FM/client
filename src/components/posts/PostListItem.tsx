@@ -12,7 +12,7 @@ import { BlogPost } from "../../lib/graphql";
 
 import Skeleton from "react-loading-skeleton";
 import SkeletonWrapper from "../common/SkeletonWrapper";
-import { ProfileListItem } from "../users/ProfileListItem";
+import { ProfileListItem } from "../users/Profile";
 
 import styles from "../../styles/posts/list-item.module.scss";
 
