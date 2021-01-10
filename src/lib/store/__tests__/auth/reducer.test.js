@@ -7,8 +7,8 @@ import { getMockUser } from "../../../../__mocks__/mockData";
 
 const MockUser = getMockUser();
 
-import * as constants from "../constants";
-import reducer from "../index";
+import * as constants from "../../auth/constants";
+import reducer from "../../auth";
 
 test("should handle LOGIN_USER", () => {
   expect(

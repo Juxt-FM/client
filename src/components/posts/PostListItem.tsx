@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import { Fragment, ReactChild, ReactChildren, ReactNode } from "react";
+import { Fragment, ReactChild, ReactChildren } from "react";
 import Link from "next/link";
 import moment from "moment";
 import _ from "lodash";
@@ -18,7 +18,11 @@ import styles from "../../styles/posts/list-item.module.scss";
 
 type Size = "sm" | "md" | "lg";
 
-interface IPostComponent {
+interface IPostProps {
+  post?: BlogPost;
+}
+
+interface ILoadable {
   loading?: boolean;
 }
 
@@ -41,17 +45,17 @@ export const LoadingListItem = ({ count = 5 }) => (
   <SkeletonWrapper>
     <Fragment>
       {_.range(count).map((index) => (
-        <ListItem post={undefined} loading key={String(index)} />
+        <PostListItem loading key={String(index)} />
       ))}
     </Fragment>
   </SkeletonWrapper>
 );
 
-interface IPostDate extends IPostComponent {
-  timestamp: string;
+interface IPostDate extends ILoadable {
+  timestamp?: string;
 }
 
-const PostDate = ({ timestamp, loading = false }: IPostDate) => (
+export const PostDate = ({ timestamp, loading = false }: IPostDate) => (
   <p className={styles.timestamp}>
     {loading ? (
       <Skeleton width={100} />
@@ -64,13 +68,13 @@ const PostDate = ({ timestamp, loading = false }: IPostDate) => (
 /**
  *
  * We need to create a new link in the image component
- * because it fucks with the sizing if we have a parent a tag
+ * because it fucks with the sizing if we have a parent <a> tag
  * in the main BlogPostLink component.
  *
  */
-interface IPostImage extends IPostComponent {
-  id: string;
-  imageURL: string;
+interface IPostImage extends ILoadable {
+  id?: string;
+  imageURL?: string;
   size?: Size;
 }
 
@@ -79,24 +83,28 @@ export const PostImage = ({
   imageURL,
   size = "md",
   loading = false,
-}: IPostImage) => (
-  <Link href={`/app/posts/${id}`}>
-    <a className={[styles.imageRoot, styles[size]].join(" ")}>
-      {loading ? (
-        <Skeleton className={[styles.image, styles[size]].join(" ")} />
-      ) : (
-        <img
-          className={[styles.image, styles[size]].join(" ")}
-          src={imageURL}
-          alt="blog post image"
-        />
-      )}
-    </a>
-  </Link>
-);
+}: IPostImage) => {
+  const rootClasses = [styles.imageRoot, styles[size]].join(" ");
+  const imageClasses = [styles.image, styles[size]].join(" ");
 
-interface IPostSummary extends IPostComponent {
-  summary: string;
+  if (loading)
+    return (
+      <div className={rootClasses}>
+        <Skeleton className={imageClasses} />
+      </div>
+    );
+
+  return (
+    <Link href={`/app/posts/${id}`}>
+      <a className={rootClasses}>
+        <img className={imageClasses} src={imageURL} alt="blog post image" />
+      </a>
+    </Link>
+  );
+};
+
+interface IPostSummary extends ILoadable {
+  summary?: string;
 }
 
 export const PostSummary = ({ summary, loading }: IPostSummary) => {
@@ -111,8 +119,8 @@ export const PostSummary = ({ summary, loading }: IPostSummary) => {
   return <p className={styles.summary}>{summary}</p>;
 };
 
-interface IPostTitle extends IPostComponent {
-  title: string;
+interface IPostTitle extends ILoadable {
+  title?: string;
   size?: Size;
 }
 
@@ -124,13 +132,17 @@ export const PostTitle = ({ title, loading, size = "md" }: IPostTitle) => {
   );
 };
 
-interface IListItem extends IPostComponent {
-  post: BlogPost | undefined;
+interface IListItem extends ILoadable, IPostProps {
   image?: "top" | "right" | "left";
   size?: Size;
 }
 
-export const ListItem = ({ post, image, loading, size = "md" }: IListItem) => {
+export const PostListItem = ({
+  post,
+  image,
+  loading,
+  size = "md",
+}: IListItem) => {
   const rootClasses = [
     styles.listItem,
     styles[size],
@@ -140,70 +152,73 @@ export const ListItem = ({ post, image, loading, size = "md" }: IListItem) => {
 
   const linkProps = { id: post ? post.id : "", disabled: loading };
 
+  const getComponentProps = () => {
+    if (loading)
+      return {
+        image: { size, loading: true },
+        title: { size, loading: true },
+        summary: { loading: true },
+        date: { loading: true },
+      };
+    else
+      return {
+        image: { size, id: post.id, imageURL: post.imageURL },
+        title: { size, title: post.title },
+        summary: {
+          summary: post.subtitle,
+        },
+        date: {
+          timestamp: post.createdAt,
+        },
+      };
+  };
+
+  const components = getComponentProps();
+
   return (
-    <SkeletonWrapper>
-      <div className={rootClasses.join(" ")}>
-        {(image === "left" || image == "top") && (
-          <PostImage
-            id={post.id}
-            imageURL={post.imageURL}
-            size={size}
-            loading={loading}
-          />
-        )}
-        {image === "left" && (
-          <div className={[styles.divider, styles[size]].join(" ")}></div>
-        )}
-        <div className={styles.content}>
-          <div>
-            <ProfileListItem loading={loading} />
-            <BlogPostLink {...linkProps}>
-              <PostTitle title={post.title} size={size} loading={loading} />
-            </BlogPostLink>
-            {size !== "sm" && (
-              <PostSummary summary={post.subtitle} loading={loading} />
-            )}
-          </div>
-          <PostDate timestamp={post.createdAt} loading={loading} />
+    <div className={rootClasses.join(" ")}>
+      {(image === "left" || image == "top") && (
+        <PostImage {...components.image} />
+      )}
+      {image === "left" && (
+        <div className={[styles.divider, styles[size]].join(" ")}></div>
+      )}
+      <div className={styles.content}>
+        <div>
+          <ProfileListItem loading={loading} />
+          <BlogPostLink {...linkProps}>
+            <PostTitle {...components.title} />
+          </BlogPostLink>
+          {size !== "sm" && <PostSummary {...components.summary} />}
         </div>
-        {image === "right" && (
-          <Fragment>
-            <div className={[styles.divider, styles[size]].join(" ")}></div>
-            <PostImage
-              id={post.id}
-              size={size}
-              imageURL={post.imageURL}
-              loading={loading}
-            />
-          </Fragment>
-        )}
+        <PostDate {...components.date} />
       </div>
-    </SkeletonWrapper>
+      {image === "right" && (
+        <Fragment>
+          <div className={[styles.divider, styles[size]].join(" ")}></div>
+          <PostImage {...components.image} />
+        </Fragment>
+      )}
+    </div>
   );
 };
 
-export const LoadingAltListItem = ({ count = 5 }) => (
-  <Fragment>
-    {_.range(count).map((index) => (
-      <SkeletonWrapper key={String(index)}>
-        <AltListItem post={undefined} loading />
-      </SkeletonWrapper>
-    ))}
-  </Fragment>
-);
+export const LoadingAltPostListItem = ({ count = 5 }) =>
+  _.range(count).map((index) => (
+    <AltPostListItem loading key={String(index)} />
+  ));
 
-export const AltListItem = ({ post, loading }: IListItem) => {
-  if (loading) {
-    return <Skeleton height={300} className={styles.altListItem} />;
-  }
+export const AltPostListItem = ({ post, loading }: IPostProps & ILoadable) => {
+  if (loading) return <Skeleton height={300} className={styles.altListItem} />;
+
   return (
     <BlogPostLink id={post ? post.id : ""} disabled={loading}>
       <div className={styles.altListItemWrapper}>
         <img src={post.imageURL} className={styles.altListItem} />
         <div className={styles.overlay}></div>
         <div className={styles.active}>
-          <ProfileListItem loading={loading} touchable={false} />
-          <PostTitle title={post.title} size="md" loading={loading} />
+          <ProfileListItem touchable={false} />
+          <PostTitle title={post.title} size="md" />
           <PostDate timestamp={post.createdAt} />
         </div>
       </div>

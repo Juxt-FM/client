@@ -5,7 +5,7 @@
 
 import _ from "lodash";
 
-import { ListItem } from "../posts/PostListItem";
+import { PostListItem } from "../posts/PostListItem";
 import { List } from "../common/Containers";
 
 import { getMockPost } from "../../__mocks__/mockData";
@@ -13,7 +13,7 @@ import { getMockPost } from "../../__mocks__/mockData";
 const Posts = () => (
   <List>
     {_.range(15).map((_, index) => (
-      <ListItem post={getMockPost()} image="left" key={String(index)} />
+      <PostListItem post={getMockPost()} image="left" key={String(index)} />
     ))}
   </List>
 );

@@ -3,7 +3,7 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
-import React from "react";
+import React, { ElementType } from "react";
 
 import MetaTags from "./MetaTags";
 import Menu from "./Menu";
@@ -17,28 +17,33 @@ interface IPage {
   description: string;
   children: React.ReactNode;
   headerTitle?: string;
-  extraContent?: React.ReactNode;
   backButton?: boolean;
+  MenuComponent?: ElementType;
+  ExtraContentComponent?: ElementType;
 }
 
-const Page = (props: IPage) => {
-  return (
-    <React.Fragment>
-      <MetaTags {...props} />
-      <div className={styles.root}>
-        <Menu />
-        <div className={styles.page}>
-          <Header
-            title={props.headerTitle || props.title}
-            backButton={props.backButton}
-          />
-          <div className={styles.main}>{props.children}</div>
-          <Footer />
-        </div>
-        <div className={styles.extraContent}>{props.extraContent}</div>
+const Page = ({
+  ExtraContentComponent,
+  MenuComponent = Menu,
+  ...props
+}: IPage) => (
+  <React.Fragment>
+    <MetaTags {...props} />
+    <div className={styles.root}>
+      <MenuComponent />
+      <div className={styles.page}>
+        <Header
+          title={props.headerTitle || props.title}
+          backButton={props.backButton}
+        />
+        <div className={styles.main}>{props.children}</div>
+        <Footer />
       </div>
-    </React.Fragment>
-  );
-};
+      <div className={styles.extraContent}>
+        {ExtraContentComponent && <ExtraContentComponent />}
+      </div>
+    </div>
+  </React.Fragment>
+);
 
 export default Page;

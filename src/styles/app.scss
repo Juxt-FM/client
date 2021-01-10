@@ -17,10 +17,12 @@ a {
 
 body {
   height: 100%;
+  width: 100vw;
   margin: 0;
   background-color: map-get($colors, "background");
   overflow-x: hidden;
   font-family: $lato;
+  overflow-x: hidden;
   overflow-y: scroll;
   overflow-y: overlay;
 }

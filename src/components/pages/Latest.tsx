@@ -6,9 +6,7 @@
 import { Fragment } from "react";
 import _ from "lodash";
 
-import { useAuthStatus } from "../../lib/auth";
-
-import { AltListItem, ListItem } from "../posts/PostListItem";
+import { AltPostListItem, PostListItem } from "../posts/PostListItem";
 import { Column, List, Row, Section } from "../common/Containers";
 import Idea from "../ideas/IdeaListItem";
 import NewIdea from "../ideas/NewIdea";
@@ -20,12 +18,12 @@ import styles from "../../styles/pages/latest.module.scss";
 const SuggestedPosts = () => (
   <div className={styles.topContent}>
     <div className={styles.topHit}>
-      <ListItem post={getMockPost()} image="top" size="lg" />
+      <PostListItem post={getMockPost()} image="top" size="lg" />
     </div>
     <div className={styles.list}>
-      <ListItem post={getMockPost()} size="sm" image="right" />
-      <ListItem post={getMockPost()} size="sm" image="right" />
-      <ListItem post={getMockPost()} size="sm" image="right" />
+      <PostListItem post={getMockPost()} size="sm" image="right" />
+      <PostListItem post={getMockPost()} size="sm" image="right" />
+      <PostListItem post={getMockPost()} size="sm" image="right" />
     </div>
   </div>
 );
@@ -34,12 +32,12 @@ const TrendingPosts = () => (
   <Section>
     <Row>
       <Column>
-        <AltListItem post={getMockPost()} />
-        <AltListItem post={getMockPost()} />
+        <AltPostListItem post={getMockPost()} />
+        <AltPostListItem post={getMockPost()} />
       </Column>
       <Column>
-        <AltListItem post={getMockPost()} />
-        <AltListItem post={getMockPost()} />
+        <AltPostListItem post={getMockPost()} />
+        <AltPostListItem post={getMockPost()} />
       </Column>
     </Row>
   </Section>
@@ -49,9 +47,9 @@ const FollowingPosts = () => (
   <Section>
     <h4>Based on people you follow</h4>
     <List>
-      <ListItem post={getMockPost()} image="right" />
-      <ListItem post={getMockPost()} image="right" />
-      <ListItem post={getMockPost()} image="right" />
+      <PostListItem post={getMockPost()} image="right" />
+      <PostListItem post={getMockPost()} image="right" />
+      <PostListItem post={getMockPost()} image="right" />
     </List>
   </Section>
 );
@@ -82,8 +80,6 @@ export const Ideas = () => {
 };
 
 export const Trending = () => {
-  const loggedIn = useAuthStatus();
-
   return <div className={styles.empty}></div>;
 };
 

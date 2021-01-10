@@ -43,7 +43,7 @@ export default function SinglePost() {
         title={data.title}
         headerTitle=" "
         description="Check out this blog post!"
-        extraContent={<ExtraContent />}
+        ExtraContentComponent={ExtraContent}
         backButton
       >
         <PostDetail post={data} />

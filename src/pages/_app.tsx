@@ -12,6 +12,8 @@ import { AuthProvider, UserProvider } from "../lib/auth";
 import { useStore } from "../lib/store";
 import { useApollo } from "../lib/graphql";
 
+import SkeletonWrapper from "../components/common/SkeletonWrapper";
+
 import NProgress from "nprogress";
 
 import "../styles/nprogress.scss";
@@ -31,7 +33,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ApolloProvider client={client}>
         <AuthProvider>
           <UserProvider>
-            <Component {...pageProps} />
+            <SkeletonWrapper>
+              <Component {...pageProps} />
+            </SkeletonWrapper>
           </UserProvider>
         </AuthProvider>
       </ApolloProvider>

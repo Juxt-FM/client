@@ -3,10 +3,11 @@
  * Copyright (C) 2020 - All rights reserved
  */
 
+import { ReactChild, ReactChildren } from "react";
 import { SkeletonTheme } from "react-loading-skeleton";
 
 interface ISkeletonWrapper {
-  children: React.ReactChild;
+  children: ReactChild | ReactChildren | ReactChild[] | ReactChildren[];
 }
 
 const SkeletonWrapper = (props: ISkeletonWrapper) => (

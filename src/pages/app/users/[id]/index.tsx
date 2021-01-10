@@ -55,7 +55,7 @@ const UserProfilePage = () => {
           ? `Check out ${data.userProfile.name} on Hedger.`
           : "User profiles."
       }
-      extraContent={<RightContent />}
+      ExtraContentComponent={RightContent}
       backButton
     >
       <ProfileRoot Component={Posts} profile={data.userProfile} />

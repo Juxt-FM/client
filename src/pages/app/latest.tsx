@@ -32,7 +32,7 @@ export default function LatestContentPage() {
     <Page
       title="Latest"
       description="The latest posts, ideas, and market updates."
-      extraContent={<RightContent />}
+      ExtraContentComponent={RightContent}
     >
       <BlogPosts />
       <hr />

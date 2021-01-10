@@ -6,7 +6,11 @@
 import { create } from "react-test-renderer";
 
 import Link from "next/link";
-import Idea, { IdeaLink, LoadingIdea, IdeaDate } from "../ideas/IdeaListItem";
+import Idea, {
+  IdeaLink,
+  LoadingIdea,
+  IdeaDate,
+} from "../../ideas/IdeaListItem";
 import Skeleton from "react-loading-skeleton";
 
 describe("<IdeaLink />", () => {

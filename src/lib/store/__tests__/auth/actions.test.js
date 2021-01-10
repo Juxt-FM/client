@@ -15,9 +15,9 @@ import {
   MUTATION_REFRESH_TOKEN,
 } from "../../../graphql";
 
-import * as actions from "../actions";
-import * as constants from "../constants";
-import * as helpers from "../helpers";
+import * as actions from "../../auth/actions";
+import * as constants from "../../auth/constants";
+import * as helpers from "../../auth/helpers";
 
 import { getMockUser } from "../../../../__mocks__/mockData";
 import { MockTokenInfo } from "./reducer.test";
@@ -25,7 +25,7 @@ import { MockTokenInfo } from "./reducer.test";
 const MockUser = getMockUser();
 
 jest.mock("../../../graphql");
-jest.mock("../helpers");
+jest.mock("../../../store/auth/helpers");
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

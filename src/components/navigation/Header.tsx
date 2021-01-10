@@ -176,7 +176,6 @@ export const AccountDropdown = () => {
 };
 
 export const Navigation = () => {
-  const router = useRouter();
   const loggedIn = useAuthStatus();
 
   return (
@@ -187,18 +186,7 @@ export const Navigation = () => {
       <li className={styles.navItem}>
         <SettingsDropdown />
       </li>
-      <li className={styles.navItem}>
-        {loggedIn ? (
-          <AccountDropdown />
-        ) : (
-          <Button
-            label="Get started"
-            color="lightGreen"
-            size="sm"
-            onClick={() => router.push("/auth/signup")}
-          />
-        )}
-      </li>
+      <li className={styles.navItem}>{loggedIn && <AccountDropdown />}</li>
     </ul>
   );
 };
